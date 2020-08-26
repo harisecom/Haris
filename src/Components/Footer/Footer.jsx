@@ -21,7 +21,7 @@ const Footer = () => (
 
                 </ul>
                 <div>
-                    <a href=""><i className="fab fa-facebook fa-2x"></i></a>
+                    <a href=""><i className="fab fa-facebook-f fa-2x"></i></a>
                     <a href=""><i className="fab fa-twitter fa-2x "></i></a>
                     <a href=""><i className="fab fa-instagram fa-2x "></i></a>
                     <a href=""><i className="fab fa-pinterest-p fa-2x "></i></a>
