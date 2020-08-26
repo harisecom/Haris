@@ -1,0 +1,16 @@
+.container a {
+  color: black;
+}
+
+.navbar-text {
+  font-size: 1.5rem;
+  max-width: 30%;
+}
+
+.fab {
+  margin-right: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
