@@ -1,9 +1,9 @@
 import React from 'react';
 import './Footer.styles.css'
 const Footer = () => (
-    <div className="container">
+    <div className="container-fluid fixed-bottom">
         <hr/>
-        <nav className="fixed-bottom navbar navbar-light ">
+        <nav className="navbar navbar-light ">
             <div className="container">
                 <span className="navbar-text">
                     Unlocking A Whole New Wardrobe.
