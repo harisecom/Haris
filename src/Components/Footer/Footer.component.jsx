@@ -2,7 +2,6 @@ import React from 'react';
 import './Footer.styles.css'
 const Footer = () => (
     <div className="container">
-        <hr/>
         <nav className="fixed-bottom navbar navbar-light ">
             <div className="container">
                 <span className="navbar-text">

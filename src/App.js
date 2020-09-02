@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import Footer from './Components/Footer/Footer.component';
+import Homepage from './Components/Homepage/Homepage';
 
 function App() {
   return (
     <div>
-      Haris Ecome Applicatio
-      <Footer></Footer>
+      <Homepage />
+      <Footer />
     </div>
   );
 }
