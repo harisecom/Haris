@@ -1,9 +1,9 @@
 import React from 'react';
 import './Footer.styles.css'
 const Footer = () => (
-    <div className="container">
+    <footer>
         <hr/>
-        <nav className="fixed-bottom navbar navbar-light ">
+        <nav className="navbar navbar-light ">
             <div className="container">
                 <span className="navbar-text">
                     Unlocking A Whole New Wardrobe.
@@ -30,7 +30,7 @@ const Footer = () => (
             </div>
             
         </nav>
-    </div>
+    </footer>
 )
 
 export default Footer;
