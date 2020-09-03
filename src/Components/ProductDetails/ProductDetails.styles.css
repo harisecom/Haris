@@ -1,0 +1,130 @@
+.product-detail {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 15rem auto;
+}
+
+.details {
+  width: 40%;
+  margin: 0 auto;
+  margin-left: 5rem;
+}
+
+/* Image section */
+
+.image {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  margin: 0 auto;
+  margin-right: 5rem;
+}
+
+.image-main {
+  width: 450px;
+  height: 560px;
+  object-fit: cover;
+}
+
+.emphasis {
+  color: orange;
+  font-weight: bold;
+}
+
+.product-image-name {
+  font-size: 1rem;
+}
+
+.side-images {
+  margin-right: 4rem;
+}
+
+.side-image {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 3rem;
+  object-fit: cover;
+}
+
+.side-image:first-child {
+  margin-top: 5rem;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; /* remove extra space below image */
+}
+
+.fa-arrow-right {
+  border-radius: 50%;
+}
+
+.product-image-main {
+  position: relative;
+}
+
+.fa-arrow-left {
+  position: absolute;
+  bottom: 45%;
+  left: -8%;
+  padding: 1rem;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
+}
+.fa-arrow-right {
+  position: absolute;
+  bottom: 45%;
+  right: -8%;
+  padding: 1rem;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
+}
+
+/* Details section */
+
+.section {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Reveiws section */
+
+.fa-star {
+  color: orange;
+}
+
+.review-number {
+  margin-left: 0.5rem;
+}
+
+/* Add to bag section */
+
+.add-to-bag {
+  display: flex;
+  flex-direction: row;
+}
+
+.quantity {
+  margin: 0 1rem;
+}
+
+.addButton {
+  background: black;
+  color: white;
+  padding: 0 1rem;
+  margin-left: 0.5rem;
+}
+
+.fa-heart {
+  color: white;
+  background: black;
+  padding: 0.5rem;
+  margin-left: 2px;
+}
+
+/* menu */
