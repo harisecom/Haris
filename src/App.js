@@ -6,8 +6,8 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 function App() {
   return (
     <div>
-      <ProductDetails></ProductDetails>
-      <Footer></Footer>
+      <ProductDetails/>
+      <Footer/>
     </div>
   );
 }
