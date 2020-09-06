@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
 import Footer from './Components/Footer/Footer.component';
-import './App.css';
+import ForgotPassword from './Pages/forgot-password/forgot-password';
+
+
 function App() {
   return (
     <div className="app-site">
       <div className="content">
-        <h1>Haris Ecome Applicatio</h1>
+        <ForgotPassword></ForgotPassword>
+        <Footer />
       </div>
-      <Footer></Footer>
     </div>
-  );
+   )
 }
 
 export default App;

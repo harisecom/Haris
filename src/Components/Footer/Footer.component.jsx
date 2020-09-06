@@ -3,8 +3,9 @@ import './Footer.styles.css'
 const Footer = () => (
     <footer>
         <hr/>
-        <nav className="navbar navbar-light ">
-            <div className="container">
+       
+    <div className="container">
+         <nav className="navbar navbar-light ">
                 <span className="navbar-text">
                     Unlocking A Whole New Wardrobe.
                 </span>
