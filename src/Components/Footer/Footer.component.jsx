@@ -1,9 +1,11 @@
 import React from 'react';
 import './Footer.styles.css'
 const Footer = () => (
+    <footer>
+        <hr/>
+       
     <div className="container">
-        <nav className="fixed-bottom navbar navbar-light ">
-            <div className="container">
+         <nav className="navbar navbar-light ">
                 <span className="navbar-text">
                     Unlocking A Whole New Wardrobe.
                 </span>
@@ -29,7 +31,7 @@ const Footer = () => (
             </div>
             
         </nav>
-    </div>
+    </footer>
 )
 
 export default Footer;
