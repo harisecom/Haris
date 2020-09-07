@@ -2,7 +2,10 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import './header.style.css';
 
-function Header() {
+const Header = ({handleCart}) => {
+  /* const clickcount = () =>{
+    console.log("yapppppp");
+  } */
   return (
 
     <div className="header">
@@ -10,7 +13,7 @@ function Header() {
           <h1>HARIS</h1>
       </div>
       
-      <Navbar />
+      <Navbar handleCart={handleCart} />
       
     </div>
   )
