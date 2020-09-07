@@ -1,0 +1,170 @@
+.product-detail {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 15rem auto;
+  }
+  
+  .second-half {
+    width: 50%;
+    margin: 0 auto;
+    margin-left: 4rem;
+  }
+  
+  /* Image section */
+  
+  .image {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: 0 auto;
+    margin-right: 4rem;
+  }
+  
+  .image-main {
+    width: 450px;
+    height: 560px;
+    object-fit: cover;
+  }
+  
+  img.image-active {
+    border: 1px solid #ec138d;
+  }
+  
+  .emphasis {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .product-image-name {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .side-images {
+    margin-right: 4rem;
+  }
+  
+  .side-image {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 3rem;
+    object-fit: cover;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+  }
+  
+  .side-image:first-child {
+    margin-top: 5rem;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block; /* remove extra space below image */
+  }
+  
+  .fa-arrow-right {
+    border-radius: 50%;
+  }
+  
+  .product-image-main {
+    position: relative;
+  }
+  
+  .fa-arrow-left {
+    position: absolute;
+    bottom: 45%;
+    left: -8%;
+    padding: 1rem;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
+  .fa-arrow-right {
+    position: absolute;
+    bottom: 45%;
+    right: -8%;
+    padding: 1rem;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+  }
+  
+  /* Details section */
+  
+  .section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Reveiws section */
+  
+  .fa-star {
+    color: orange;
+  }
+  
+  .review-number {
+    margin-left: 0.5rem;
+  }
+  
+  /* Add to bag section */
+  
+  .add-to-bag {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+  }
+  
+  .quantity {
+    margin: 0 1rem;
+  }
+  
+  .addButton {
+    background: black;
+    color: white;
+    padding: 0 1rem;
+    margin-left: 0.5rem;
+  }
+  
+  .fa-heart {
+    color: white;
+    background: black;
+    padding: 0.5rem;
+    margin-left: 2px;
+    cursor: pointer;
+  }
+  
+  /* menu */
+  
+  .line-below-nav {
+    margin-top: 0;
+  }
+  
+  .navbar {
+    width: 80%;
+  }
+  
+  a.active-menu {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .active-paragraph {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  .active-menu:hover {
+    color: orange;
+  }
+  
+  .menu-item {
+    color: black;
+    cursor: pointer;
+  }

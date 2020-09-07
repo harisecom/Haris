@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .logo {
+    flex-basis: 20%;
+    padding-left: 73px;
+    padding-top: 16px;
+  }
+  
+  .logo h1 {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 56px;
+    letter-spacing: 0.2em;
+    color: #000000;
+  }

@@ -1,0 +1,49 @@
+.sign-up {
+    display: flex;
+    width: 45vw;
+    margin: 0 auto;
+    margin-top: 2.8125rem;
+    margin-bottom: 15.625rem;
+    display: block;
+    flex-direction: column;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.75rem;
+}
+
+h2 {
+    text-align: center;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 56px;
+}
+
+.headline::after {
+    margin-top: 1.875rem;
+    content:' ';
+    display: block;
+    border: 2px solid #F3631B;
+    border-radius: 4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+}
+
+.links {
+    display: block;
+    text-align: center;
+    margin-top: 2vw;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    text-decoration-line: underline;
+    position:static;
+    color: #000000;
+}
+.links:hover {
+    color: gray;
+} 
