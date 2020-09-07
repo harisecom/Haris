@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItems from './cartItems/cartItems';
 import './cart.style.css';
+import PropTypes from 'prop-types';
 
 const Cart = (props) => {
     console.log(props.cartStatus);
@@ -20,5 +21,10 @@ const Cart = (props) => {
         
         );
 }
+
+Cart.propTypes = {
+    cartStatus: PropTypes.string
+}
+
  
 export default Cart;

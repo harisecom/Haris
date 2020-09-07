@@ -7,24 +7,23 @@ import CartPage from './pages/cart';
 import ShopPage from './pages/shop';
 import NotFoundPage from './pages/not-found';
 import Footer from './Components/Footer/Footer.component';
-import ForgotPassword from './Pages/forgot-password/forgot-password';
-import RatingComponent from './Components/Rating/Rating';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/cart" component={CartPage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
-    </Router>
-    // <div>
-    //   Haris Ecome Applicatio
-    //   <Footer></Footer>
-    // </div>
+    <div className="app-site">
+      <div className="content">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/cart" component={CartPage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
