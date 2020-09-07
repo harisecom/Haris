@@ -166,4 +166,5 @@ a.active-menu {
 
 .menu-item {
   color: black;
+  cursor: pointer;
 }
