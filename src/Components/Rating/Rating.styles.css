@@ -1,0 +1,15 @@
+textarea {
+  width: 50%;
+}
+
+.empty-star {
+  color: #ededed;
+}
+
+.full-star {
+  color: #ffdf00;
+}
+
+.stars {
+  margin: 13px 0;
+}

@@ -2,26 +2,50 @@ import React, { useState } from 'react';
 import './ProductDetails.styles.css'
 
 const ProductDetails = () => {
+    const productImages = ["https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg", "https://m.bobbibrowncosmetics.com/media/export/cms/products/v2_1080x1080/bb_sku_E10002_1080x1080_0.jpg", "https://pyxis.nymag.com/v1/imgs/0d2/c9d/7e2638d562bb724d04da328e4dba4cfa04-nars-semi-matte-lipstick-in-jungle-red.rsquare.w600.jpg"]
     const [activeMenu, setActiveMenu] = useState("details");
+    const [mainImage, setMainImage] = useState(0);
+    // const [nextImage, setNextImage] = useState(1);
+    // const [prevImage, setPrevImage ] = useState(productImages.length -1);
     const menuOnClick =  (e) => {
         const target = e.target.id;
         setActiveMenu(target);
+    }
+
+    const prevPicture = () => {
+        const maxNumber = productImages.length-1;
+        if(mainImage !== 0){
+            setMainImage(mainImage -1);
+        }
+        else {
+            setMainImage(maxNumber);
+        }
+
+    }
+    const nextPicture = () => {
+        const maxNumber = productImages.length-1;
+        if(mainImage < maxNumber){
+            setMainImage(mainImage + 1);
+        }
+        else {
+            setMainImage(0);
+        }
     }
 
     return(
         <div className="product-detail container">
             <div className="image">
                 <div className="side-images">
-                    <img alt="side-1" className="side-image" src="https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg"></img>
-                    <img alt="side-2" className="side-image" src="https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg"></img>
-                    <img  alt="side-3" className="side-image" src="https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg"></img>
+                    <img alt="side-1" className={`${mainImage ===0 ? 'image-active' : ''} side-image`} src={productImages[0]} onClick={() => setMainImage(0)}></img>
+                    <img alt="side-2" className={`${mainImage ===1 ? 'image-active' : ''} side-image`} src={productImages[1]} onClick={() => setMainImage(1)} ></img>
+                    <img  alt="side-3" className={`${mainImage ===2 ? 'image-active' : ''} side-image`} src={productImages[2]} onClick={() => setMainImage(2)}></img>
                 </div>
                 <div className="product-image-main">
                     <div className="product-image-name"><span>The Skin Balancing Duo &nbsp; </span>  /  <span className="emphasis">&nbsp;  The Skin Balancing Duo</span></div>
-                    <img alt="product" className="image-main" src="https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg"></img>
+                    <img alt="product" className="image-main" src={productImages[mainImage]}></img>
                     <div className="arrows">
-                        <i className="fas fa-arrow-left fa-2x"></i>
-                        <i className="fas fa-arrow-right fa-2x"></i>
+                        <i className="fas fa-arrow-left fa-2x" onClick={prevPicture}></i>
+                        <i className="fas fa-arrow-right fa-2x" onClick={nextPicture}></i>
                     </div>
                 </div>
             </div>
