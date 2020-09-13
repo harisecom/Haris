@@ -90,6 +90,107 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            <div className="ratings">
+                <span>Reviews Section</span>
+                <div className="reviews">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <span className="review-number">(20 Reviews)</span>
+                </div>
+                <hr></hr>
+                <div className="review-1 single-review">
+                    <div className="reviewer-info">
+                        <div>
+                            <span className="reviewer-name">Tracy Keygan</span>
+                        </div>
+                        <div className="review-given">
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="far fa-star"></i>
+                        </div>
+                        <div>
+                        <span className="review-date">01/10/2020</span>
+                        </div>
+                    </div>
+                    <div className="review-comment">
+                        <span>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae purus ac ligula convallis rutrum ac id neque. Nam vel congue dolor, a semper nulla. Nunc nec purus ex. Suspendisse sed dolor libero. Vestibulum luctus mollis sem in porttitor. Vestibulum tincidunt varius nisl, non molestie justo. Aliquam condimentum massa nec odio hendrerit, vel blandit velit luctus. Nunc ullamcorper dolor dolor, sed commodo tortor ullamcorper ac. 
+                        </span>
+                    </div>
+                </div>
+                <div className="review-1 single-review">
+                    <div className="reviewer-info">
+                        <div>
+                            <span className="reviewer-name">Tracy Keygan</span>
+                        </div>
+                        <div className="review-given">
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="far fa-star"></i>
+                        </div>
+                        <div>
+                        <span className="review-date">01/10/2020</span>
+                        </div>
+                    </div>
+                    <div className="review-comment">
+                        <span>
+                        Lorem ipsum dolor sit amet, cullamcorper ac. 
+                        </span>
+                    </div>
+                </div>
+                <div className="review-1 single-review">
+                    <div className="reviewer-info">
+                        <div>
+                            <span className="reviewer-name">Tracy Keygan</span>
+                        </div>
+                        <div className="review-given">
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="far fa-star"></i>
+                        </div>
+                        <div>
+                        <span className="review-date">01/10/2020</span>
+                        </div>
+                    </div>
+                    <div className="review-comment">
+                        <span>
+                        Lorem ipsum el congue dolor, a semper nulla. Nunc nec purus ex. Suspendisse sed dolor libero. Vestibulum luctus mollis sem in porttitor. Vestibulum tincidunt varius nisl, non molestie justo. Aliquam condimentum massa nec odio hendrerit, vel blandit velit luctus. Nunc ullamcorper dolor dolor, sed commodo tortor ullamcorper ac. 
+                        </span>
+                    </div>
+                </div>
+                <div className="review-1 single-review">
+                    <div className="reviewer-info">
+                        <div>
+                            <span className="reviewer-name">Tracy Keygan</span>
+                        </div>
+                        <div className="review-given">
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="far fa-star"></i>
+                        </div>
+                        <div>
+                        <span className="review-date">01/10/2020</span>
+                        </div>
+                    </div>
+                    <div className="review-comment">
+                        <span>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing eliper ac. 
+                        </span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     )
 }
