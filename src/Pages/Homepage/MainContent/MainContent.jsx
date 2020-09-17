@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './MainContent.style.css';
+import ProductCard from '../../../Components/ProductCard/ProductCard';
+import {Products} from '../../../Data/Products';
 
 const MainContent = () => {
+    const bestDeals = Products.filter((item) => item.title === 'Best Deals');
+    
+
   return (
     <div>
       <div className="main-text">
@@ -19,6 +24,15 @@ const MainContent = () => {
           <li>SHOP BY BEST SELLS</li>
         </ul>
         <div className="populate-shop-items">
+
+        <div className="best-deals">
+        {
+          bestDeals[0]['items'].map((product) =>(
+            <ProductCard product={product}/>
+          ))
+        }
+        </div>
+           
           </div>
       </div>
         <div className="banner-promo-section">

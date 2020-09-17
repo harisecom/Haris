@@ -1,11 +1,13 @@
 import React from 'react';
 import CartItems from './cartItems/cartItems';
+import { useStateValue } from '../../State/StateProvider';
 import './cart.style.css';
 
-const Cart = (props) => {
-    console.log(props.cartStatus);
+const Cart = () => {
+    const [{ cartStatus } , dispatch] = useStateValue();
+
     return ( 
-        <div className={`cart ${ props.cartStatus === 'active' ? 'active' : ''}`} >
+        <div className={`cart ${ cartStatus == true ? 'active' : ''} `} >
             <div className="cart-items">
                 <CartItems/>
                 <CartItems/>
