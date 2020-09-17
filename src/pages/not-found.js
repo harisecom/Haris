@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Layout from '../Components/shared/Layout';
 import {Link} from 'react-router-dom';
 import Footer from '../Components/Footer/Footer.component';
 
-export default class NotFoundPage extends Component {
+export default class NotFoundPage extends React.Component {
   render() {
     return (
       <Layout>

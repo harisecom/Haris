@@ -2,6 +2,7 @@ import React from 'react';
 import CartItems from './cartItems/cartItems';
 import { useStateValue } from '../../State/StateProvider';
 import './cart.style.css';
+import PropTypes from 'prop-types';
 
 const Cart = () => {
     const [{ cartStatus } , dispatch] = useStateValue();
@@ -22,5 +23,10 @@ const Cart = () => {
         
         );
 }
+
+Cart.propTypes = {
+    cartStatus: PropTypes.string
+}
+
  
 export default Cart;

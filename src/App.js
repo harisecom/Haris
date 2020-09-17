@@ -9,6 +9,7 @@ import Cart from './Pages/Cart/Cart';
 import { useStateValue } from './State/StateProvider';
 import ForgotPassword from './Pages/forgot-password/forgot-password';
 
+
 function App() {
 
   const [{ cartStatus} , dispatch] = useStateValue();
