@@ -9,4 +9,8 @@ export default function LoginPage() {
       <Footer />
     </Layout>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc

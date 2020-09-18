@@ -52,4 +52,8 @@ const MainContent = () => {
   );
 };
 
+<<<<<<< HEAD
 export default MainContent;
+=======
+export default MainContent;
+>>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc
