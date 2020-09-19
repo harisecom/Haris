@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Homepage from './Pages/Homepage/Homepage';
@@ -9,34 +9,58 @@ import Cart from './Pages/Cart/Cart';
 import ForgotPassword from './Pages/forgot-password/forgot-password';
 import { connect } from 'react-redux';
 import {cartAction} from './Redux/cart/cart-action';
-import SignInPage from './Pages/SignIn/signIn.component';
+import SignIn from './Pages/SignIn/signIn.component';
+import SignUp from './Pages/SignUp/SignUp.component';
 import Footer from './Components/Footer/Footer.component';
+import { auth } from './firebase/firebase.utils';
+import { userAction } from './Redux/user/user-action';
 
 
-function App({cartStatus, cartAction}) {
+class App extends Component {
 
-
-  return (
-  <div>
-  <Header />
-  <Cart />
-  { cartStatus === true ?
-                <div className="cartOpen" onClick={cartAction}></div> :
-                null
+  constructor(){
+    super()
   }
-  <Router>
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/product/:id" component={ProductDetails} />
-        <Route path="/signin" component={SignInPage} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
-    </Router>
-    <Footer />
-  </div>
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
+      this.props.addUser(user);
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render(){
+    const {cartStatus, cartAction} = this.props;
+      return (
+        <div>
+        <Header />
+        <Cart />
+        { cartStatus === true ?
+                      <div className="cartOpen" onClick={cartAction}></div> :
+                      null
+        }
+        <Router>
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route path="/forgotPassword" component={ForgotPassword} />
+              <Route path="/product/:id" component={ProductDetails} />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </Router>
+          <Footer />
+        </div>
+        
+        )
+  }
+
   
-  );
 }
 
 const mapStateToProps = ({cart}) => ({
@@ -44,7 +68,8 @@ const mapStateToProps = ({cart}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    cartAction: () => dispatch(cartAction())
+    cartAction: () => dispatch(cartAction()),
+    addUser: user => dispatch(userAction(user)) 
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
