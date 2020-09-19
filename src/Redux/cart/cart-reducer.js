@@ -1,4 +1,4 @@
-import {multipleCartHandle, removeCartItem} from './cart-utils';
+import {multipleCartHandle, removeCartItem, decreaseProduct} from './cart-utils';
 
 const INITIAL_STATE = {
     cartStatus: false,
@@ -23,6 +23,11 @@ const cartReducer = (state = INITIAL_STATE, action) =>{
             return {
                 ...state,
                 cartItems: removeCartItem(state.cartItems, action.payload)
+            }
+        case 'DECREASE_ITEM':
+            return {
+                ...state,
+                cartItems: decreaseProduct(state.cartItems, action.payload)
             }
 
         default:

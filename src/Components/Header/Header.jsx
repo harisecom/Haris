@@ -8,9 +8,8 @@ const Header = () => {
   return (
 
     <div className="header">
-
       <div className="logo">
-          <h1>HARIS</h1>
+          <a href="/"><h1 >HARIS</h1></a>
       </div>
 
       <Navbar/>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
-import Footer from '../../Components/Footer/Footer.component';
 import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
 import './product-detail.styles.css';
@@ -202,8 +201,6 @@ const ProductDetails = ({ addItem }) => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

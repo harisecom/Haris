@@ -9,6 +9,8 @@ import Cart from './Pages/Cart/Cart';
 import ForgotPassword from './Pages/forgot-password/forgot-password';
 import { connect } from 'react-redux';
 import {cartAction} from './Redux/cart/cart-action';
+import SignInPage from './Pages/SignIn/signIn.component';
+import Footer from './Components/Footer/Footer.component';
 
 
 function App({cartStatus, cartAction}) {
@@ -25,11 +27,13 @@ function App({cartStatus, cartAction}) {
   <Router>
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route path="/ForgotPassword" component={ForgotPassword} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/product/:id" component={ProductDetails} />
+        <Route path="/signin" component={SignInPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </Router>
+    <Footer />
   </div>
   
   );
