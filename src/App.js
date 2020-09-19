@@ -8,7 +8,7 @@ import Header from './Components/Header/Header';
 import Cart from './Pages/Cart/Cart';
 import ForgotPassword from './Pages/forgot-password/forgot-password';
 import { connect } from 'react-redux';
-import cartAction from './Redux/cart/cart-action';
+import {cartAction} from './Redux/cart/cart-action';
 
 
 function App({cartStatus, cartAction}) {

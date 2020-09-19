@@ -36,8 +36,14 @@
 
 .cart-item-remove{
     margin-top: 8px;
+    
+}
+
+.cart-item-remove button{
     font-weight: bold;
     font-size: 14px;
+    border: none;
+    background: none;
     text-decoration: underline;
 }
 
@@ -53,7 +59,7 @@
     align-items: center;
 }
 
-.cart-item-quantity input{
+.cart-item-quantity span{
     width: 30px;
     background-color: rgba(187, 174, 174, 0.17);
     border: none;

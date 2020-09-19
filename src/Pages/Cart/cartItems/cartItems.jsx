@@ -1,30 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './cartItems.style.css';
+import {removeItemFromCart} from '../../../Redux/cart/cart-action';
 
-const CartItems = () => {
+const CartItems = ({ item, removeItem }) => {
+    const {name, shortDescription, imageUrl, price, quantity} = item
     return ( 
         <div className="cart-item">
             <div className="cart-item-image">
-                <img src="/images/cart-item-example.png" alt=""/>
+                <img src={imageUrl} alt=""/>
             </div>
             <div className="cart-item-texts">
                 <div className="cart-item-info">
-                    <h1>Then I Met You</h1>
-                    <p>The Skin Balancing Duo</p>
+                    <h1>{name}</h1>
+                    <p>{shortDescription}</p>
                     <div className="cart-item-remove">
-                        <span>Remove</span>
+                        <button onClick={() => removeItem(item)}>Remove</button>
                     </div>
                 </div>
                 <div className="cart-item-quantity">
-                    <input type="text" defaultValue='1' />
+                    <span>{quantity}</span>
+                    
                 </div>
                 <div className="cart-item-price">
-                    <span>$78</span>
+                    <span>${quantity * price}</span>
                 </div>
                 
             </div>
         </div>
      );
 }
+
+const mapDispatchToProps = dispatch => ({
+    removeItem : item => dispatch(removeItemFromCart(item))
+})
  
-export default CartItems;
+export default connect(null, mapDispatchToProps)(CartItems);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './navbar.style.css';
-import cartAction from '../../Redux/cart/cart-action';
+import {cartAction} from '../../Redux/cart/cart-action';
 
 
 import { ReactComponent as AccountIcon} from '../../assets/account.svg';

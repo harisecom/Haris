@@ -3,17 +3,26 @@ import CartItems from './cartItems/cartItems';
 import './cart.style.css';
 import { connect } from 'react-redux';
 
-const Cart = ({cartStatus}) => {
+const Cart = ({cartStatus, cartItems}) => {
 
     return ( 
         <div className={`cart ${ cartStatus === true ? 'active' : ''} `} >
             <div className="cart-items">
-                <CartItems/>
-                <CartItems/>
+                {
+                    cartItems.map( (item) => (
+                        <CartItems item= {item}/>
+                    ))
+                }
             </div>
 
             <div className="cart-to-checkout">
-                <h1 className="cart-total-price">Subtotal : $234</h1>
+            <h1 className="cart-total-price">Subtotal : $
+            {
+                cartItems.reduce((accumulator, item) => (
+                    accumulator += (item.quantity * item.price)
+                ), 0)
+            }
+            </h1>
                 <button className="cart-checkout-button">Checkout</button>
             </div>
 
@@ -23,7 +32,8 @@ const Cart = ({cartStatus}) => {
 }
 
 const mapStateToProps = ({cart}) => ({
-    cartStatus : cart.cartStatus
+    cartStatus : cart.cartStatus,
+    cartItems: cart.cartItems
 })
 
  

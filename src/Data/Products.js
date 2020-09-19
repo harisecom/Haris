@@ -5,7 +5,7 @@ export const Products = [
         routeName: 'skins',
         items:[
             {
-                id: 344,
+                id: '344',
                 name: 'Then I Met You',
                 shortDescription: 'The Skin Balancing Duo',
                 best_deals: 'yes',
@@ -17,7 +17,7 @@ export const Products = [
                 price: 18,
             },
             {
-                id: 526,
+                id: '526',
                 name: 'Sample Skin Care',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,
@@ -29,9 +29,9 @@ export const Products = [
                 price: 22,
             },
             {
-                id: 672,
+                id: '672',
                 name: 'Then I Met You',
-                shortDescription: 'The Skin Balancing Duo',
+                shortDescription: 'The Skin Balancing Cream',
                 ratings: 4,
                 best_deals: 'nope',
                 best_selling: 'yes',
@@ -49,7 +49,7 @@ export const Products = [
         routeName: 'best-deals',
         items:[
             {
-                id: 499,
+                id: '499',
                 name: 'Then I Met You',
                 shortDescription: 'The Skin Balancing Duo',
                 best_deals: 'yes',
@@ -61,7 +61,7 @@ export const Products = [
                 price: 18,
             },
             {
-                id: 885,
+                id: '885',
                 name: 'Sample Skin Care',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,
@@ -73,7 +73,7 @@ export const Products = [
                 price: 22,
             },
             {
-                id: 566,
+                id: '566',
                 name: 'Then I Met You',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,
@@ -100,7 +100,7 @@ export const Products = [
         routeName: 'beauty',
         items:[
             {
-                id: 739,
+                id: '739',
                 name: 'Then I Met You',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,
@@ -112,7 +112,7 @@ export const Products = [
                 price: 38,
             },
             {
-                id: 2,
+                id: '2',
                 name: 'Sample Skin Care',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,
@@ -124,7 +124,7 @@ export const Products = [
                 price: 12,
             },
             {
-                id: 3,
+                id: '3',
                 name: 'Then I Met You',
                 shortDescription: 'The Skin Balancing Duo',
                 ratings: 4,

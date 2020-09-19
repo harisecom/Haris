@@ -1,5 +1,8 @@
+import {multipleCartHandle, removeCartItem} from './cart-utils';
+
 const INITIAL_STATE = {
-    cartStatus: false
+    cartStatus: false,
+    cartItems: []
 }
 
 const cartReducer = (state = INITIAL_STATE, action) =>{
@@ -9,7 +12,19 @@ const cartReducer = (state = INITIAL_STATE, action) =>{
                 ...state,
                 cartStatus: !state.cartStatus
             }
-    
+        
+        case 'ADD_ITEM':
+            return {
+                ...state,
+                cartItems: multipleCartHandle(state.cartItems, action.payload)
+            }
+        
+        case 'REMOVE_ITEM':
+            return {
+                ...state,
+                cartItems: removeCartItem(state.cartItems, action.payload)
+            }
+
         default:
             return state
     }

@@ -1,22 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './ProductCard.style.css';
+import { addItemToCart } from '../../Redux/cart/cart-action'
 
-function ProductCard(props) {
+function ProductCard({ product, addItem}) {
+    const { imageUrl, price, name, shortDescription, ratings} = product;
     return (
         <div className="product-card">
             <div className="productImagePart">
-            <img src={props.product.imageUrl} alt=""/>
+            <img src={imageUrl} alt=""/>
             <span className="priceTag">
-            {props.product.price}$
+            {price}$
             </span>
             <img src="/images/wishlist.png" alt="" className="productCard-wishlist"/>
             </div>
             <div className="productDescriptionPart">
-                <h2>{props.product.name}</h2>
-                <h4>{props.product.shortDescription}</h4>
+                <h2>{name}</h2>
+                <h4>{shortDescription}</h4>
                 <div className="ratings">
                 {
-                    Array(props.product.ratings)
+                    Array(ratings)
                     .fill()
                     .map((_, i) => (
                         <img src="/images/ratings.png" alt=""/>
@@ -24,7 +27,7 @@ function ProductCard(props) {
                 }
 
                 {
-                    Array(5 - props.product.ratings)
+                    Array(5 - ratings)
                     .fill()
                     .map((_, i) => (
                         <img src="/images/nonratings.png" alt=""/>
@@ -34,7 +37,7 @@ function ProductCard(props) {
                 </div>
 
                 <div className="add-to-cart-button">
-                    <button>Add to cart</button>
+                    <button onClick={() => addItem(product)}>Add to cart</button>
                 </div>
 
             </div>
@@ -43,4 +46,10 @@ function ProductCard(props) {
     )
 }
 
-export default ProductCard
+const mapDispatchToProps = dispatch =>{
+    return {
+        addItem : item => dispatch(addItemToCart(item))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ProductCard)

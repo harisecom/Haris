@@ -1,5 +1,13 @@
-const cartAction = () => ({
+export const cartAction = () => ({
     type: 'TOGGLE_CART_STATUS'
 })
 
-export default cartAction;
+export const addItemToCart = (item) =>({
+    type: 'ADD_ITEM',
+    payload: item
+})
+
+export const removeItemFromCart = (item) =>({
+    type: 'REMOVE_ITEM',
+    payload: item
+})

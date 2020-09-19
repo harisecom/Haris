@@ -5,6 +5,7 @@ import {Products} from '../../../Data/Products';
 
 const MainContent = () => {
     const bestDeals = Products.filter((item) => item.title === 'Best Deals');
+    console.log(bestDeals);
     
 
   return (
@@ -27,8 +28,8 @@ const MainContent = () => {
 
         <div className="best-deals">
         {
-          bestDeals[0]['items'].map((product) =>(
-            <ProductCard product={product}/>
+          bestDeals[0]['items'].map((product, key) =>(
+            <ProductCard key={key} product={product}/>
           ))
         }
         </div>
