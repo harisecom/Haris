@@ -6,18 +6,12 @@ import ProductDetails from './Pages/product-detail/product-detail.component';
 import NotFoundPage from './Pages/not-found';
 import Header from './Components/Header/Header';
 import Cart from './Pages/Cart/Cart';
-import { useStateValue } from './State/StateProvider';
 import ForgotPassword from './Pages/forgot-password/forgot-password';
+import { connect } from 'react-redux';
+import cartAction from './Redux/cart/cart-action';
 
 
-function App() {
-
-  const [{ cartStatus} , dispatch] = useStateValue();
-
-  /* dispatch({
-    type: 'SET_USER',
-    user: authUser
-  }) */
+function App({cartStatus, cartAction}) {
 
 
   return (
@@ -25,7 +19,7 @@ function App() {
   <Header />
   <Cart />
   { cartStatus === true ?
-                <div className="cartOpen" onClick={() => dispatch({type: 'Cart_Status_Change'})}></div> :
+                <div className="cartOpen" onClick={cartAction}></div> :
                 null
   }
   <Router>
@@ -38,13 +32,15 @@ function App() {
     </Router>
   </div>
   
-
-   
-    // <div>
-    //   Haris Ecome Applicatio
-    //   <Footer></Footer>
-    // </div>
   );
 }
 
-export default App;
+const mapStateToProps = ({cart}) => ({
+  cartStatus : cart.cartStatus
+})
+
+const mapDispatchToProps = dispatch => ({
+    cartAction: () => dispatch(cartAction())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

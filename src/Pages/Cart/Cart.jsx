@@ -1,14 +1,12 @@
 import React from 'react';
 import CartItems from './cartItems/cartItems';
-import { useStateValue } from '../../State/StateProvider';
 import './cart.style.css';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const Cart = () => {
-    const [{ cartStatus } , dispatch] = useStateValue();
+const Cart = ({cartStatus}) => {
 
     return ( 
-        <div className={`cart ${ cartStatus == true ? 'active' : ''} `} >
+        <div className={`cart ${ cartStatus === true ? 'active' : ''} `} >
             <div className="cart-items">
                 <CartItems/>
                 <CartItems/>
@@ -24,9 +22,9 @@ const Cart = () => {
         );
 }
 
-Cart.propTypes = {
-    cartStatus: PropTypes.string
-}
+const mapStateToProps = ({cart}) => ({
+    cartStatus : cart.cartStatus
+})
 
  
-export default Cart;
+export default connect(mapStateToProps)(Cart);

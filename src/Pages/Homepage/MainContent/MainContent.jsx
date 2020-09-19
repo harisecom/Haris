@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './MainContent.style.css';
 import ProductCard from '../../../Components/ProductCard/ProductCard';
 import {Products} from '../../../Data/Products';

@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import reducer, { initialState } from './State/Reducer';
-import { StateProvider } from './State/StateProvider';
+import {Provider} from 'react-redux';
+
+import store from './Redux/store';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <Provider store={store} >
       <App />
-    </StateProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -9,7 +9,7 @@ const ProductDetails = () => {
   
 
   const productInfo = Products.find((elem) =>{
-    return elem.items.find((prod) => prod.id == id)
+    return elem.items.find((prod) => prod.id === id)
   })
 
   console.log(productInfo.items[0].name);
@@ -103,6 +103,7 @@ const ProductDetails = () => {
 
           <div className="navbar menu">
             <a
+              href={'/'}
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'details' ? 'active-menu' : ''
@@ -112,6 +113,7 @@ const ProductDetails = () => {
               Details
             </a>
             <a
+              href={'/'}
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'ingredients' ? 'active-menu' : ''
@@ -121,6 +123,7 @@ const ProductDetails = () => {
               Ingredients
             </a>
             <a
+              href={'/'}
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'how-to-use' ? 'active-menu' : ''
@@ -130,6 +133,7 @@ const ProductDetails = () => {
               How to use
             </a>
             <a
+              href={'/'}
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'share' ? 'active-menu' : ''
