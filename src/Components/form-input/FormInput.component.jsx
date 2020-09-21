@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './form-input.styles.css';
 
 const FormInput = ({handleChange, label, ...otherProps}) => (
@@ -17,3 +18,8 @@ const FormInput = ({handleChange, label, ...otherProps}) => (
 );
 
 export default FormInput;
+
+FormInput.propTypes = {
+    handleChange: PropTypes.func,
+    label: PropTypes.string
+}

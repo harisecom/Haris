@@ -1,11 +1,10 @@
 import React,{Component, Fragment} from 'react';
-import {Link} from 'react-router-dom'
-
-import FormInput from '../../Components/form-input/form-input.component';
-import CustomButton from '../../Components/custom-button/custom-button.component';
+import {Link} from 'react-router-dom';
+import FormInput from '../../Components/form-input/FormInput.component';
+import CustomButton from '../../Components/custom-button/CustomButton.component';
 
 import { signInWithGoogle } from '../../firebase/firebase.utils';
-import './Sign-In.styles.css'
+import './Sign-In.styles.css';
 
 class SignIn extends Component {
     constructor() {
@@ -51,7 +50,7 @@ class SignIn extends Component {
                     required/>
                     <div className="button">
                         <CustomButton type="submit">Login</CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} >Sign in with Google</CustomButton>
                     </div>
                 </form>
                 <span>

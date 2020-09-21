@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './cartItems.style.css';
+import PropTypes from 'prop-types';
+import './cart-items.style.css';
 import {removeItemFromCart , decraseProductQuantity, addItemToCart} from '../../../Redux/cart/cart-action';
 
 const CartItems = ({ item, removeItem, addItem, decreaseQuantity }) => {
@@ -41,3 +42,11 @@ const mapDispatchToProps = dispatch => ({
 })
  
 export default connect(null, mapDispatchToProps)(CartItems);
+
+CartItems.propTypes = {
+    item : PropTypes.object,
+    removeItem: PropTypes.func,
+    addItem: PropTypes.func,
+    decreaseQuantity: PropTypes.func,
+    
+}
