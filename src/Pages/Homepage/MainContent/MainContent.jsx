@@ -1,7 +1,13 @@
 import React from 'react';
 import './MainContent.style.css';
+import ProductCard from '../../../Components/ProductCard/ProductCard';
+import {Products} from '../../../Data/Products';
 
 const MainContent = () => {
+    const bestDeals = Products.filter((item) => item.title === 'Best Deals');
+    console.log(bestDeals);
+    
+
   return (
     <div>
       <div className="main-text">
@@ -19,6 +25,15 @@ const MainContent = () => {
           <li>SHOP BY BEST SELLS</li>
         </ul>
         <div className="populate-shop-items">
+
+        <div className="best-deals">
+        {
+          bestDeals[0]['items'].map((product, key) =>(
+            <ProductCard key={key} product={product}/>
+          ))
+        }
+        </div>
+           
           </div>
       </div>
         <div className="banner-promo-section">
@@ -52,8 +67,4 @@ const MainContent = () => {
   );
 };
 
-<<<<<<< HEAD
 export default MainContent;
-=======
-export default MainContent;
->>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc

@@ -1,14 +1,15 @@
-.sign-in {
-    width: 35vw;
-    height: 50vh;
+.sign-up {
+    display: flex;
+    width: 45vw;
     margin: 0 auto;
-    margin-top: 150px;
-    margin-bottom: 250px;
+    margin-top: 2.8125rem;
+    margin-bottom: 15.625rem;
     display: block;
     flex-direction: column;
     font-family: Raleway;
     font-style: normal;
     font-weight: normal;
+    font-size: 1.75rem;
 }
 
 h2 {
@@ -21,7 +22,7 @@ h2 {
 }
 
 .headline::after {
-    margin-top: 30px;
+    margin-top: 1.875rem;
     content:' ';
     display: block;
     border: 2px solid #F3631B;
@@ -30,7 +31,19 @@ h2 {
     -moz-border-radius:4px;
 }
 
-.buttons{
-    display: flex;
-    justify-content: space-between;
+.links {
+    display: block;
+    text-align: center;
+    margin-top: 2vw;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    text-decoration-line: underline;
+    position:static;
+    color: #000000;
 }
+.links:hover {
+    color: gray;
+} 

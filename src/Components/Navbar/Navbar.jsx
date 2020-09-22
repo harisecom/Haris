@@ -1,7 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './navbar.style.css';
+import {cartAction} from '../../Redux/cart/cart-action';
 
-const Navbar = ({handleCart}) => {
+
+import { ReactComponent as AccountIcon} from '../../assets/account.svg';
+import { ReactComponent as CartIcon} from '../../assets/cart.svg';
+import { ReactComponent as SearchIcon} from '../../assets/search.svg';
+import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
+
+const Navbar = ({ cartAction }) => {
+    
+
     return ( 
         <div className="navbar">
             <div className="nav-links">
@@ -16,14 +26,18 @@ const Navbar = ({handleCart}) => {
 
         <div className="nav-elemnets">
             <ul>
-                <li><img src="images/account.svg" alt="account"/></li>
-                <li onClick={() => handleCart()} ><img src="images/cart.svg" alt="account"/></li>
-                <li><img src="images/search.svg" alt="account"/></li>
-                <li><img src="images/wishlist.svg" alt="account"/></li>
+                <li><AccountIcon/>  </li>
+                <li onClick={cartAction}><CartIcon/> </li>
+                <li><SearchIcon/> </li>
+                <li><WishlishIcon/></li>
             </ul>
         </div>
     </div>
      );
 }
+
+const mapDispatchToProps = dispatch => ({
+    cartAction: () => dispatch(cartAction())
+})
  
-export default Navbar;
+export default connect(null, mapDispatchToProps)(Navbar);

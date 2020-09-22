@@ -10,7 +10,7 @@
 }
 
 .cart-item-texts{
-    flex-basis: 80%;
+    flex-basis: 70%;
     padding-left: 16px;
     display: flex;
     justify-content: space-around;
@@ -36,24 +36,29 @@
 
 .cart-item-remove{
     margin-top: 8px;
+    
+}
+
+.cart-item-remove button{
     font-weight: bold;
     font-size: 14px;
+    border: none;
+    background: none;
     text-decoration: underline;
 }
 
 .cart-item-price{
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .cart-item-quantity{
     display: flex;
-    margin-left: 16px;
     align-items: center;
 }
 
-.cart-item-quantity input{
+.cart-item-quantity span{
     width: 30px;
     background-color: rgba(187, 174, 174, 0.17);
     border: none;
@@ -61,4 +66,9 @@
     font-size: 20px;
     color: black;
 
+}
+
+.cart-item-quantity .arrow{
+    margin: 0 10px;
+    font-size: 16px;
 }

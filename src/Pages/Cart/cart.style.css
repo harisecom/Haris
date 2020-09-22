@@ -1,6 +1,7 @@
 .cart{
     position: fixed;
     overflow: scroll;
+    overflow-x: hidden;
     top: 0;
     right: -100%;
     z-index: 10000;

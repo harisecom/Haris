@@ -1,6 +1,5 @@
 .sign-in {
-    width: 35vw;
-    height: 50vh;
+    width: 50vw;
     margin: 0 auto;
     margin-top: 150px;
     margin-bottom: 250px;
@@ -9,6 +8,7 @@
     font-family: Raleway;
     font-style: normal;
     font-weight: normal;
+    font-size: 28px;
 }
 
 h2 {
@@ -28,9 +28,4 @@ h2 {
     border-radius: 4px;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
-}
-
-.buttons{
-    display: flex;
-    justify-content: space-between;
 }

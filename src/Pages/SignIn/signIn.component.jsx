@@ -1,15 +1,15 @@
 import React,{Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
 
-import FormInput from '../Form-Input/Form-Input.component';
-import CustomButton from '../Custom-Button/Custom-Button.component';
+import FormInput from '../../Components/form-input/form-input.component';
+import CustomButton from '../../Components/custom-button/custom-button.component';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
-import './Sign-In.styles.css'
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
+import './Sign-In.styles.css';
 
-class SignInPage extends Component {
-    constructor(props) {
-        super(props);
+class SignIn extends Component {
+    constructor() {
+        super();
 
         this.state = {
             email: '',
@@ -17,10 +17,17 @@ class SignInPage extends Component {
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
-        this.setState({ email: '', password: '' });
+        const {email, password} = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({email: '', password:' '});
+        } catch (err) {
+            console.error('something went wrong with sign in with email and password', err);
+        }
     }
 
     handleChange = event => {
@@ -40,7 +47,9 @@ class SignInPage extends Component {
                         type="email"
                         value={this.state.email}
                         handleChange={this.handleChange}
+                        placeholder="example@email.com"
                         label="Email Address"
+                        
                     required/>
                     <FormInput 
                         name="password"
@@ -49,7 +58,7 @@ class SignInPage extends Component {
                         handleChange={this.handleChange}
                         label="Password"
                     required/>
-                    <div className="buttons">
+                    <div className="button">
                         <CustomButton type="submit">Login</CustomButton>
                         <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
                     </div>
@@ -64,4 +73,4 @@ class SignInPage extends Component {
         )
     }
 }
-export default SignInPage;
+export default SignIn;

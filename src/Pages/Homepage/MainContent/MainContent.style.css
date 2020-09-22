@@ -119,11 +119,13 @@
     flex-basis: 40%;
     padding: 10px 20px;
     font-size: 20px;
-    margin-right: 10%;
-
-<<<<<<< HEAD
-}
-=======
+    margin-right: 10%;  
 }
 
->>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc
+.best-deals{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 15%;
+}
