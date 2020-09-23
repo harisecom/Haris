@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
@@ -50,42 +50,43 @@ class App extends Component {
     this.unsubscribeFromAuth();
   }
 
-  render(){
+  render() {
     const {cartStatus, cartAction} = this.props;
-      return (
-        <div>
+    return (
+      <div>
         <Header />
         <Cart />
-        { cartStatus === true ?
-                      <div className="cartOpen" onClick={cartAction}></div> :
-                      null
-        }
-        <Router>
-            <Switch>
-              <Route exact path="/" component={Homepage} />
-              <Route path="/forgotPassword" component={ForgotPassword} />
-              <Route path="/product/:id" component={ProductDetails} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="*" component={NotFoundPage} />
-            </Switch>
-          </Router>
-          <Footer />
-        </div>
-        
-        )
+        {cartStatus === true ? (
+          <div className="cartOpen" onClick={cartAction}></div>
+        ) : null}
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route path="/forgotPassword" component={ForgotPassword} />
+          <Route path="/product/:id" component={ProductDetails} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route path="*" component={NotFoundPage} />
+        </Switch>
+        <Footer />
+      </div>
+    );
   }
-
-  
 }
 
 const mapStateToProps = ({cart}) => ({
-  cartStatus : cart.cartStatus
-})
+  cartStatus: cart.cartStatus,
+});
 
 const mapDispatchToProps = dispatch => ({
-    cartAction: () => dispatch(cartAction()),
-    addUser: user => dispatch(userAction(user)) 
-})
+  cartAction: () => dispatch(cartAction()),
+  addUser: user => dispatch(userAction(user)),
+});
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  addUser: PropTypes.func,
+  cartAction: PropTypes.func,
+  cartStatus: PropTypes.bool,
+};

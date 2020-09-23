@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './ProductCard.style.css';
-import { addItemToCart } from '../../Redux/cart/cart-action'
+import { addItemToCart, cartAction } from '../../Redux/cart/cart-action';
 
 function ProductCard({ product, addItem}) {
     const { imageUrl, price, name, shortDescription, ratings} = product;
@@ -21,16 +22,16 @@ function ProductCard({ product, addItem}) {
                 {
                     Array(ratings)
                     .fill()
-                    .map((_, i) => (
-                        <img src="/images/ratings.png" alt=""/>
+                    .map((_, key) => (
+                        <img key={key} src="/images/ratings.png" alt=""/>
                     ))
                 }
 
                 {
                     Array(5 - ratings)
                     .fill()
-                    .map((_, i) => (
-                        <img src="/images/nonratings.png" alt=""/>
+                    .map((_, key) => (
+                        <img key={key} src="/images/nonratings.png" alt=""/>
                     ))
                 }
                 
@@ -48,8 +49,24 @@ function ProductCard({ product, addItem}) {
 
 const mapDispatchToProps = dispatch =>{
     return {
-        addItem : item => dispatch(addItemToCart(item))
+        addItem : item => {
+            dispatch(addItemToCart(item))
+            dispatch(cartAction())
+        },
+        
     }
 }
 
 export default connect(null, mapDispatchToProps)(ProductCard)
+
+ProductCard.propTypes={
+    product: PropTypes.object,
+    addItem: PropTypes.func
+    /* 'product.imageUrl' : PropTypes.string,
+    'product.price' : PropTypes.number,
+    'product.name' : PropTypes.string,
+    'product.shortDescription' : PropTypes.string,
+    'product.ratings' : PropTypes.number */
+
+
+}

@@ -9,6 +9,9 @@
       "jsx": true
     }
   },
+
+  "parser": "babel-eslint",
+  
   "extends": [
     "eslint:recommended",
     "eslint-config-prettier",

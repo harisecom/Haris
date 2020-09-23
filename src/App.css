@@ -8,8 +8,8 @@
   flex: 1;
 }
 
-.cartOpen{
-  position: absolute;
+.cartOpen {
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;

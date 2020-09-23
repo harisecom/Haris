@@ -1,5 +1,5 @@
-import React from 'react';
-import './Form-Input.styles.css';
+import React from "react";
+import './form-input.styles.css';
 
 const FormInput = ({handleChange, label, ...otherProps}) => (
     <div className="group">
@@ -15,4 +15,5 @@ const FormInput = ({handleChange, label, ...otherProps}) => (
         ): null}
     </div>
 );
+
 export default FormInput;

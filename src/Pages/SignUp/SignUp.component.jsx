@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
-import FormInput from '../../Components/form-input/form-input.component';
-import CustomButton from '../../Components/custom-button/custom-button.component';
-import './Sign-Up.styles.css'
+import FormInput from '../../Components/form-input/FormInput.component';
+import CustomButton from '../../Components/custom-button/CustomButton.component';
+import './sign-up.styles.css'
 
 
 class SignUp extends Component {
