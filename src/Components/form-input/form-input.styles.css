@@ -44,12 +44,8 @@
     font-size: 12px;
     color: black;
 }
-/* .group .form-input:focus + .form-input-label {
-    top: -14px;
-    font-size: 12px;
-    color: black;
 
-} */
  .form-input:focus + .form-input-label, .form-input:not(:placeholder-shown) + .form-input-label{
     transform: translateY(-2.5em) scale(.8);
+    color: black;
 }

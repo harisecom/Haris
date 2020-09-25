@@ -20,3 +20,10 @@
     color: black;
     border: 1px solid black;
 }
+ .google-sign-in {
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #4285f4;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0,00, .25);
+}

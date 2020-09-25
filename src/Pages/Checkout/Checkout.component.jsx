@@ -5,7 +5,7 @@ const CheckoutPage = () => (
     <div className="checkout-page">
         <div className="checkout-header">
             <div className="header-block">
-                <span>Product</span>
+                <span>Checkoout</span>
 
             </div>
 

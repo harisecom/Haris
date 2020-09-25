@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
-import FormInput from '../../Components/form-input/FormInput.component';
-import CustomButton from '../../Components/custom-button/CustomButton.component';
-import './sign-up.styles.css'
+import FormInput from '../../Components/Form-Input/FormInput.component';
+import CustomButton from '../../Components/Custom-Button/CustomButton.component'
+import './Sign-Up.styles.css'
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 
 class SignUp extends Component {
@@ -19,7 +20,17 @@ class SignUp extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
+        const { firstName, lastName, email, password, birthday} = this.state;
+
+        try{
+            const {user} = await auth.createUserWithEmailAndPassword(email, password);
+            await createUserProfileDocument(user, { firstName, lastName, birthday });
+
+            this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
+
+        } catch(err) {
+            console.error(err);
+        }
     }
 
     handleChange = event => {
@@ -29,7 +40,6 @@ class SignUp extends Component {
 
     render() {
         const {firstName, lastName, email, password, birthday} = this.state
-        console.log('bitch');
         return (
             <div className="sign-up">
                 <h2 className="headline">Create Account</h2>
@@ -40,6 +50,7 @@ class SignUp extends Component {
                                 name="firstName"
                                 value={firstName}
                                 onChange={this.handleChange}
+                                placeholder="firstName"
                                 label= 'First Name'
                             required/>
                             <FormInput 
@@ -47,6 +58,7 @@ class SignUp extends Component {
                                 name="lastName"
                                 value={lastName}
                                 onChange={this.handleChange}
+                                placeholder="lastName"
                                 label= 'Last Name'
                             required/>
                         </div>
@@ -55,6 +67,7 @@ class SignUp extends Component {
                             name="email"
                             value={email}
                             onChange={this.handleChange}
+                            placeholder="example@email.com"
                             label= 'Email Address'
                         required/>
                         <FormInput 
@@ -62,6 +75,7 @@ class SignUp extends Component {
                             name="password"
                             value={password}
                             onChange={this.handleChange}
+                            placeholder="password"
                             label= 'Password'
                         required/>
                         <FormInput 
