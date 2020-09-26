@@ -1,6 +1,6 @@
 .group {
     position: relative;
-    margin: 35px 0;
+    margin: 1em 0;
 }
 .group .form-input {
     background: none;
@@ -19,11 +19,11 @@
 .group .form-input:focus {
     outline: none;
 }
-.group .form-input:focus ~ .form-input-label {
-    top: -14px;
-    font-size: 12px;
-    color: black;
+
+.group .form-input::placeholder {
+    color: transparent;
 }
+
 .group input[type='password'] {
     letter-spacing: 0.3em;
     margin-top: 45px;
@@ -36,10 +36,16 @@
     pointer-events: none;
     left: 5px;
     top: 10px;
-    transition: 300ms ease all;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
 }
 .group .form-input-label .shrink {
     top: -14px;
     font-size: 12px;
+    color: black;
+}
+
+ .form-input:focus + .form-input-label, .form-input:not(:placeholder-shown) + .form-input-label{
+    transform: translateY(-2.5em) scale(.8);
     color: black;
 }

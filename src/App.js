@@ -1,28 +1,50 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
-import {Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Homepage from './Pages/Homepage/Homepage.component';
 import ProductDetails from './Pages/product-detail/ProductDetail.component';
 import NotFoundPage from './Pages/NotFound/NotFound.component';
 import Header from './Components/Header/Header.component';
 import Cart from './Pages/Cart/Cart.component';
-import PropTypes from 'prop-types';
 import ForgotPassword from './Pages/forgot-password/ForgotPassword.component';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {cartAction} from './Redux/cart/cart-action';
 import SignIn from './Pages/SignIn/signIn.component';
 import SignUp from './Pages/SignUp/SignUp.component';
-import Footer from './Components/Footer/Footer.component';
-import {auth} from './firebase/firebase.utils';
-import {userAction} from './Redux/user/user-action';
 import CheckoutPage from './Pages/Checkout/Checkout.component';
+import Footer from './Components/Footer/Footer.component';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { userAction } from './Redux/user/user-action';
+
 
 class App extends Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.props.addUser(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      }
+      this.setState({ currentUser: userAuth });
     });
   }
 

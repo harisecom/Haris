@@ -1,4 +1,20 @@
 textarea {
+<<<<<<< HEAD
+    width: 50%;
+  }
+  
+  .empty-star {
+    color: #ededed;
+  }
+  
+  .full-star {
+    color: #ffdf00;
+  }
+  
+  .stars {
+    margin: 13px 0;
+  }
+=======
   width: 50%;
 }
 
@@ -13,3 +29,4 @@ textarea {
 .stars {
   margin: 13px 0;
 }
+>>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc
