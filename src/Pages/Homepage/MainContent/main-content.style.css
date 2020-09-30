@@ -88,6 +88,7 @@
 
 .currently-trending {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   width: 100%;
@@ -98,6 +99,7 @@
 .newly-added {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   text-align: center;
   font-weight: 500;
   width: 100%;
@@ -126,8 +128,9 @@
   margin-right: 10%;
 }
 
-.best-deals {
+.product-item-align {
   display: flex;
+  margin-top: 5%;
   flex-direction: row;
   justify-content: space-around;
   padding: 10px 15%;

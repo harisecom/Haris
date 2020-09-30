@@ -1,29 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './cart-items.style.css';
+import firebase from '../../../firebase/firebase.utils';
 import {removeItemFromCart , decraseProductQuantity, addItemToCart} from '../../../Redux/cart/cart-action';
 
-const CartItems = ({ item, removeItem, addItem, decreaseQuantity }) => {
-    const {name, shortDescription, imageUrl, price, quantity} = item;
+class CartItems extends Component{
 
-    return ( 
+    constructor(){
+        super()
+        this.state = {
+            imageUrl: ''
+        }
+    }
+    componentDidMount(){
+
+        const {id , images } = this.props.item;
+        firebase.storage().ref(`/product-images/${id}/${images[0]}`)
+        .getDownloadURL()
+        .then((url) => {
+            console.log(url);
+            //from url you can fetched the uploaded image easily
+            this.setState({imageUrl: url})
+        })
+        .catch((e) => console.log('getting downloadURL of image error => ', e));
+        }
+    
+
+    render(){
+        const {productName, shortDescription, price, quantity} = this.props.item;
+        const {removeItem, addItem, decreaseQuantity } = this.props;
+        return ( 
         <div className="cart-item">
             <div className="cart-item-image">
-                <img src={imageUrl} alt=""/>
+                <img src={this.state.imageUrl} alt=""/>
             </div>
             <div className="cart-item-texts">
                 <div className="cart-item-info">
-                    <h1>{name}</h1>
-                    <p>{shortDescription}</p>
+                    <h1>{productName.length > 20 ? `${productName.slice(0,20)}...` : productName}</h1>
+                    <p>{shortDescription.length > 30 ? `${shortDescription.slice(0,30)}...` : shortDescription}</p>
                     <div className="cart-item-remove">
-                        <button onClick={() => removeItem(item)}>Remove</button>
+                        <button onClick={() => removeItem(this.props.item)}>Remove</button>
                     </div>
                 </div>
                 <div className="cart-item-quantity">
-                    <div className="arrow" onClick= {() => decreaseQuantity(item)}>&#10094;</div>
+                    <div className="arrow" onClick= {() => decreaseQuantity(this.props.item)}>&#10094;</div>
                     <span>{quantity}</span>
-                    <div className="arrow" onClick={() => addItem(item)}>&#10095;</div>
+                    <div className="arrow" onClick={() => addItem(this.props.item)}>&#10095;</div>
                     
                 </div>
                 <div className="cart-item-price">
@@ -32,7 +55,9 @@ const CartItems = ({ item, removeItem, addItem, decreaseQuantity }) => {
                 
             </div>
         </div>
-     );
+     )
+    }
+    
 }
 
 const mapDispatchToProps = dispatch => ({

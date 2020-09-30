@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './custom-button.styles.css';
+import './CustomButton.styles.css';
 import PropTypes from 'prop-types';
 
 const CustomButton = ({children, isGoogleSignIn, ...otherProps}) => (
