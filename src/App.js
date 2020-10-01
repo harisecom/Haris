@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Homepage from './pages/Homepage/Homepage';
-import ProductDetails from './pages/product-detail/product-detail.component';
-import NotFoundPage from './pages/not-found';
+import Homepage from './Pages/Homepage/Homepage';
+import ProductDetails from './Pages/product-detail/product-detail.component';
+import NotFoundPage from './Pages/not-found';
 import Header from './Components/Header/Header';
-import Cart from './pages/Cart/Cart';
-import ForgotPassword from './pages/forgot-password/forgot-password';
+import Cart from './Pages/Cart/Cart';
+import ForgotPassword from './Pages/forgot-password/forgot-password';
 import { connect } from 'react-redux';
 import {cartAction} from './Redux/cart/cart-action';
-import SignIn from './pages/SignIn/signIn.component';
-import SignUp from './pages/SignUp/SignUp.component';
+import SignIn from './Pages/SignIn/signIn.component';
+import SignUp from './Pages/SignUp/SignUp.component';
 import Footer from './Components/Footer/Footer.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { userAction } from './Redux/user/user-action';
+import { setCurrentUser } from './Redux/user/user-action';
 
 
 class App extends Component {
@@ -40,6 +40,7 @@ class App extends Component {
               ...snapShot.data()
             }
           });
+          console.log(this.state);
         });
       }
       this.setState({ currentUser: userAuth });
@@ -85,7 +86,7 @@ const mapStateToProps = ({cart}) => ({
 
 const mapDispatchToProps = dispatch => ({
     cartAction: () => dispatch(cartAction()),
-    addUser: user => dispatch(userAction(user)) 
+    addUser: user => dispatch(setCurrentUser(user)) 
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

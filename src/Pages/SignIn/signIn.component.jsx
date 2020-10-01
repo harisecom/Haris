@@ -1,8 +1,8 @@
 import React,{Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
 
-import FormInput from '../../Components/form-input/form-input.component';
-import CustomButton from '../../Components/custom-button/custom-button.component';
+import FormInput from '../../Components/Form-Input/form-input.component';
+import CustomButton from '../../Components/Custom-Button/custom-button.component';
 
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import './Sign-In.styles.css';
@@ -56,6 +56,7 @@ class SignIn extends Component {
                         type="password"
                         value={this.state.password}
                         handleChange={this.handleChange}
+                        placeholder="password"
                         label="Password"
                     required/>
                     <div className="button">

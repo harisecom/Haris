@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
-import FormInput from '../../Components/form-input/form-input.component';
-import CustomButton from '../../Components/custom-button/custom-button.component';
+import FormInput from '../../Components/Form-Input/form-input.component';
+import CustomButton from '../../Components/Custom-Button/custom-button.component';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import './Sign-Up.styles.css'
-
 
 class SignUp extends Component {
     constructor() {
@@ -14,13 +14,25 @@ class SignUp extends Component {
             email: '',
             password: '',
             birthday: ''
-        }
+        };
     }
 
     handleSubmit = async event => {
+        console.log('bitch');
         event.preventDefault();
-        this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
-    }
+
+        const { firstName, lastName, email, password } = this.state;
+
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword( email, password);
+
+            await createUserProfileDocument(user, {firstName, lastName});
+
+            this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
+        } catch(err) {
+            console.error('something went wrong with sign up with email and password', err);
+        }
+    };
 
     handleChange = event => {
         const {value, name} = event.target;
@@ -28,47 +40,55 @@ class SignUp extends Component {
     }
 
     render() {
-        const {firstName, lastName, email, password, birthday} = this.state
-        console.log('bitch');
+        const {firstName, lastName, email, password, birthday} = this.state;
         return (
             <div className="sign-up">
                 <h2 className="headline">Create Account</h2>
-                    <form className="sign-up-form" onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className="sign-up-form">
                         <div className="fullname-container">
                             <FormInput 
                                 type="text"
                                 name="firstName"
                                 value={firstName}
                                 onChange={this.handleChange}
+                                placeholder="firstName"
                                 label= 'First Name'
-                            required/>
+                                required
+                            />
                             <FormInput 
                                 type="text"
                                 name="lastName"
                                 value={lastName}
                                 onChange={this.handleChange}
+                                placeholder="lastName"
                                 label= 'Last Name'
-                            required/>
+                                required
+                            />
                         </div>
                         <FormInput 
                             type="email"
                             name="email"
                             value={email}
                             onChange={this.handleChange}
+                            placeholder="example@email.com"
                             label= 'Email Address'
-                        required/>
+                            required
+                        />
                         <FormInput 
                             type="password"
                             name="password"
                             value={password}
                             onChange={this.handleChange}
+                            placeholder="password"
                             label= 'Password'
-                        required/>
+                            required
+                        />
                         <FormInput 
                             type="date"
                             name="birthday"
                             value={birthday}
                             onChange={this.handleChange}
+                            required
                         />
                     </form>
                     <CustomButton type="submit">Sign Up</CustomButton>
@@ -78,7 +98,7 @@ class SignUp extends Component {
                 </span>
 
             </div>
-        )
+        );
     }
 }
 export default SignUp;
