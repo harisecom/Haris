@@ -1,5 +1,5 @@
 import React from 'react';
-import CartItems from './cartItems/cartItems';
+import CartItems from './cartItems/CartItems.component';
 import './cart.style.css';
 import { connect } from 'react-redux';
 
@@ -28,7 +28,7 @@ const Cart = ({cartStatus, cartItems}) => {
 
         </div> 
         
-        );
+    );
 }
 
 const mapStateToProps = ({cart}) => ({

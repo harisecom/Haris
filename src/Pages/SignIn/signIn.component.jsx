@@ -2,7 +2,7 @@ import React,{Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
 
 import FormInput from '../../Components/Form-Input/form-input.component';
-import CustomButton from '../../Components/Custom-Button/custom-button.component';
+import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import './Sign-In.styles.css';

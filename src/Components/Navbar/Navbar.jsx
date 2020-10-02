@@ -19,9 +19,10 @@ const Navbar = ({ cartAction }) => {
     const closeMobileMenu = () => setClick(false);
 
     const onMouseEnter = () => {
-      setDropdown(true);
-    }; 
+        setDropdown(true);
+    } 
     const onMouseLeave = () => {
+       console.log('mouse leave') 
        setDropdown(false);
     };
 

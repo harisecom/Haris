@@ -90,8 +90,6 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-=======
             <div className="ratings">
                 <span>Reviews Section</span>
                 <div className="reviews">
@@ -193,7 +191,6 @@ const ProductDetails = () => {
                 </div>
 
             </div>
->>>>>>> b132d692284fbd68715369876ba19dac3b0b72fc
         </div>
     )
 }

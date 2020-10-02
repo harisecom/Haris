@@ -14,7 +14,6 @@ const ForgotPassword = () => {
                 </div>
                 <button className="reset-password-btn reset-submit" type="submit">Submit</button>
                 <button className="reset-password-btn reset-cancel">Cancel</button>
-
             </form>
         </div>
     )

@@ -2,23 +2,17 @@ import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
+import {PropTypes} from 'prop-types';
 import './product-detail.styles.css';
-
 import {addItemToCart} from '../../Redux/cart/cart-action';
 
 const ProductDetails = ({ addItem }) => {
   const {id} = useParams();
-  
-
   const productInfo = Products.find((elem) =>{
     return elem.items.find((prod) => prod.id === id)
   })
-
   const singleProductInfo = productInfo.items;
-
   const newProdInfo = singleProductInfo.find( product => product.id === id);
-
-
   const productImages = [
     'https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg',
     'https://m.bobbibrowncosmetics.com/media/export/cms/products/v2_1080x1080/bb_sku_E10002_1080x1080_0.jpg',
@@ -52,7 +46,6 @@ const ProductDetails = ({ addItem }) => {
 
   return (
     <div>
-
       <div className="product-detail container">
         <div className="image">
           <div className="side-images">
@@ -105,7 +98,6 @@ const ProductDetails = ({ addItem }) => {
             <i className="fas fa-star"></i>
             <span className="review-number">(20 Reviews)</span>
           </div>
-
           <div className="navbar menu">
             <a
               href={'/'}
@@ -210,3 +202,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(ProductDetails);
+
+ProductDetails.propTypes = {
+  addItem: PropTypes.func
+}

@@ -1,23 +1,23 @@
-.dropdown-menu {
-    background: red;
+  .dropdown-menus {
+    background: #303030;
     width: 200px;
     position: absolute;
     top: 80px;
+    z-index: 100000;
     list-style: none;
     text-align: start;
+    overflow: scroll;
+    overflow-x: hidden;
+    opacity: 1;
   }
   
-  .dropdown-menu li {
-    background: #1888ff;
+  .dropdown-menus li {
+    background: #101010;
     cursor: pointer;
   }
   
-  .dropdown-menuli:hover {
-    background: #5cabff;
-  }
-  
-  .dropdown-menu.clicked {
-    display: none;
+  .dropdown-menus li:hover {
+    background: #F3631B;
   }
   
   .dropdown-link {
