@@ -9,6 +9,7 @@
 
 .productImagePart{
     flex-basis: 60%;
+    max-height: 350px;
     position: relative;
 }
 
@@ -41,10 +42,11 @@
 }
 
 .productDescriptionPart h2{
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 600;
 }
 .productDescriptionPart h4{
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .productDescriptionPart .ratings{

@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '../Components/shared/Layout';
+import Layout from '../../Components/shared/Layout';
 import {Link} from 'react-router-dom';
-import Footer from '../Components/Footer/Footer.component';
+import Footer from '../../Components/Footer/Footer.component';
 
 export default class NotFoundPage extends React.Component {
   render() {

@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
-import './product-detail.styles.css';
+import PropTypes from 'prop-types';
+import './ProductDetail.styles.css';
 
 import {addItemToCart} from '../../Redux/cart/cart-action';
 
@@ -210,3 +211,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(ProductDetails);
+
+ProductDetails.propTypes = {
+  addItem : PropTypes.func
+}

@@ -3,12 +3,12 @@ import './Footer.styles.css'
 const Footer = () => (
     <footer>
         <hr/>
-        <div className="container">
-            <nav className="navbar navbar-light ">
+        <div className="container-fluid">
+            <nav className="navbar navbar-light " id="navbar">
                     <span className="navbar-text">
                         Unlocking A Whole New Wardrobe.
                     </span>
-                    <ul>
+                    <ul id="nav-links"> 
                         <li>
                             <a href="/">about</a>
                         </li>

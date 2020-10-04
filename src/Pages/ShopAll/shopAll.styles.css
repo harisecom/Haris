@@ -1,0 +1,106 @@
+.shopAllPage {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 4%;
+}
+
+.filterSide{
+    width: 100%;
+    height: 100%;
+    flex-basis: 20%;
+
+}
+
+.filterElements .filterItems{
+    padding: 0;
+}
+
+.filterElements .filterItems > li{
+
+    width: 250px;
+    padding: 15px 0px;
+    font-size: 16px;
+    position: relative;
+    background-color: #ffffff;
+    font-weight: 500;
+    border-bottom: 1px solid #827A7A;
+
+}
+
+.filterElements .filterItems > li:first-child{
+    border-top: 1px solid #827A7A;
+}
+
+.subFilterItems{
+    margin: 16px 0px;
+    background-color: #F7F7F7;
+    padding: 0;
+}
+.subFilterItems li{
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 30px;
+    font-weight: 400;
+}
+
+.subFilterItems li:hover {
+    background-color: #f2fafe;
+}
+
+
+
+.filterElements ul li span{
+    position: absolute;
+    font-size: 20px;
+    top: 8px;
+    color: #a1a0a0;
+    right: 0;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
+
+.filterElements ul li .active{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+
+
+.productListing{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productListFilter{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.productListFilter #sortingProducts{
+    width: 200px;
+    height: 30px;
+    padding: 4px 5px;
+    font-size: 12px;
+}
+
+.productListFilter #sortingProducts option{
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.allProducts {
+    padding-top: 2%;
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
