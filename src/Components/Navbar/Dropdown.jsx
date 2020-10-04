@@ -1,28 +1,21 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import {SignedInItems, SignedOutItems} from './MenuItems';
-import {Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { auth } from '../../firebase/firebase.utils';
 import './Dropdown.style.css';
 
 const Dropdown = ({ currentUser}) => {
-    const [click, setClick] = useState(false);
-
-    const handleClick = () => setClick(!click);
-
     return (
-        <ul 
-            onClick={handleClick} 
-            className={click ? 'dropdown-menu clicked' : 'dropdown-menu'}
-        >
+        <ul className="dropdown-menus">
             {currentUser ? (
                 <Fragment>
                 <div>
                     {SignedInItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <Link className={item.cName} to={item.path} onClick={() => setClick(false)}>
-                                    {item.title}
+                                <Link className={item.cName} to={item.path} >
+                                    {item.title} 
                                 </Link>
                             </li>
                         )
@@ -35,10 +28,11 @@ const Dropdown = ({ currentUser}) => {
                     {SignedOutItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <Link className={item.cName} to={item.path} onClick={() => setClick(false)}>
+                                <Link className={item.cName} to={item.path} >
                                     {item.title}
                                 </Link>
                             </li>
+                            
                         )
                     })}
                 </div>

@@ -1,4 +1,4 @@
-export const userAction = (user) =>({
-    type: 'SET_NEW_USER',
+export const setCurrentUser = (user) =>({
+    type: 'SET_CURRENT_USER',
     payload: user
 })
