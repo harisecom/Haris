@@ -110,5 +110,3 @@ export default connect(mapStateToProps)(ShopAll)
 ShopAll.propTypes = {
     allProducts : PropTypes.array
 }
-
-

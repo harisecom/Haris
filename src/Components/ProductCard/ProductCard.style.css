@@ -3,20 +3,15 @@
     height: 600px;
     display: flex;
     flex-direction: column;
-    
-
 }
-
 .productImagePart{
     flex-basis: 60%;
     max-height: 350px;
     position: relative;
 }
-
 .productImagePart img{
     width: 100%;
 }
-
 .productImagePart .priceTag{
     position: absolute;
     bottom: 0;
@@ -25,7 +20,6 @@
     margin-right: 16px;
     margin-bottom: 10px;
 }
-
 .productImagePart .productCard-wishlist {
     width: 30px;
     height: 30px;
@@ -35,12 +29,10 @@
     margin-right: 10px;
     right: 0;
 }
-
 .productDescriptionPart{
     flex-basis: 40%;
     margin-top: 16px;
 }
-
 .productDescriptionPart h2{
     font-size: 20px;
     font-weight: 600;
@@ -48,25 +40,20 @@
 .productDescriptionPart h4{
     font-size: 16px;
 }
-
 .productDescriptionPart .ratings{
     display: flex;
     flex-direction: row;
 }
-
 .productDescriptionPart .ratings img{
     width: 20px;
     height: 20px;
 }
-
-
 .add-to-cart-button button{
     background: #F3631B;
     font-size: 18px;
     margin-top: 20px;
-
     border: none;
     padding: 8px 20px;
     width: 100%;
-    color: #ffffff;
+    color: #FFFFFF;
 }

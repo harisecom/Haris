@@ -1,10 +1,9 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
 import FormInput from '../../Components/Form-Input/FormInput.component';
-import CustomButton from '../../Components/Custom-Button/CustomButton.component'
-import './Sign-Up.styles.css'
+import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-
+import './Sign-Up.styles.css'
 
 class SignUp extends Component {
     constructor() {
@@ -15,23 +14,25 @@ class SignUp extends Component {
             email: '',
             password: '',
             birthday: ''
-        }
+        };
     }
 
     handleSubmit = async event => {
+        console.log('bitch');
         event.preventDefault();
-        const { firstName, lastName, email, password, birthday} = this.state;
 
-        try{
-            const {user} = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfileDocument(user, { firstName, lastName, birthday });
+        const { firstName, lastName, email, password } = this.state;
+
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword( email, password);
+
+            await createUserProfileDocument(user, {firstName, lastName});
 
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
-
         } catch(err) {
-            console.error(err);
+            console.error('something went wrong with sign up with email and password', err);
         }
-    }
+    };
 
     handleChange = event => {
         const {value, name} = event.target;
@@ -43,7 +44,7 @@ class SignUp extends Component {
         return (
             <div className="sign-up">
                 <h2 className="headline">Create Account</h2>
-                    <form className="sign-up-form" onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className="sign-up-form">
                         <div className="fullname-container">
                             <FormInput 
                                 type="text"
@@ -52,7 +53,8 @@ class SignUp extends Component {
                                 onChange={this.handleChange}
                                 placeholder="firstName"
                                 label= 'First Name'
-                            required/>
+                                required
+                            />
                             <FormInput 
                                 type="text"
                                 name="lastName"
@@ -60,7 +62,8 @@ class SignUp extends Component {
                                 onChange={this.handleChange}
                                 placeholder="lastName"
                                 label= 'Last Name'
-                            required/>
+                                required
+                            />
                         </div>
                         <FormInput 
                             type="email"
@@ -69,7 +72,8 @@ class SignUp extends Component {
                             onChange={this.handleChange}
                             placeholder="example@email.com"
                             label= 'Email Address'
-                        required/>
+                            required
+                        />
                         <FormInput 
                             type="password"
                             name="password"
@@ -77,12 +81,14 @@ class SignUp extends Component {
                             onChange={this.handleChange}
                             placeholder="password"
                             label= 'Password'
-                        required/>
+                            required
+                        />
                         <FormInput 
                             type="date"
                             name="birthday"
                             value={birthday}
                             onChange={this.handleChange}
+                            required
                         />
                     </form>
                     <CustomButton type="submit">Sign Up</CustomButton>
@@ -92,7 +98,7 @@ class SignUp extends Component {
                 </span>
 
             </div>
-        )
+        );
     }
 }
 export default SignUp;

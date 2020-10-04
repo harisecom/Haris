@@ -1,3 +1,4 @@
+
 import React from 'react';
 import MainSlider from './Slider/MainSlider.component';
 import './homepage.style.css';

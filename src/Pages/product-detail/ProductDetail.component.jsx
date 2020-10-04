@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import './product-detail.styles.css';
+import './ProductDetail.styles.css';
 
 import {addItemToCart} from '../../Redux/cart/cart-action';
 

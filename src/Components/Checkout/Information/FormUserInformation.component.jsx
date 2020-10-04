@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './ProductCard.style.css';
 import firebase from '../../firebase/firebase.utils';
 import { addItemToCart, cartAction } from '../../Redux/cart/cart-action';
+
 class ProductCard extends Component {
     constructor(){
         super()
@@ -11,8 +12,10 @@ class ProductCard extends Component {
             imageUrl : ''
         }
     }
+
     componentDidMount(){
-    const {id, images} = this.props.product;
+    const {id, images} = this.props.product;    
+    
     firebase.storage().ref(`/product-images/${id}/${images[0]}`)
     .getDownloadURL()
     .then((url) => {
@@ -21,6 +24,10 @@ class ProductCard extends Component {
     })
     .catch((e) => console.log('getting downloadURL of image error => ', e));
     }
+
+
+    
+
     render(){
         const { price, productName, shortDescription, ratings} = this.props.product;
         const { addItem} = this.props;
@@ -44,6 +51,7 @@ class ProductCard extends Component {
                         <img key={key} src="/images/ratings.png" alt=""/>
                     ))
                 }
+
                 {
                     Array(5 - ratings)
                     .fill()
@@ -51,24 +59,34 @@ class ProductCard extends Component {
                         <img key={key} src="/images/nonratings.png" alt=""/>
                     ))
                 }
+                
                 </div>
+
                 <div className="add-to-cart-button">
                     <button onClick={() => addItem(this.props.product)}>Add to cart</button>
                 </div>
+
             </div>
+           
         </div>
     )
     }
+
+    
 }
+
 const mapDispatchToProps = dispatch =>{
     return {
         addItem : item => {
             dispatch(addItemToCart(item))
             dispatch(cartAction())
         },
+        
     }
 }
+
 export default connect(null, mapDispatchToProps)(ProductCard)
+
 ProductCard.propTypes={
     product: PropTypes.object,
     addItem: PropTypes.func
@@ -77,4 +95,6 @@ ProductCard.propTypes={
     'product.name' : PropTypes.string,
     'product.shortDescription' : PropTypes.string,
     'product.ratings' : PropTypes.number */
+
+
 }
