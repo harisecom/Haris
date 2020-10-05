@@ -16,7 +16,7 @@ import SignUp from './Pages/SignUp/SignUp.component';
 import CheckoutPage from './Pages/Checkout/Checkout.component';
 import Footer from './Components/Footer/Footer.component';
 import { auth, createUserProfileDocument, firestore } from './firebase/firebase.utils';
-import { userAction } from './Redux/user/user-action';
+import { setCurrentUser } from './Redux/user/user-action';
 import { updateProducts } from './Redux/products/product-action';
 
 
@@ -99,7 +99,7 @@ const mapStateToProps = ({cart}) => ({
 const mapDispatchToProps = dispatch => ({
   cartAction: () => dispatch(cartAction()),
   updateProducts: (products) => dispatch(updateProducts(products)),
-  addUser: user => dispatch(userAction(user)),
+  addUser: user => dispatch(setCurrentUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
