@@ -18,18 +18,11 @@ import Footer from './Components/Footer/Footer.component';
 import { auth, createUserProfileDocument, firestore } from './firebase/firebase.utils';
 import { setCurrentUser } from './Redux/user/user-action';
 import { updateProducts } from './Redux/products/product-action';
+import { updateCategories } from './Redux/category/category-action';
 
 
 
 class App extends Component {
-
-  constructor(){
-    super()
-
-    this.state = {
-      currentUser: null
-    }
-  }
 
   unsubscribeFromAuth = null;
 
@@ -39,15 +32,13 @@ class App extends Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
+          this.props.addUser({
+            id: snapShot.id,
+            ...snapShot.data()
           });
         });
       }
-      this.setState({ currentUser: userAuth });
+        this.props.addUser(userAuth);
     });
 
     const productsRef = firestore.collection('products');
@@ -55,7 +46,22 @@ class App extends Component {
       this.updateProductsToRedux(snapShot.docs)   
     });
 
+    const collectionRef = firestore.collection('categories');
+    collectionRef.onSnapshot( async (snapshot) => {
+      this.updateCategoriesToRedux(snapshot.docs) 
+    })
+
     
+  }
+
+  updateCategoriesToRedux = ( snapshot ) =>{
+    const updatedCollection = snapshot.map((doc) => doc.data()).reduce(( accumulator, collection) => {
+      accumulator[collection.routeName] = collection;
+      return accumulator
+    }, {})
+
+    this.props.updateCategories(updatedCollection);
+
   }
 
   updateProductsToRedux = ( snapShot) =>{
@@ -100,6 +106,7 @@ const mapDispatchToProps = dispatch => ({
   cartAction: () => dispatch(cartAction()),
   updateProducts: (products) => dispatch(updateProducts(products)),
   addUser: user => dispatch(setCurrentUser(user)),
+  updateCategories : categories => dispatch(updateCategories(categories))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

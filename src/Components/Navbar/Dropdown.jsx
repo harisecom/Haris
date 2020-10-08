@@ -14,9 +14,16 @@ const Dropdown = ({ currentUser}) => {
                     {SignedInItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <Link className={item.cName} to={item.path} >
-                                    {item.title} 
-                                </Link>
+                                {
+                                    item.title === 'Sign Out' ?
+                                    <Link className={item.cName} onClick={() => auth.signOut()} >
+                                        {item.title} 
+                                    </Link> :
+                                    <Link className={item.cName} to={item.path} >
+                                        {item.title} 
+                                    </Link>
+                                }
+                                
                             </li>
                         )
                     })}
@@ -42,7 +49,7 @@ const Dropdown = ({ currentUser}) => {
     );
 }
 const mapStateToProp = state => ({
-    currentUser: state.currentUser
+    currentUser: state.user.currentUser
 });
 
 export default connect(mapStateToProp)(Dropdown);
