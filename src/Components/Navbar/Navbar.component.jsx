@@ -10,7 +10,6 @@ import { ReactComponent as AccountIcon} from '../../assets/account.svg';
 import { ReactComponent as CartIcon} from '../../assets/cart.svg';
 import { ReactComponent as SearchIcon} from '../../assets/search.svg';
 import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
-import userReducer from '../../Redux/user/user-reducer';
  
 const Navbar = ({ cartAction }) => {
     const [click, setClick] = useState(false);

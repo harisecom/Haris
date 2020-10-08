@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
-import FormInput from '../../Components/Form-Input/FormInput.component';
+import FormInput from '../../Components/form-input/FormInput.component';
 import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import './Sign-Up.styles.css'
@@ -18,7 +18,6 @@ class SignUp extends Component {
     }
 
     handleSubmit = async event => {
-        console.log('bitch');
         event.preventDefault();
 
         const { firstName, lastName, email, password } = this.state;
@@ -29,6 +28,7 @@ class SignUp extends Component {
             await createUserProfileDocument(user, {firstName, lastName});
 
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
+            this.props.history.push('/');
         } catch(err) {
             console.error('something went wrong with sign up with email and password', err);
         }
