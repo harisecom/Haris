@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import FormInput from '../../Components/Form-Input/FormInput.component';
 import CustomButton from '../../Components/Custom-Button/CustomButton.component';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+
 import './Sign-Up.styles.css'
 
 class SignUp extends Component {
@@ -13,38 +14,41 @@ class SignUp extends Component {
             lastName: '',
             email: '',
             password: '',
-            birthday: ''
+            birthday: '',
+            firebaseErrors: ''
         };
     }
-
-    handleSubmit = async event => {
-        console.log('bitch');
-        event.preventDefault();
-
-        const { firstName, lastName, email, password } = this.state;
-
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword( email, password);
-
-            await createUserProfileDocument(user, {firstName, lastName});
-
-            this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
-        } catch(err) {
-            console.error('something went wrong with sign up with email and password', err);
-        }
-    };
 
     handleChange = event => {
         const {value, name} = event.target;
         this.setState({ [name]: value });
     }
 
+    handleSubmit = async event => {
+        console.log('submit was fired');
+        event.preventDefault();
+
+        const { firstName, email, password } = this.state;
+
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword( email, password);
+
+            createUserProfileDocument(user, {displayName: firstName});
+            this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
+
+        } catch(err) {
+            this.setState({firebaseErrors: err.message});
+            console.error('something went wrong with sign up with email and password', err);
+        }
+        
+    };
+
     render() {
-        const {firstName, lastName, email, password, birthday} = this.state
+        const {firstName, lastName, email, password, birthday, firebaseErrors} = this.state
         return (
             <div className="sign-up">
                 <h2 className="headline">Create Account</h2>
-                    <form onSubmit={this.handleSubmit} className="sign-up-form">
+                    <form className="sign-up-form" onSubmit={this.handleSubmit}>
                         <div className="fullname-container">
                             <FormInput 
                                 type="text"
@@ -88,15 +92,14 @@ class SignUp extends Component {
                             name="birthday"
                             value={birthday}
                             onChange={this.handleChange}
-                            required
                         />
+                        <CustomButton type='submit'>Sign Up</CustomButton>
+                        <p className="error">{firebaseErrors}</p>
                     </form>
-                    <CustomButton type="submit">Sign Up</CustomButton>
                 <span>
                    <Link className="links" to="/forgotPassword">Forgot your password?</Link>
                    <Link className="links" to="/signin">Sign in</Link>  
                 </span>
-
             </div>
         );
     }

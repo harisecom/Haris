@@ -1,10 +1,5 @@
 export const SignedInItems = [
     {
-        title: "Sign Out",
-        path: "/",
-        cName: "dropdown-link",
-    },
-    {
         title: "Order History",
         path: "/",
         cName: "dropdown-link",

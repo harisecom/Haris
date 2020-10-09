@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './App.css';
-import {Switch, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Homepage from './Pages/Homepage/Homepage.component';
 import ProductDetails from './Pages/product-detail/ProductDetail.component';
 import NotFoundPage from './Pages/NotFound/NotFound.component';
@@ -9,52 +10,45 @@ import Header from './Components/Header/Header.component';
 import ShopAll from './Pages/ShopAll/shopAll.component';
 import Cart from './Pages/Cart/Cart.component';
 import ForgotPassword from './Pages/forgot-password/ForgotPassword.component';
-import { connect } from 'react-redux';
-import {cartAction} from './Redux/cart/cart-action';
 import SignIn from './Pages/SignIn/signIn.component';
 import SignUp from './Pages/SignUp/SignUp.component';
 import CheckoutPage from './Pages/Checkout/Checkout.component';
 import Footer from './Components/Footer/Footer.component';
+
 import { auth, createUserProfileDocument, firestore } from './firebase/firebase.utils';
+import {cartAction} from './Redux/cart/cart-action';
 import { setCurrentUser } from './Redux/user/user-action';
 import { updateProducts } from './Redux/products/product-action';
 
+import './App.css';
 
 
 class App extends Component {
 
-  constructor(){
-    super()
-
-    this.state = {
-      currentUser: null
-    }
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    // const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
+          this.props.addUser({
               id: snapShot.id,
               ...snapShot.data()
-            }
           });
         });
       }
-      this.setState({ currentUser: userAuth });
+      this.props.addUser(userAuth)
+      console.log('bitch', userAuth);
     });
 
     const productsRef = firestore.collection('products');
     productsRef.onSnapshot( async (snapShot) => {
       this.updateProductsToRedux(snapShot.docs)   
     });
-
     
   }
 
@@ -68,7 +62,7 @@ class App extends Component {
   }
 
   render() {
-    const {cartStatus, cartAction} = this.props;
+    const {cartStatus, cartAction, addUser} = this.props;
     return (
       <div>
         <Header />
@@ -80,7 +74,7 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route path="/forgotPassword" component={ForgotPassword} />
           <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/signin" component={SignIn} />
+          <Route path="/signin" component={SignIn}/>
           <Route path="/signup" component={SignUp} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/shop" component={ShopAll} />
@@ -95,6 +89,7 @@ class App extends Component {
 const mapStateToProps = ({cart}) => ({
   cartStatus: cart.cartStatus,
 });
+
 
 const mapDispatchToProps = dispatch => ({
   cartAction: () => dispatch(cartAction()),

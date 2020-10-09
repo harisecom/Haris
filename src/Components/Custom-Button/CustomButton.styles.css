@@ -13,10 +13,8 @@
     color: white;
     border: none;
     cursor: pointer;
-    /* display: inline-block; */
-   
+    /* display: inline-block; */ 
 }
-
 
 .custom-button:hover {
     background-color: white;
@@ -29,6 +27,7 @@
     word-wrap: break-word;
     background-color: #4285f4;
     color: white;
+    opacity: 1;
 }
 
 .google-sign-in:hover {
