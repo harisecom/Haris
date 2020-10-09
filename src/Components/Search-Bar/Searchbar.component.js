@@ -1,38 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SearchbarProducts from '../Searchbar-products/Searchbar-products.component'
-import {Products} from '../../Data/Products.js';
-
+import SearchbarProducts from './Searchbar-products/Searchbar-products.component'
+import {firestore} from '../../firebase/firebase.utils';
 import './Searchbar.styles.css';
 class Searchbar extends React.Component {
   constructor(){
     super();
     this.state = {
       searchinput: '',
-      fullList:  Products[0]['items'],
+      allProducts:  [],
       results: []
     }
 
   }
 
+
+  // componentDidMount() {
+  //   firestore.collection("products")
+  //     .get()
+  //     .then(querySnapshot => {
+  //       const data = querySnapshot.docs.map(doc => doc.data());
+  //       this.setState({allProducts: data})
+  //     })
+  // }
+
   handleChange = (e) => {
-    const fullList = this.state.fullList
+    const allProducts = this.props.allProducts;
     this.setState({searchinput: e.target.value});
     const value = e.target.value.toLowerCase();
     const results = this.state.results;
-    for(let i= 0 ; i < fullList.length ; i++ ) {
-      if(fullList[i]['name'].toLowerCase().startsWith(value) && value !== '' ) {
-        if(!this.state.results.includes(fullList[i])){
-          results.push(fullList[i]);
-          // console.log(`${fullList[i]['name']} has been added`)
+    for(let i= 0 ; i < allProducts.length ; i++ ) {
+      if(allProducts[i]['productName'].toLowerCase().startsWith(value) && value !== '' ) {
+        if(!this.state.results.includes(allProducts[i])){
+          results.push(allProducts[i]);
+          // console.log(`${allProducts[i]['name']} has been added`)
         }
       }
       else{
-        if(this.state.results.includes(fullList[i])){
-          const index = results.findIndex( (element) => element=== fullList[i]);
+        if(this.state.results.includes(allProducts[i])){
+          const index = results.findIndex( (element) => element=== allProducts[i]);
           results.splice(index, 1);
-          // console.log(`${fullList[i]['name']} has been removed`)
+          // console.log(`${allProducts[i]['name']} has been removed`)
         }
       }
     }
@@ -40,7 +49,7 @@ class Searchbar extends React.Component {
           
   }
   render() {
-    const {searchbarStatus} = this.props;
+    const {searchbarStatus, allProducts} = this.props;
     return(
     <div className={`container-fluid search-component ${searchbarStatus === true ? 'searchbar-active' : ''}`} >
       <div className="searchbar">
@@ -60,9 +69,12 @@ class Searchbar extends React.Component {
     )
   }
 };
-const mapStateToProps = ({searchbar}) => ({
-  searchbarStatus: searchbar.searchbarStatus
+const mapStateToProps = ({searchbar, products}) => ({
+  searchbarStatus: searchbar.searchbarStatus,
+  allProducts: products.allProducts,
+
 })
+
 
 
 export default connect(mapStateToProps)(Searchbar);

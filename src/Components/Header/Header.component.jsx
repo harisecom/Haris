@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar.component';
 import {Link} from 'react-router-dom';
 import './header.style.css';
+import Searchbar from '../Search-Bar/Searchbar.component';
 
 const Header = () => {
   
@@ -16,6 +17,8 @@ const Header = () => {
       </Link>
 
       <Navbar/>
+      <Searchbar></Searchbar>
+      
       
     </div>
   )
