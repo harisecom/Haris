@@ -90,6 +90,11 @@
   justify-content: space-evenly;
 }
 
+.nav-icons li {
+  cursor: pointer;
+}
+
+
 @media screen and (max-width: 960px) {
   .nav-icons {
     transform: translate(0%, -5%);

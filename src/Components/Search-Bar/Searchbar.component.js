@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchbarProducts from './Searchbar-products/Searchbar-products.component'
-import {firestore} from '../../firebase/firebase.utils';
+import {searchbarAction} from '../../Redux/searchbar/searchbar-action';
 import './Searchbar.styles.css';
+
 class Searchbar extends React.Component {
   constructor(){
     super();
@@ -14,16 +15,6 @@ class Searchbar extends React.Component {
     }
 
   }
-
-
-  // componentDidMount() {
-  //   firestore.collection("products")
-  //     .get()
-  //     .then(querySnapshot => {
-  //       const data = querySnapshot.docs.map(doc => doc.data());
-  //       this.setState({allProducts: data})
-  //     })
-  // }
 
   handleChange = (e) => {
     const allProducts = this.props.allProducts;
@@ -49,7 +40,7 @@ class Searchbar extends React.Component {
           
   }
   render() {
-    const {searchbarStatus, allProducts} = this.props;
+    const {searchbarStatus} = this.props;
     return(
     <div className={`container-fluid search-component ${searchbarStatus === true ? 'searchbar-active' : ''}`} >
       <div className="searchbar">
@@ -60,7 +51,7 @@ class Searchbar extends React.Component {
            value={this.state.searchinput}
            onChange={this.handleChange} 
         ></input>
-        <h3 className="search-cross">X</h3>
+        <h3 className="search-cross" onClick={this.props.searchbarAction}>X</h3>
       </div>
       <div className="results">
         <SearchbarProducts items={this.state.results}></SearchbarProducts>
@@ -75,9 +66,11 @@ const mapStateToProps = ({searchbar, products}) => ({
 
 })
 
+const mapDispatchToProps = dispatch => ({
+  searchbarAction: () => dispatch(searchbarAction())
+})
 
-
-export default connect(mapStateToProps)(Searchbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
 Searchbar.propTypes ={
   searchbarStatus: PropTypes.bool
 }
