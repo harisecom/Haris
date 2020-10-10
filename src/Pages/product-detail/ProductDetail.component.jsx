@@ -1,30 +1,22 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
+import Rating from '@material-ui/lab/Rating'
+
 
 import {addItemToCart} from '../../Redux/cart/cart-action';
 
-const ProductDetails = ({ addItem }) => {
+const ProductDetails = ({ addItem, allProducts }) => {
   const {id} = useParams();
   
 
-  const productInfo = Products.find((elem) =>{
-    return elem.items.find((prod) => prod.id === id)
+  const productInfo = allProducts.find((elem) =>{
+    return (elem.id === id);
   })
 
-  const singleProductInfo = productInfo.items;
-
-  const newProdInfo = singleProductInfo.find( product => product.id === id);
-
-
-  const productImages = [
-    'https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg',
-    'https://m.bobbibrowncosmetics.com/media/export/cms/products/v2_1080x1080/bb_sku_E10002_1080x1080_0.jpg',
-    'https://pyxis.nymag.com/v1/imgs/0d2/c9d/7e2638d562bb724d04da328e4dba4cfa04-nars-semi-matte-lipstick-in-jungle-red.rsquare.w600.jpg',
-  ];
+  const productImages = productInfo.images;
   const [activeMenu, setActiveMenu] = useState('details');
   const [mainImage, setMainImage] = useState(0);
   // const [nextImage, setNextImage] = useState(1);
@@ -93,23 +85,17 @@ const ProductDetails = ({ addItem }) => {
           </div>
         </div>
         <div className="second-half">
-          <h2>{newProdInfo.name}</h2>
+          <h5>{productInfo.productName}</h5>
           <div className="section">
-            <h5>{newProdInfo.shortDescription}</h5>
-            <h5>${newProdInfo.price}</h5>
+            <h5>{productInfo.brand}</h5>
+            <h5>${productInfo.price}</h5>
           </div>
           <div className="reviews">
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <span className="review-number">(20 Reviews)</span>
+            <Rating name="read-only" value={productInfo.ratings} readOnly />
           </div>
 
           <div className="navbar menu">
-            <a
-              href={'/'}
+            <button
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'details' ? 'active-menu' : ''
@@ -117,9 +103,8 @@ const ProductDetails = ({ addItem }) => {
               id="details"
             >
               Details
-            </a>
-            <a
-              href={'/'}
+            </button>
+            <button
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'ingredients' ? 'active-menu' : ''
@@ -127,9 +112,8 @@ const ProductDetails = ({ addItem }) => {
               id="ingredients"
             >
               Ingredients
-            </a>
-            <a
-              href={'/'}
+            </button>
+            <button
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'how-to-use' ? 'active-menu' : ''
@@ -137,9 +121,8 @@ const ProductDetails = ({ addItem }) => {
               id="how-to-use"
             >
               How to use
-            </a>
-            <a
-              href={'/'}
+            </button>
+            <button
               onClick={menuOnClick}
               className={`${
                 activeMenu === 'share' ? 'active-menu' : ''
@@ -147,7 +130,7 @@ const ProductDetails = ({ addItem }) => {
               id="share"
             >
               Share
-            </a>
+            </button>
           </div>
           <hr className="line-below-nav"></hr>
           <div
@@ -155,32 +138,21 @@ const ProductDetails = ({ addItem }) => {
               activeMenu === 'details' ? 'active-paragraph' : 'hidden'
             }`}
           >
-            <p>
-              Do more for your skin by incorporating this hydrating, low pH
-              (4.5) cleansing toner into your daily regimen. The formula is
-              enriched with maple extract — known for its antioxidant and skin
-              softening properties — as well as.
-            </p>
-            <p>
-              anti-inflammatory that soothes and nourishes. The inclusion of
-              natural pumpkin and papaya enzymes help gently exfoliate skin and
-              remove impurities. After using, skin feels heathy, hydrated,
-              clean, and balanced.
-            </p>
+          <p>{productInfo.shortDescription}</p>
           </div>
           <div
             className={`${
               activeMenu === 'ingredients' ? 'active-paragraph' : 'hidden'
             }`}
           >
-            ingredients
+            <p>{productInfo.ingredients}</p>
           </div>
           <div
             className={`${
               activeMenu === 'how-to-use' ? 'active-paragraph' : 'hidden'
             }`}
           >
-            how-to-use
+            <p>{productInfo.howto}</p>
           </div>
           <div
             className={`${
@@ -195,7 +167,7 @@ const ProductDetails = ({ addItem }) => {
               <span className="quantity">1</span>
               <i className="fas fa-plus"></i>
             </div>
-            <button className="addButton" onClick={ () => addItem(newProdInfo) }>Add to cart</button>
+            <button className="addButton" onClick={ () => addItem(productInfo) }>Add to cart</button>
             <div>
               <i className="fas fa-heart"></i>
             </div>
@@ -206,11 +178,16 @@ const ProductDetails = ({ addItem }) => {
   );
 };
 
+const mapStateToProps = ({products}) => ({
+  allProducts: products.allProducts
+
+})
+
 const mapDispatchToProps = dispatch => ({
   addItem : item => dispatch(addItemToCart(item))
 })
 
-export default connect(null, mapDispatchToProps)(ProductDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
 
 ProductDetails.propTypes = {
   addItem : PropTypes.func
