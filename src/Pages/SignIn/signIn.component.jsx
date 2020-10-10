@@ -23,7 +23,8 @@ class SignIn extends Component {
 
         try {
             await auth.signInWithEmailAndPassword(email, password);
-            this.setState({email: '', password:''});
+            this.setState({email: '', password:' '});
+            this.props.history.push('/');
         } catch (err) {
             this.setState({firebaseErrors: err.message});
             console.error('something went wrong with sign in with email and password', err);

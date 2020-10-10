@@ -14,6 +14,11 @@ export const SignedInItems = [
         path: "/",
         cName: "dropdown-link",
     },
+    {
+        title: "Logout",
+        path: "/",
+        cName: "dropdown-link",
+    },
 ];
 
 export const SignedOutItems = [

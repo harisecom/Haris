@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {cartAction} from '../../Redux/cart/cart-action';
+import {searchbarAction} from '../../Redux/searchbar/searchbar-action';
 import Dropdown from './Dropdown';
 import './navbar.style.css';
 
@@ -10,9 +11,8 @@ import { ReactComponent as AccountIcon} from '../../assets/account.svg';
 import { ReactComponent as CartIcon} from '../../assets/cart.svg';
 import { ReactComponent as SearchIcon} from '../../assets/search.svg';
 import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
-
  
-const Navbar = ({ cartAction, currentUser }) => {
+const Navbar = ({ cartAction ,currentUser, searchbarAction}) => {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
 
@@ -56,7 +56,7 @@ const Navbar = ({ cartAction, currentUser }) => {
                         {dropdown && <Dropdown />}
                     </li>
                     <li className='' onClick={cartAction}><CartIcon/> </li>
-                    <li className=''><SearchIcon/> </li>
+                    <li className='' onClick={searchbarAction}><SearchIcon/> </li>
                     <li className=''><WishlishIcon/></li>
                 </ul>
             </div> 
@@ -69,7 +69,8 @@ const mapStateToProp = ({user}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    cartAction: () => dispatch(cartAction())
+    cartAction: () => dispatch(cartAction()),
+    searchbarAction: () => dispatch(searchbarAction())
 })
  
 export default connect( mapStateToProp, mapDispatchToProps)(Navbar);

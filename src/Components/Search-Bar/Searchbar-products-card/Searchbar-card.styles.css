@@ -1,0 +1,30 @@
+.search-product-image{
+    width: 80px;
+    height: 120px;
+    margin-left: 20px;
+  
+  }
+  
+  .search-product-a{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .search-product-a:hover{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .search-product-title{
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .search-product-price{
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
