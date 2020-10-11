@@ -71,6 +71,8 @@ img {
   border-radius: 50%;
 }
 
+
+
 .product-image-main {
   position: relative;
 }
@@ -184,4 +186,11 @@ button.active-menu {
   color: black;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.fa-plus {
+  cursor: pointer;
+}
+.fa-minus {
+  cursor: pointer;
 }
