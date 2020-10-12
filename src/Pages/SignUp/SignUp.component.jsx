@@ -35,7 +35,7 @@ class SignUp extends Component {
 
             createUserProfileDocument(user, {displayName: firstName});
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
-
+            this.props.history.push('/');
         } catch(err) {
             this.setState({firebaseErrors: err.message});
             console.error('something went wrong with sign up with email and password', err);

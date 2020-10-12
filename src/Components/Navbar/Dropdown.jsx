@@ -14,16 +14,20 @@ const Dropdown = ({ currentUser}) => {
                 <Fragment>
                     {SignedInItems.map((item, index) => {
                         return (
-                            <div>
-                                <li key={index} className="child">
-                                    <Link className={item.cName} to={item.path}>
-                                        {item.title}
+                            <li key={index} className="dropdown-link child">
+                                {
+                                    item.title === 'Logout' ? 
+                                    <Link className={item.cName} onClick={() => auth.signOut()} >
+                                        {item.title} 
+                                    </Link> :
+                                    <Link className={item.cName} to={item.path} >
+                                        {item.title} 
                                     </Link>
-                                </li>
-                            </div>
+                                }
+                                
+                            </li>
                         )
-                    })}
-                <li className="dropdown-link child" onClick={() => auth.signOut()}>logout</li>        
+                    })}     
                 </Fragment>
             ) : (
                 <Fragment>

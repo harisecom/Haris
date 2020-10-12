@@ -20,6 +20,7 @@ import { auth, createUserProfileDocument, firestore } from './firebase/firebase.
 import {cartAction} from './Redux/cart/cart-action';
 import { setCurrentUser } from './Redux/user/user-action';
 import { updateProducts } from './Redux/products/product-action';
+import { updateCategories } from './Redux/category/category-action';
 
 import './App.css';
 
@@ -43,14 +44,29 @@ class App extends Component {
         });
       }
       this.props.addUser(userAuth)
-      console.log('bitch', userAuth);
     });
 
     const productsRef = firestore.collection('products');
     productsRef.onSnapshot( async (snapShot) => {
       this.updateProductsToRedux(snapShot.docs)   
     });
+
+    const collectionRef = firestore.collection('categories');
+    collectionRef.onSnapshot( async (snapshot) => {
+      this.updateCategoriesToRedux(snapshot.docs) 
+    })
+
     
+  }
+
+  updateCategoriesToRedux = ( snapshot ) =>{
+    const updatedCollection = snapshot.map((doc) => doc.data()).reduce(( accumulator, collection) => {
+      accumulator[collection.routeName] = collection;
+      return accumulator
+    }, {})
+
+    this.props.updateCategories(updatedCollection);
+
   }
 
   updateProductsToRedux = ( snapShot) =>{
@@ -96,6 +112,7 @@ const mapDispatchToProps = dispatch => ({
   cartAction: () => dispatch(cartAction()),
   updateProducts: (products) => dispatch(updateProducts(products)),
   addUser: user => dispatch(setCurrentUser(user)),
+  updateCategories : categories => dispatch(updateCategories(categories))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
