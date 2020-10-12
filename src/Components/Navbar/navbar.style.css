@@ -49,12 +49,13 @@
 }
 .nav-menu-items {
   width: 100%;
+  transform: translate(-55%, 8%);
 }
 .nav-item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 8px 0px 8px 16px;
+  padding: 80px 8px 8px 16px;
   list-style: none;
   height: 60px;
 }
@@ -69,6 +70,20 @@
   align-items: center;
   padding: 0 16px;
   border-radius: 4px;
+}
+.username-block{
+  transform: translate(50%, -60%);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #969292;
+  font-size: 18px;
+  width: 50%;
+  height: 10%;
+  position: relative;
+  display:-moz-inline-block;
+	display:-moz-inline-box;
+	display:inline-block;
+	text-align: center;
 }
 .nav-links:hover {
   color: #F3631B;
@@ -93,7 +108,6 @@
 .nav-icons li {
   cursor: pointer;
 }
-
 
 @media screen and (max-width: 960px) {
   .nav-icons {

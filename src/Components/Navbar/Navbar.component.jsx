@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import { connect } from 'react-redux';
-import './navbar.style.css';
-import Dropdown from './Dropdown';
 import {cartAction} from '../../Redux/cart/cart-action';
 import {searchbarAction} from '../../Redux/searchbar/searchbar-action';
+import Dropdown from './Dropdown';
+import './navbar.style.css';
 
 
 import { ReactComponent as AccountIcon} from '../../assets/account.svg';
@@ -12,7 +12,7 @@ import { ReactComponent as CartIcon} from '../../assets/cart.svg';
 import { ReactComponent as SearchIcon} from '../../assets/search.svg';
 import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
  
-const Navbar = ({ cartAction , searchbarAction}) => {
+const Navbar = ({ cartAction ,currentUser, searchbarAction}) => {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
 
@@ -28,6 +28,10 @@ const Navbar = ({ cartAction , searchbarAction}) => {
                 <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
             </div> 
             <div className={click ? 'nav-menu active' : 'nav-menu'}>
+                {currentUser ? (
+                    <span className='username-block'>Hi, {currentUser.displayName}</span>
+                ) : ('')
+                }
                 <ul className="nav-menu-items" onClick={handleClick} >
                     <li className='nav-item'>
                         <Link to="/" className="nav-links" onClick={closeMobileMenu}>SHOP ALL</Link>
@@ -60,9 +64,13 @@ const Navbar = ({ cartAction , searchbarAction}) => {
     );
 }
 
+const mapStateToProp = ({user}) => ({
+    currentUser: user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
     cartAction: () => dispatch(cartAction()),
     searchbarAction: () => dispatch(searchbarAction())
 })
  
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect( mapStateToProp, mapDispatchToProps)(Navbar);
