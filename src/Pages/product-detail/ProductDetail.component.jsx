@@ -1,216 +1,239 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Products } from '../../Data/Products';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
-
+import Rating from '@material-ui/lab/Rating'
+import firebase from '../../firebase/firebase.utils';
 import {addItemToCart} from '../../Redux/cart/cart-action';
 
-const ProductDetails = ({ addItem }) => {
-  const {id} = useParams();
-  
 
-  const productInfo = Products.find((elem) =>{
-    return elem.items.find((prod) => prod.id === id)
-  })
+class ProductDetails extends React.Component {
 
-  const singleProductInfo = productInfo.items;
+  constructor(){
+    super()
+    this.state = {
+        imageUrl : '',
+        cartQuantity: '1',
+        id: useParams(),
+        activeMenu: 'details',
+        mainImage: 0,
+        productInfo: '',
 
-  const newProdInfo = singleProductInfo.find( product => product.id === id);
 
 
-  const productImages = [
-    'https://media.glamour.com/photos/5cc9bd1080911dec300bc131/3:2/w_1800,h_1200,c_limit/0501_nomakeup_river.jpg',
-    'https://m.bobbibrowncosmetics.com/media/export/cms/products/v2_1080x1080/bb_sku_E10002_1080x1080_0.jpg',
-    'https://pyxis.nymag.com/v1/imgs/0d2/c9d/7e2638d562bb724d04da328e4dba4cfa04-nars-semi-matte-lipstick-in-jungle-red.rsquare.w600.jpg',
-  ];
-  const [activeMenu, setActiveMenu] = useState('details');
-  const [mainImage, setMainImage] = useState(0);
-  // const [nextImage, setNextImage] = useState(1);
-  // const [prevImage, setPrevImage ] = useState(productImages.length -1);
-  const menuOnClick = e => {
+
+    }
+  }
+  setProductInfo = () => {
+    const productInfo = this.props.allProducts.find((elem) =>{
+      return (elem.id === this.state.id);
+    })
+    this.setState({productInfo})
+    
+  } 
+
+ 
+
+  addCartQuantity = () => {
+    this.setState((state) => ({cartQuantity: state.cartQuantity + 1}));
+  }
+  minusCartQuantity = () => {
+    this.setState((state) => ({cartQuantity: state.cartQuantity - 1}));
+  }
+
+
+  addProductToCart = (quantity) => {
+    for(let i=0 ; i < quantity ; i++) {
+      this.props.addItem(this.state.productInfo);
+    }
+  }
+
+  prevPicture = () => {
+    // const maxNumber = productImages.length - 1;
+    const maxNumber = 3
+    if (this.state.mainImage !== 0) {
+      this.setState({mainImage: (this.state.mainImage - 1)});
+    } else {
+      this.setState({mainImage: maxNumber});
+    }
+  };
+  nextPicture = () => {
+    // const maxNumber = productImages.length - 1;
+    const maxNumber = 3
+    if (this.state.mainImage < maxNumber) {
+      this.setState({mainImage: (this.state.mainImage + 1)});
+    } else {
+      this.setState({mainImage: 0});
+      
+    }
+  };
+
+  menuOnClick = e => {
     const target = e.target.id;
-    setActiveMenu(target);
+    this.setState({activeMenu: target});
   };
 
-  const prevPicture = () => {
-    const maxNumber = productImages.length - 1;
-    if (mainImage !== 0) {
-      setMainImage(mainImage - 1);
-    } else {
-      setMainImage(maxNumber);
+  componentDidMount(){
+    const productImages = this.state.productInfo.images;
+    firebase.storage().ref(`/product-images/${this.state.id}/${productImages[0]}`)
+    .getDownloadURL()
+    .then((url) => {
+        //from url you can fetched the uploaded image easily
+        this.setState({imageUrl: url})
+    })
+    .catch((e) => console.log('getting downloadURL of image error => ', e));
     }
-  };
-  const nextPicture = () => {
-    const maxNumber = productImages.length - 1;
-    if (mainImage < maxNumber) {
-      setMainImage(mainImage + 1);
-    } else {
-      setMainImage(0);
-    }
-  };
 
-  return (
-    <div>
-
-      <div className="product-detail container">
-        <div className="image">
-          <div className="side-images">
-            <img
-              alt="side-1"
-              className={`${mainImage === 0 ? 'image-active' : ''} side-image`}
-              src={productImages[0]}
-              onClick={() => setMainImage(0)}
-            ></img>
-            <img
-              alt="side-2"
-              className={`${mainImage === 1 ? 'image-active' : ''} side-image`}
-              src={productImages[1]}
-              onClick={() => setMainImage(1)}
-            ></img>
-            <img
-              alt="side-3"
-              className={`${mainImage === 2 ? 'image-active' : ''} side-image`}
-              src={productImages[2]}
-              onClick={() => setMainImage(2)}
-            ></img>
-          </div>
-          <div className="product-image-main">
-            <div className="product-image-name">
-              <span>The Skin Balancing Duo &nbsp; </span> /{' '}
-              <span className="emphasis">&nbsp; The Skin Balancing Duo</span>
+  render() {
+    const {productInfo} = this.state
+    return (
+      <div>
+        <div className="product-detail container">
+          <div className="image">
+            <div className="side-images">
+              <img
+                alt="side-1"
+                className={`${this.state.mainImage === 0 ? 'image-active' : ''} side-image`}
+                src={`${this.state.imageUrl}`}
+                onClick={() => this.setState({mainImage: 0})}
+              ></img>
+              <img
+                alt="side-2"
+                className={`${this.state.mainImage === 1 ? 'image-active' : ''} side-image`}
+                src={`${this.state.imageUrl}`}
+                onClick={() => this.setState({mainImage: 1})}
+              ></img>
+              <img
+                alt="side-3"
+                className={`${this.state.mainImage === 2 ? 'image-active' : ''} side-image`}
+                src={`${this.state.imageUrl}`}
+                onClick={() => this.setState({mainImage: 2})}
+              ></img>
             </div>
-            <img
-              alt="product"
-              className="image-main"
-              src={productImages[mainImage]}
-            ></img>
-            <div className="arrows">
-              <i className="fas fa-arrow-left fa-2x" onClick={prevPicture}></i>
-              <i className="fas fa-arrow-right fa-2x" onClick={nextPicture}></i>
+            <div className="product-image-main">
+              <div className="product-image-name">
+                <span>{productInfo.productName} &nbsp; </span> /{' '}
+                <span className="emphasis">&nbsp; {productInfo.brand}</span>
+              </div>
+              <img
+                alt="product"
+                className="image-main"
+                // src={productImages[mainImage]}
+                src={`${this.state.imageUrl}`}
+              ></img>
+              <div className="arrows">
+                <i className="fas fa-arrow-left fa-2x" onClick={this.prevPicture}></i>
+                <i className="fas fa-arrow-right fa-2x" onClick={this.nextPicture}></i>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="second-half">
-          <h2>{newProdInfo.name}</h2>
-          <div className="section">
-            <h5>{newProdInfo.shortDescription}</h5>
-            <h5>${newProdInfo.price}</h5>
-          </div>
-          <div className="reviews">
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <span className="review-number">(20 Reviews)</span>
-          </div>
-
-          <div className="navbar menu">
-            <a
-              href={'/'}
-              onClick={menuOnClick}
-              className={`${
-                activeMenu === 'details' ? 'active-menu' : ''
-              } menu-item`}
-              id="details"
-            >
-              Details
-            </a>
-            <a
-              href={'/'}
-              onClick={menuOnClick}
-              className={`${
-                activeMenu === 'ingredients' ? 'active-menu' : ''
-              } menu-item`}
-              id="ingredients"
-            >
-              Ingredients
-            </a>
-            <a
-              href={'/'}
-              onClick={menuOnClick}
-              className={`${
-                activeMenu === 'how-to-use' ? 'active-menu' : ''
-              } menu-item`}
-              id="how-to-use"
-            >
-              How to use
-            </a>
-            <a
-              href={'/'}
-              onClick={menuOnClick}
-              className={`${
-                activeMenu === 'share' ? 'active-menu' : ''
-              } menu-item`}
-              id="share"
-            >
-              Share
-            </a>
-          </div>
-          <hr className="line-below-nav"></hr>
-          <div
-            className={`${
-              activeMenu === 'details' ? 'active-paragraph' : 'hidden'
-            }`}
-          >
-            <p>
-              Do more for your skin by incorporating this hydrating, low pH
-              (4.5) cleansing toner into your daily regimen. The formula is
-              enriched with maple extract — known for its antioxidant and skin
-              softening properties — as well as.
-            </p>
-            <p>
-              anti-inflammatory that soothes and nourishes. The inclusion of
-              natural pumpkin and papaya enzymes help gently exfoliate skin and
-              remove impurities. After using, skin feels heathy, hydrated,
-              clean, and balanced.
-            </p>
-          </div>
-          <div
-            className={`${
-              activeMenu === 'ingredients' ? 'active-paragraph' : 'hidden'
-            }`}
-          >
-            ingredients
-          </div>
-          <div
-            className={`${
-              activeMenu === 'how-to-use' ? 'active-paragraph' : 'hidden'
-            }`}
-          >
-            how-to-use
-          </div>
-          <div
-            className={`${
-              activeMenu === 'share' ? 'active-paragraph' : 'hidden'
-            }`}
-          >
-            share
-          </div>
-          <div className="add-to-bag">
-            <div className="quantity-section">
-              <i className="fas fa-minus"></i>
-              <span className="quantity">1</span>
-              <i className="fas fa-plus"></i>
+          <div className="second-half">
+            <h5>{productInfo.productName}</h5>
+            <div className="section">
+              <h5>{productInfo.brand}</h5>
+              <h5>${productInfo.price}</h5>
             </div>
-            <button className="addButton" onClick={ () => addItem(newProdInfo) }>Add to cart</button>
-            <div>
-              <i className="fas fa-heart"></i>
+            <div className="reviews">
+              <Rating name="read-only" value={productInfo.ratings} readOnly />
+            </div>
+  
+            <div className="navbar menu">
+              <button
+                onClick={this.menuOnClick}
+                className={`${
+                  this.state.activeMenu === 'details' ? 'active-menu' : ''
+                } menu-item`}
+                id="details"
+              >
+                Details
+              </button>
+              <button
+                onClick={this.menuOnClick}
+                className={`${
+                  this.state.activeMenu === 'ingredients' ? 'active-menu' : ''
+                } menu-item`}
+                id="ingredients"
+              >
+                Ingredients
+              </button>
+              <button
+                onClick={this.menuOnClick}
+                className={`${
+                  this.state.activeMenu === 'how-to-use' ? 'active-menu' : ''
+                } menu-item`}
+                id="how-to-use"
+              >
+                How to use
+              </button>
+              <button
+                onClick={this.menuOnClick}
+                className={`${
+                  this.state.activeMenu === 'share' ? 'active-menu' : ''
+                } menu-item`}
+                id="share"
+              >
+                Share
+              </button>
+            </div>
+            <hr className="line-below-nav"></hr>
+            <div
+              className={`${
+                this.state.activeMenu === 'details' ? 'active-paragraph' : 'hidden'
+              }`}
+            >
+            <p>{productInfo.shortDescription}</p>
+            </div>
+            <div
+              className={`${
+                this.state.activeMenu === 'ingredients' ? 'active-paragraph' : 'hidden'
+              }`}
+            >
+              <p>{productInfo.ingredients}</p>
+            </div>
+            <div
+              className={`${
+                this.state.activeMenu === 'how-to-use' ? 'active-paragraph' : 'hidden'
+              }`}
+            >
+              <p>{productInfo.howto}</p>
+            </div>
+            <div
+              className={`${
+                this.state.activeMenu === 'share' ? 'active-paragraph' : 'hidden'
+              }`}
+            >
+              share
+            </div>
+            <div className="add-to-bag">
+              <div className="quantity-section">
+                <i className="fas fa-minus" onClick={this.minusCartQuantity}></i>
+                <span className="quantity">{this.state.cartQuantity}</span>
+                <i className="fas fa-plus" onClick={this.addCartQuantity}></i>
+              </div>
+              <button className="addButton" onClick={ () => this.addProductToCart(this.state.cartQuantity) }>Add to cart</button>
+              <div>
+                <i className="fas fa-heart"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+    
+  }
 };
+
+const mapStateToProps = ({products}) => ({
+  allProducts: products.allProducts
+
+})
 
 const mapDispatchToProps = dispatch => ({
   addItem : item => dispatch(addItemToCart(item))
 })
 
-export default connect(null, mapDispatchToProps)(ProductDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
 
 ProductDetails.propTypes = {
   addItem : PropTypes.func
