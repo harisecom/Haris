@@ -190,3 +190,15 @@
   }
 
 }
+
+@media screen and (max-width: 750px) {
+  .logo {
+    padding-left: 18px;
+    padding-top: 10px;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+
+}

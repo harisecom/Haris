@@ -122,3 +122,38 @@
 
 
 }
+
+
+
+@media screen and (max-width: 750px){
+
+  .slider .slider-text{
+    width: 90%;
+
+  }
+
+  .slider .slider-text h1{
+    font-size: 32px;
+  }
+
+  .slider .slider-text p{
+    font-size: 13px;
+    padding-top: 30%;
+  }
+
+  .slider .slider-image {
+    max-width: 250px;
+    position: absolute;
+    top: 10%;
+    right: 35px;
+    z-index: -1;
+  }
+
+  .slider .slider-button {
+    padding: 8px 8px;
+    width: 110px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+}

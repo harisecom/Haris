@@ -69,6 +69,8 @@ const MainSlider = () => {
 			</div>
 		</div>
 	</div>
+
+
 	{/* <div className="Slider2">
 		<h1>SLider number 2</h1>
 	</div>
