@@ -86,8 +86,8 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route path="/forgotPassword" component={ForgotPassword} />
           <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={SignIn} />
+          <Route path="/register" component={SignUp} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/shop" component={ShopAll} />
           <Route path="*" component={NotFoundPage} />

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import { connect } from 'react-redux';
 import './navbar.style.css';
-import Dropdown from './Dropdown';
 import {cartAction} from '../../Redux/cart/cart-action';
 import {searchbarAction} from '../../Redux/searchbar/searchbar-action';
 
@@ -11,43 +10,43 @@ import { ReactComponent as AccountIcon} from '../../assets/account.svg';
 import { ReactComponent as CartIcon} from '../../assets/cart.svg';
 import { ReactComponent as SearchIcon} from '../../assets/search.svg';
 import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
+import { navbarAction } from '../../Redux/navbar/navbar-action';
  
-const Navbar = ({ cartAction , searchbarAction}) => {
-    const [click, setClick] = useState(false);
+const NavbarElements = ({ cartAction , searchbarAction, toggleNavbar, navbarStatus}) => {
+    /* const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    const clickDrop = () => setDropdown(!dropdown);
+    const clickDrop = () => setDropdown(!dropdown); */
 
     const location = useLocation();
 
     return ( 
-        <nav className="navbar">
-            <div className='menu-icon' onClick={handleClick}>
-                
-            </div> 
-            
-            <div>         
-                <ul className="nav-icons" >
-                    <li className=''  onClick={clickDrop} >
-                        <Link to={location.pathname} className="" onClick={closeMobileMenu}>
-                            <AccountIcon/>
-                        </Link>
-                        {dropdown && <Dropdown />}
-                    </li>
-                    <li className='' onClick={cartAction}><CartIcon/> </li>
+            <div className="nav-elements">          
+                <ul  >
                     <li className='' onClick={searchbarAction}><SearchIcon/> </li>
                     <li className=''><WishlishIcon/></li>
+                    <li className='' onClick={cartAction}><CartIcon/> </li>
+                    <li className=''  >
+                        <AccountIcon/>
+                    </li>
+                    <li onClick={toggleNavbar}>
+                        <i className={navbarStatus ?  'fas fa-times' :  'fas fa-bars'} />
+                    </li>
                 </ul>
             </div> 
-        </nav>
-    );
+    )
 }
 
 const mapDispatchToProps = dispatch => ({
     cartAction: () => dispatch(cartAction()),
-    searchbarAction: () => dispatch(searchbarAction())
+    searchbarAction: () => dispatch(searchbarAction()),
+    toggleNavbar: () => dispatch(navbarAction())
+})
+
+const mapSateToProps = state => ({
+    navbarStatus: state.navbar.navbarStatus
 })
  
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapSateToProps, mapDispatchToProps)(NavbarElements);
