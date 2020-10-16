@@ -4,6 +4,8 @@
   top: 80px;
   right: 60px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
   list-style: none;
   text-align: start;
   overflow-x: hidden;
