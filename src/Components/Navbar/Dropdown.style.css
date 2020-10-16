@@ -1,19 +1,22 @@
 .dropdown-menus {
   background: #303030;
-  width: 200px;
   position: absolute;
   top: 80px;
-  z-index: 999999;
+  right: 60px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
   list-style: none;
   text-align: start;
-  overflow: scroll;
   overflow-x: hidden;
   opacity: 1;
 }
 
-.dropdown-menus .child {
+.dropdown-menus li {
   background: #101010;
   cursor: pointer;
+  width: 200px;
+  border-bottom: 1px solid #303030;
 }
 
 .dropdown-link:hover {
@@ -29,7 +32,4 @@
   color: #F3631B;
   color: #fff;
   padding: 16px;
-}
-.awssld {
-  z-index: -1;
 }

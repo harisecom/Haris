@@ -34,7 +34,7 @@ class ProductCard extends Component {
             <img src="/images/wishlist.png" alt="" className="productCard-wishlist"/>
             </div>
             <div className="productDescriptionPart">
-                <h2>{productName.length > 25 ? `${productName.slice(0,25)}...` : productName}</h2>
+                <h2>{productName.length > 25 ? `${productName.slice(0,20)}...` : productName}</h2>
                 <h4>{ shortDescription.length > 50 ? `${shortDescription.slice(0,50)}...` : shortDescription  }</h4>
                 <div className="ratings">
                 {
