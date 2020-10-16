@@ -26,13 +26,14 @@ export class FormUserInfomation extends Component {
                         <Link to="/signin">Log in</Link>
                     </span>
                     <TextField 
-                        
                         label= "Email"
-                        onChange={handleChange}
-                        value={values.emailaddress}
+                        onChange={handleChange('emailaddress')}
+                        defaultValue={values.emailaddress}
                         margin="normal"
                         variant="outlined"
                         fullWidth
+                        required={true}
+                        type="email"
                     />
                     <br />
                     <FormControlLable 
@@ -45,32 +46,35 @@ export class FormUserInfomation extends Component {
                     <h2>Shipping Address</h2>
                     <TextField 
                         label="First name"
-                        onChange={handleChange}
-                        value={values.firstName}
+                        onChange={handleChange('firstName')}
+                        defaultValue={values.firstName}
                         variant="outlined"
                         margin="normal"
+                        type="string"
                     />
                     <TextField 
                         label="Last name"
-                        onChange={handleChange}
-                        value={values.lastName} 
+                        onChange={handleChange('lastName')}
+                        defaultValue={values.lastName} 
                         variant="outlined"   
                         margin="normal"
+                        type="string"
                     />
                     <br />
                     <TextField 
                         label="Company (optional)"
-                        onChange={handleChange}
-                        value={values.company}
+                        onChange={handleChange('company')}
+                        defaultValue={values.company}
                         variant="outlined"
                         margin="normal"
+                        type="string"
                         fullWidth
                     />
                     <br />
                     <TextField 
                         label="Address"
-                        onChange={handleChange}
-                        value={values.address}
+                        onChange={handleChange('address')}
+                        defaultValue={values.address}
                         variant="outlined"
                         margin="normal"
                         fullWidth
@@ -78,50 +82,56 @@ export class FormUserInfomation extends Component {
                     <br />
                     <TextField 
                         label="Apartment, suite, etc. (optional)"
-                        onChange={handleChange}
-                        value={values.apartment}
+                        onChange={handleChange('apartment')}
+                        defaultValue={values.apartment}
                         variant="outlined"
                         margin="normal"
+                        type="number"
                         fullWidth
                     />
                     <br />
                     <TextField 
                         label="city"
-                        onChange={handleChange}
+                        onChange={handleChange('city')}
                         value={values.city}
                         variant="outlined"
                         margin="normal"
+                        type="string"
                         fullWidth
                     />
                     <br />
                     <TextField
                         label="Country/Region"
-                        onChange={handleChange}
+                        onChange={handleChange('country')}
                         value={values.country}
-                        variant="outlined"
+                        variant="outlined" 
                         margin="normal"
+                        type="string"
                     />
                     <TextField
                         label="State"
-                        onChange={handleChange}
+                        onChange={handleChange('state')}
                         value={values.state}
                         variant="outlined"
                         margin="normal"
+                        type="string"
                     />  
                     <TextField 
                         label="Zip code"
-                        onChange={handleChange}
+                        onChange={handleChange('postal')}
                         value={values.postal}
                         variant="outlined"
                         margin="normal"
+                        type="number"
                     />
                     <br />
                     <TextField 
                         label="Phone Number (optional)"
-                        onChange={handleChange}
+                        onChange={handleChange('phone')}
                         defaultValue={values.phone}
                         variant="outlined"
                         margin="normal"
+                        type="tel"
                         fullWidth
                     />
                     <br />
