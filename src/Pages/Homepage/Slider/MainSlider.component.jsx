@@ -56,7 +56,7 @@ const MainSlider = () => {
 			<div className="slider-text">
 				<h1>GLOW FROM<br/> WITHIN</h1>
 				<p>Get radiant skin with this<br/> 
-				alcohol free milkytoner.<br/><br/>
+				alcohol free milkytoner.<br/>
 				Fomulated with<br/>
 				70% birch juice, it refines<br/> 
 				pores and gently exfoliates<br/> 
@@ -69,6 +69,8 @@ const MainSlider = () => {
 			</div>
 		</div>
 	</div>
+
+
 	{/* <div className="Slider2">
 		<h1>SLider number 2</h1>
 	</div>

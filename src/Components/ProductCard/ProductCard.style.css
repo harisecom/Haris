@@ -1,18 +1,42 @@
-.product-card{
+.product-card {
     width: 300px;
     height: 600px;
+    padding: 20px;
+    margin-bottom: 20px;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
-.productImagePart{
+
+.product-card:hover {
+    transform: scale(1.07);
+    cursor: pointer;
+    box-shadow: 3px 11px 22px -1px rgba(0, 0, 0, 0.53);
+    -webkit-box-shadow: 3px 11px 22px -1px rgba(0, 0, 0, 0.53);
+    -moz-box-shadow: 3px 11px 22px -1px rgba(0, 0, 0, 0.53);
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    -o-transform: scale(1.07);
+}
+
+
+.productImagePart {
     flex-basis: 60%;
     max-height: 350px;
     position: relative;
 }
-.productImagePart img{
+
+.productImagePart img {
     width: 100%;
 }
-.productImagePart .priceTag{
+
+.productImagePart .priceTag {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -20,6 +44,7 @@
     margin-right: 16px;
     margin-bottom: 10px;
 }
+
 .productImagePart .productCard-wishlist {
     width: 30px;
     height: 30px;
@@ -29,26 +54,32 @@
     margin-right: 10px;
     right: 0;
 }
-.productDescriptionPart{
+
+.productDescriptionPart {
     flex-basis: 40%;
     margin-top: 16px;
 }
-.productDescriptionPart h2{
+
+.productDescriptionPart h2 {
     font-size: 20px;
     font-weight: 600;
 }
-.productDescriptionPart h4{
+
+.productDescriptionPart h4 {
     font-size: 16px;
 }
-.productDescriptionPart .ratings{
+
+.productDescriptionPart .ratings {
     display: flex;
     flex-direction: row;
 }
-.productDescriptionPart .ratings img{
+
+.productDescriptionPart .ratings img {
     width: 20px;
     height: 20px;
 }
-.add-to-cart-button button{
+
+.add-to-cart-button button {
     background: #F3631B;
     font-size: 18px;
     margin-top: 20px;
@@ -56,4 +87,26 @@
     padding: 8px 20px;
     width: 100%;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 750px){
+    .product-card{
+       padding: 10px;
+       height: auto;
+       margin-bottom: 30px;
+    }
+
+    .product-card:hover {
+       transform: scale(1.01);
+       -webkit-transform: scale(1.01);
+       -moz-transform: scale(1.01);
+       -ms-transform: scale(1.01);
+       -o-transform: scale(1.01);
+}
+
+    .productImagePart {
+        flex-basis: 30%;
+        max-height: 250px;
+        position: relative;
+    }
 }

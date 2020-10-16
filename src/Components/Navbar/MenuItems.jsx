@@ -24,12 +24,12 @@ export const SignedInItems = [
 export const SignedOutItems = [
     {
         title: "Sign In",
-        path: "/signin",
+        path: "/login",
         cName: "dropdown-link"
     },
     {
         title: "Sign Up",
-        path: "/signup",
+        path: "/register",
         cName: "dropdown-link"
     }
 ];
