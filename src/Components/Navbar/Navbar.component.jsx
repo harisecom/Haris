@@ -24,9 +24,10 @@ const Navbar = ({ cartAction ,currentUser, searchbarAction}) => {
 
     return ( 
         <nav className="navbar">
-             <div className='menu-icon' onClick={handleClick}>
-                <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            <div className='menu-icon' onClick={handleClick}>
+                
             </div> 
+            
             <div className={click ? 'nav-menu active' : 'nav-menu'}>
                 {currentUser ? (
                     <span className='username-block'>Hi, {currentUser.displayName}</span>
