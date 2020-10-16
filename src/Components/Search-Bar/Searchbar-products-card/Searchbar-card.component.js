@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Rating from '@material-ui/lab/Rating'
 import './Searchbar-card.styles.css';
 import firebase from '../../../firebase/firebase.utils';
+import { Link } from 'react-router-dom';
 
 class SearchbarProductsCard extends React.Component {
     constructor(){
@@ -27,8 +28,8 @@ class SearchbarProductsCard extends React.Component {
         const item = this.props.item;
         return(
             <li key={item.id}>
-                <a className="search-product-a">
-                    <img  src={`${this.state.imageUrl}`} className="search-product-image"></img>
+                <Link to={`/product/${item.id}`} className="search-product-a">
+                    <img  src={`${this.state.imageUrl}`} className="search-product-image" alt="product"></img>
                     <div className="search-product-group">
                     <span className="search-product-title">{item.productName}</span>
                     <span className="search-product-description">{item.shortDescription}</span>
@@ -40,7 +41,7 @@ class SearchbarProductsCard extends React.Component {
                         </div>
                     </span>
                     </div>
-                </a>
+                </Link>
             </li>
         )
    } 

@@ -3,7 +3,7 @@
   width: 200px;
   position: absolute;
   top: 80px;
-  z-index: 100000;
+  z-index: 999999;
   list-style: none;
   text-align: start;
   overflow: scroll;
@@ -11,7 +11,7 @@
   opacity: 1;
 }
 
-.dropdown-menus li {
+.dropdown-menus .child {
   background: #101010;
   cursor: pointer;
 }

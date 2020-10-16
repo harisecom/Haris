@@ -79,6 +79,10 @@
   .nav-links {
     display: none;
   }
+  .nav-elements {
+    padding-right: 0px;
+    padding-top: 10px;
+  }
   .nav-elements ul li:nth-child(5){
     display: inline-block;
   }
