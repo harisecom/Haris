@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import FormUserInformation from './Information/FormUserInformation.component';
-import FormUserPayment from './Payment/FormUserPayment.component';
-import FormUserShipping from './Shipping/FormUserShipping.component';
-// import Confirm from './Confirm/Confirm.component';
-// import Success from './Success/Success.component';
+import FormUserInformation from './Pages/FormUserInformation.component';
+import FormUserPayment from './Pages/FormUserPayment.component';
+import FormUserShipping from './Pages/FormUserShipping.component';
+import Confirm from './Pages/Confirm.component';
+import Success from './Pages/Success.component';
 
 export class Checkout extends Component {
     state = {
+        //pages
         step: 1,
 
+        //billing and shipping address information
         emailaddress: '',
         firstName: '',
         billingFirstName: '',
@@ -33,34 +35,37 @@ export class Checkout extends Component {
 
         useShippingAsBilling: false,
 
-        shippingType: '',
+        //shipping options
+        // shippingType: '',
         freeShipping: 0.00,
         standardShipping: 6.95,
         expressShipping: 17.00,
 
-        
+        //card information
+        cvc: '',
+        expiry: '',
+        name: '',
+        number: ''
     }
 
     componentDidMount = () => {
-        // const getUserGeolocationDetails = () => {
-            fetch('https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/66.189.113.231')
-                .then( response => {
-                    return response.json()
-                }, "jsonp")
-                .then( data => {
-                    console.log('data', data)
-                    this.setState({
-                        city: data.city,
-                        billingCity: data.city,
-                        state: data.state,
-                        billingState: data.state,
-                        country: data.country_name,
-                        billingCountry: data.country_name,
-                        postal: data.postal,
-                        billingPostal: data.postal,
-                    })
+        fetch('https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/66.189.113.231')
+            .then( response => {
+                return response.json()
+            }, "jsonp")
+            .then( data => {
+                this.setState({
+                    city: data.city,
+                    billingCity: data.city,
+                    state: data.state,
+                    billingState: data.state,
+                    country: data.country_name,
+                    billingCountry: data.country_name,
+                    postal: data.postal,
+                    billingPostal: data.postal,
                 })
-                .catch( err => console.error(err) )
+            })
+            .catch( err => console.error(err) )
     }
 
     nextStep = () => {
@@ -85,7 +90,7 @@ export class Checkout extends Component {
     handleToggleUseShippingAsBilling = () => {
         const {useShippingAsBilling} = this.state; //tell us if we will use shipping address as billing address
         const {firstName, lastName, company, address, apartment, city, country, state, postal, phone} = this.state; //shipping address states
-        const {billingFirstName, billingLastName, billingCompany, billingAddress, billingApartment, billingCity, billingCountry, billingState, billingPostal, billingPhone} = this.state; //billing address states
+        const {billingCity, billingCountry, billingState, billingPostal} = this.state; //billing address states
         
         //if the variable useShippingAsBilling is currently false, set it to 'true'
         // and set the billing address states to the shipping address states 
@@ -126,12 +131,15 @@ export class Checkout extends Component {
     render() {
         const { step } = this.state;
         const { emailaddress, firstName, lastName, company, address, apartment, city, state, country, postal, phone} = this.state;
-        const {billingFirstName, billingLastName, billingCompany, billingAddress, billingCity, billingState, billingCountry, billingPostal, billingPhone} = this.state;
+        const {billingFirstName, billingLastName, billingCompany, billingAddress,  billingApartment, billingCity, billingState, billingCountry, billingPostal, billingPhone} = this.state;
         const {freeShipping, standardShipping, expressShipping} = this.state;
+        const {cvc, expiry, name, number} = this.state;
         const values = { 
             emailaddress, firstName, lastName, company, address, apartment, city, state, country, postal, phone, 
-            billingFirstName, billingLastName, billingCompany, billingAddress, billingCity, billingState , billingCountry, billingPostal, billingPhone,
-            freeShipping, standardShipping, expressShipping }
+            billingFirstName, billingLastName, billingCompany, billingAddress,  billingApartment, billingCity, billingState , billingCountry, billingPostal, billingPhone,
+            freeShipping, standardShipping, expressShipping,
+            cvc, expiry, name, number, 
+        }
 
         switch(step) { 
            case 1: 
@@ -161,14 +169,20 @@ export class Checkout extends Component {
                         values={values}
                     />
                 );
-            // case 4:
-            //     return (
-            //         <Confirm />
-            //     );
-            // case 5:
-            //     return (
-            //         <Success />
-            //     );
+            case 4:
+                return (
+                    <Confirm 
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        values={values}
+                    />
+                );
+            case 5:
+                return (
+                    <Success 
+                        values={values}
+                    />
+                );
         
         }
     }    

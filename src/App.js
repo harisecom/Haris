@@ -12,7 +12,8 @@ import Cart from './Pages/Cart/Cart.component';
 import ForgotPassword from './Pages/forgot-password/ForgotPassword.component';
 import SignIn from './Pages/SignIn/signIn.component';
 import SignUp from './Pages/SignUp/SignUp.component';
-import CheckoutPage from './Pages/Checkout/Checkout.component';
+// import CheckoutPage from './Pages/Checkout/Checkout.component';
+import CheckoutPage from './Components/Checkout/Checkout.component';
 import Footer from './Components/Footer/Footer.component';
 
 import { auth, createUserProfileDocument, firestore } from './firebase/firebase.utils';
