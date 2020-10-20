@@ -1,0 +1,77 @@
+.checkout-div{
+   font-family: Raleway;
+   width: 55%;
+   color: #353434;
+   margin-top: 5rem;
+   margin-left: 1rem;
+   font-size: 1em;
+}
+.checkout-div h2 {
+    display: flex;
+    width: 100%;
+    font-size: 1.5em;
+    color: black;
+    float: left;
+    text-transform: uppercase;
+}
+/* Styles for FormUserInformation */
+.checkout-div .contact-title {
+    width: 50%;
+}
+.checkout-div .contact-span {
+    margin: 1rem;
+    display: block;
+    float: right;
+    font-size: 1em;
+}
+.contact-span .contact-span-link{
+  color: #F3631B;
+  text-decoration: none;
+}
+.contact-span .contact-span-link:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Styles for radio forms */
+.checkout-div .radio-form{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles for SHIPPING form */
+.checkout-div .radio-form .shipping-span {
+    display: inline;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+/* Styles for PAYMENT form */
+.payment-title {
+    display: flex;
+    transform: translate(0%, -100%);
+    margin-bottom: 2rem;
+}
+
+/* Styles for CONFIRM page */
+.checkout-div h4 {
+    font-weight: normal;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 1.3em;
+    color: black;
+    text-transform: uppercase;
+    margin: 1rem;
+}
+.checkout-div .confirm-span {
+    display: block;
+    color: #808080;
+    line-height: 28px;
+    margin-left: 2rem;
+}
+

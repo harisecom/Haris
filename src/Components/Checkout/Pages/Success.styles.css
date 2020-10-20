@@ -1,0 +1,36 @@
+.success-div {
+    padding: 5rem;
+    margin: auto;
+    display: block;
+    width: 80%;
+    font-family: Raleway;
+    color: #383838;
+    font-size: 1em;
+    text-align: center;
+}
+.success-div h1 {
+    font-size: 2.5em;
+    color: black;
+    font-weight: normal;
+    font-style: initial;
+    text-align: center;
+    padding-bottom: 2rem; 
+}
+.success-div p {
+    display: block;
+    font-size: 1.3em;
+    padding-bottom: 1.5rem;
+}
+.success-div span {
+    display: block;
+    text-align: start;
+}
+.success-div button {
+    padding: 10px 50px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    color: #383838;
+    font-size: 18px;
+    background: transparent;
+    border: 2px solid #F3631B;
+}
