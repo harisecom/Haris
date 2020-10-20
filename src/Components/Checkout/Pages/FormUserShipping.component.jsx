@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react';
+import { connect } from 'react-redux';
+import {setShippingType} from '../../../Redux/shippingType/shippingType-action';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLable from '@material-ui/core/FormControlLabel';
@@ -20,6 +22,10 @@ export class FormUserShipping extends Component {
         this.props.prevStep();
     }
 
+    handleRadioChange = (e) => {
+        this.props.setShippingType(e.target.value)
+    }
+
     render() {
         const { values, handleChange } = this.props;
         return (
@@ -28,12 +34,13 @@ export class FormUserShipping extends Component {
                 <div className="checkout-div">
                     <form onSubmit={this.continue}>
                         <h2>Shipping Method</h2>
-                        <RadioGroup name="shippingType" value={values.shippingType} onChange={handleChange} className="radio-form checkout-div">
+                        <RadioGroup name="shippingType" value={this.props.shippingType} onChange={handleChange} className="radio-form checkout-div">
                             <FormControlLable 
                                 value={values.freeShipping.toString()}
                                 control={<Radio 
                                     icon={<FavoriteBorderIcon />} 
                                     checkedIcon={<FavoriteIcon />}
+                                    onChange={this.handleRadioChange}
                                     required={true}
                                 />}
                                 label="Free standard shipping (Approx. 6 - 10 business days)"
@@ -44,6 +51,7 @@ export class FormUserShipping extends Component {
                                 control={<Radio 
                                     icon={<FavoriteBorderIcon />} 
                                     checkedIcon={<FavoriteIcon />}
+                                    onChange={this.handleRadioChange}
                                     required={true}
                                 />}
                                 label="Standard shipping (Approx. 3 - 5 business days)"
@@ -54,6 +62,7 @@ export class FormUserShipping extends Component {
                                 control={<Radio 
                                     icon={<FavoriteBorderIcon />} 
                                     checkedIcon={<FavoriteIcon />}
+                                    onChange={this.handleRadioChange}
                                     required={true}
                                 />}
                                 label="Expedited 2-Day Shipping (Same day processing on orders made by 2pm EST; excludes weekends and holidays)"
@@ -93,4 +102,13 @@ const styles = {
         marginTop: "2rem"
     }
 }
-export default FormUserShipping;
+const mapStateToProp = ({shippingType}) => ({
+    shippingType: shippingType.currentShippingType
+});
+
+const mapDispatchToProps = dispatch => ({
+    setShippingType: shippingType => dispatch(setShippingType(shippingType))
+});
+
+
+export default connect(mapStateToProp, mapDispatchToProps)(FormUserShipping);
