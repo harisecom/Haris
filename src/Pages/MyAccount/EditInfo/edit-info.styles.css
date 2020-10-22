@@ -1,0 +1,19 @@
+.edit-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.editable-information{
+    display: flex;
+}
+
+.my-information {
+    margin-right: 26px;
+}
+
+.update-button {
+    padding: 16px 26px;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(240, 125, 59);
+}

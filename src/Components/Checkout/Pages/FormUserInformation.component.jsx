@@ -46,28 +46,30 @@ export class FormUserInfomation extends Component {
                     />
                     <form onSubmit={this.continue}>
                         <h2>Shipping Address</h2>
+                        
                         <div className="checkout-form-separator">
-                        <TextField 
-                            label="First name"
-                            type="string"
-                            onChange={handleChange('firstName')}
-                            defaultValue={values.firstName}
-                            variant="outlined"
-                            margin="normal"
-                            fullWidth
-                            required
-                        />
-                        <TextField 
-                            label="Last name"
-                            type="string"
-                            onChange={handleChange('lastName')}
-                            defaultValue={values.lastName} 
-                            variant="outlined"   
-                            margin="normal"
-                            fullWidth
-                            required
-                        />
+                            <TextField 
+                                label="First name"
+                                type="string"
+                                onChange={handleChange('firstName')}
+                                defaultValue={values.firstName}
+                                variant="outlined"
+                                margin="normal"
+                                fullWidth
+                                required
+                            />
+                            <TextField 
+                                label="Last name"
+                                type="string"
+                                onChange={handleChange('lastName')}
+                                defaultValue={values.lastName} 
+                                variant="outlined"   
+                                margin="normal"
+                                fullWidth
+                                required
+                            />
                        </div>
+
                         <TextField 
                             label="Company (optional)"
                             type="string"
