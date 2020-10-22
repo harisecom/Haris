@@ -144,16 +144,7 @@ class EditInfo extends Component {
                                 margin="normal"
                                 required
                             />
-                            <br />
-                            <TextField 
-                                label="Phone Number (optional)"
-                                type="tel"
-                                onChange={this.handleChange('phone')}
-                                defaultValue={phone}
-                                variant="outlined"
-                                margin="normal"
-                                fullWidth
-                            />
+                            
                         </div>
                     </div>
 

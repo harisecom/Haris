@@ -8,6 +8,8 @@
 }
 
 .my-information {
+    max-width: 400px;
+
     margin-right: 26px;
 }
 
@@ -16,4 +18,8 @@
     font-size: 16px;
     border: none;
     background-color: rgb(240, 125, 59);
+}
+
+.shipping-address {
+    max-width: 500px;
 }
