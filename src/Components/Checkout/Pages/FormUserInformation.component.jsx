@@ -46,6 +46,7 @@ export class FormUserInfomation extends Component {
                     />
                     <form onSubmit={this.continue}>
                         <h2>Shipping Address</h2>
+                        <div className="checkout-form-separator">
                         <TextField 
                             label="First name"
                             type="string"
@@ -53,6 +54,7 @@ export class FormUserInfomation extends Component {
                             defaultValue={values.firstName}
                             variant="outlined"
                             margin="normal"
+                            fullWidth
                             required
                         />
                         <TextField 
@@ -62,9 +64,10 @@ export class FormUserInfomation extends Component {
                             defaultValue={values.lastName} 
                             variant="outlined"   
                             margin="normal"
+                            fullWidth
                             required
                         />
-                        <br />
+                       </div>
                         <TextField 
                             label="Company (optional)"
                             type="string"

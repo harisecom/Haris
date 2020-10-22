@@ -15,12 +15,14 @@ import SignUp from './Pages/SignUp/SignUp.component';
 // import CheckoutPage from './Pages/Checkout/Checkout.component';
 import CheckoutPage from './Components/Checkout/Checkout.component';
 import Footer from './Components/Footer/Footer.component';
+import MyAccount from './Pages/MyAccount/MyAccount.component';
 
 import { auth, createUserProfileDocument, firestore } from './firebase/firebase.utils';
 import {cartAction} from './Redux/cart/cart-action';
 import { setCurrentUser } from './Redux/user/user-action';
 import { updateProducts } from './Redux/products/product-action';
 import { updateCategories } from './Redux/category/category-action';
+
 
 import './App.css';
 
@@ -80,22 +82,29 @@ class App extends Component {
   render() {
     const {cartStatus, cartAction, addUser} = this.props;
     return (
-      <div>
+      <div id="hero">
         <Header />
+
         <Cart />
-        {cartStatus === true ? (
+        { cartStatus === true ? (
           <div className="cartOpen" onClick={cartAction}></div>
-        ) : null}
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/forgotPassword" component={ForgotPassword} />
-          <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/login" component={SignIn} />
-          <Route path="/register" component={SignUp} />
-          <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/shop" component={ShopAll} />
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
+        ) : null }
+
+        <div className="main-container">
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/forgotPassword" component={ForgotPassword} />
+            <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/login" component={SignIn} />
+            <Route path="/register" component={SignUp} />
+            <Route path="/checkout" component={CheckoutPage} />
+            <Route path="/shop" component={ShopAll} />
+            <Route path="/myaccount" component={MyAccount} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </div>
+        
+        
         <Footer />
       </div>
     );
