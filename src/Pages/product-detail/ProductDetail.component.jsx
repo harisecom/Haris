@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
@@ -15,7 +14,7 @@ class ProductDetails extends React.Component {
     this.state = {
         imageUrl : '',
         cartQuantity: '1',
-        id: useParams(),
+        id: '',
         activeMenu: 'details',
         mainImage: 0,
         productInfo: '',
@@ -25,14 +24,6 @@ class ProductDetails extends React.Component {
 
     }
   }
-  setProductInfo = () => {
-    const productInfo = this.props.allProducts.find((elem) =>{
-      return (elem.id === this.state.id);
-    })
-    this.setState({productInfo})
-    
-  } 
-
  
 
   addCartQuantity = () => {
@@ -75,8 +66,17 @@ class ProductDetails extends React.Component {
   };
 
   componentDidMount(){
-    const productImages = this.state.productInfo.images;
-    firebase.storage().ref(`/product-images/${this.state.id}/${productImages[0]}`)
+    this.setState({
+      id: this.props.match.params.id,
+    })
+    if(this.props.allProducts.length > 0 ){
+      let productInfo = this.props.allProducts.find((elem) =>{
+        return (elem.id === this.state.id);
+      })
+      this.setState({productInfo})
+    }
+
+    firebase.storage().ref(`/product-images/${this.state.id}/product_image1.jpg`)
     .getDownloadURL()
     .then((url) => {
         //from url you can fetched the uploaded image easily
@@ -85,8 +85,29 @@ class ProductDetails extends React.Component {
     .catch((e) => console.log('getting downloadURL of image error => ', e));
     }
 
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.allProducts.length > 0 && prevState.productInfo !== this.state.productInfo){
+      let productInfo = this.props.allProducts.find((elem) =>{
+        return (elem.id === this.state.id);
+      })
+      this.setState({productInfo})
+    }
+    else if(this.state.productInfo !== prevState.productInfo){
+      this.setState({productInfo : {}})
+    }
+
+  }
+
   render() {
-    const {productInfo} = this.state
+    let productInfo = {};
+    if(this.props.allProducts.length > 0){
+      productInfo = this.props.allProducts.find((elem) =>{
+        return (elem.id === this.state.id);
+      })
+    }
+    // const {productInfo} = this.state;
+
+
     return (
       <div>
         <div className="product-detail container">
