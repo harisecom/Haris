@@ -1,0 +1,47 @@
+.btn  {
+    background-color: transparent;
+    padding: 3rem 0rem 3rem 0rem;
+    margin: auto;
+    margin-bottom: 2rem;
+    border: 2px solid gray;
+    display: block;
+    width: 70%;
+}
+button.StripeCheckout {
+    margin: 0;
+    width: 200px;
+    height: 50px;
+}  
+.btn-div-span {
+    float:left;
+	padding:0 5px;
+	margin:-20px 0 0 150px;
+    background:#fff;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.or {
+    font-family: "Share Tech Mono", monospace;
+    color: black;
+    font-size: 1.5rem;
+    line-height: 50px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.or::before, .or::after {
+    content: '';
+    height: 0.09em;
+    min-width: 30vw;
+}
+.or::before {
+    background: linear-gradient(to right, rgba(240,240,240,0), #000000);
+    margin-right: 4vh;
+}
+.or::after {
+    background: linear-gradient(to left, rgba(240,240,240,0), #000000);
+    margin-left: 4vh;
+}

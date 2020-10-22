@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import FormControlLable from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
@@ -8,7 +9,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import { Link } from '@material-ui/core';
 
+import StripeCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 import '../Checkout.styles.css';
+import StripCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 
 export class FormUserInfomation extends Component {
     continue = e => {
@@ -21,6 +24,8 @@ export class FormUserInfomation extends Component {
             <MuiThemeProvider>
                 <Fragment>
                 <div className="checkout-div">
+                    {/* pass in price */}
+                    <StripCheckoutButton />
                     <h2 className="contact-title">Contact Information</h2>
                     <span className="contact-span" >
                         Already have an account?
