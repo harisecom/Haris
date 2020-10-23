@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-import FormInput from '../../Components/Form-Input/FormInput.component';
+import FormInput from '../../Components/Form-input/FormInput.component';
 import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 
 import './Sign-Up.styles.css'
