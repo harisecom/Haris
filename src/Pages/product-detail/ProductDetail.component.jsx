@@ -1,11 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
 import Rating from '@material-ui/lab/Rating'
 import firebase from '../../firebase/firebase.utils';
 import {addItemToCart} from '../../Redux/cart/cart-action';
+import ProductImage from './productImage/productImage.component';
 
 
 class ProductDetails extends React.Component {
@@ -13,26 +13,13 @@ class ProductDetails extends React.Component {
   constructor(){
     super()
     this.state = {
-        imageUrl : '',
+        imageUrl : [],
         cartQuantity: '1',
-        id: useParams(),
+        id: '',
         activeMenu: 'details',
-        mainImage: 0,
         productInfo: '',
-
-
-
-
     }
   }
-  setProductInfo = () => {
-    const productInfo = this.props.allProducts.find((elem) =>{
-      return (elem.id === this.state.id);
-    })
-    this.setState({productInfo})
-    
-  } 
-
  
 
   addCartQuantity = () => {
@@ -49,25 +36,7 @@ class ProductDetails extends React.Component {
     }
   }
 
-  prevPicture = () => {
-    // const maxNumber = productImages.length - 1;
-    const maxNumber = 3
-    if (this.state.mainImage !== 0) {
-      this.setState({mainImage: (this.state.mainImage - 1)});
-    } else {
-      this.setState({mainImage: maxNumber});
-    }
-  };
-  nextPicture = () => {
-    // const maxNumber = productImages.length - 1;
-    const maxNumber = 3
-    if (this.state.mainImage < maxNumber) {
-      this.setState({mainImage: (this.state.mainImage + 1)});
-    } else {
-      this.setState({mainImage: 0});
-      
-    }
-  };
+
 
   menuOnClick = e => {
     const target = e.target.id;
@@ -75,59 +44,48 @@ class ProductDetails extends React.Component {
   };
 
   componentDidMount(){
-    const productImages = this.state.productInfo.images;
-    firebase.storage().ref(`/product-images/${this.state.id}/${productImages[0]}`)
-    .getDownloadURL()
-    .then((url) => {
-        //from url you can fetched the uploaded image easily
-        this.setState({imageUrl: url})
+    this.setState({
+      id: this.props.match.params.id,
     })
-    .catch((e) => console.log('getting downloadURL of image error => ', e));
+  }
+  
+  async componentDidUpdate(prevProps, prevState){
+    if(prevState.id !==this.props.match.params.id){
+      this.setState({
+        id: this.props.match.params.id,
+      })
+    }
+    let productInfo = this.props.allProducts.find((elem) =>{
+      return (elem.id === this.state.id);
+    })
+    if(this.props.allProducts.length > 0 && prevState.productInfo !== productInfo){
+      this.setState({productInfo})
+    }
+    if(this.state.id){
+      const storageRef = firebase.storage().ref(`/product-images/${this.state.id}`)
+      await storageRef.listAll().then((result)=> {
+
+        let promises = result.items.map((imageItem) =>{
+           return imageItem.getDownloadURL()
+         });
+         Promise.all(promises).then(urls => this.setState({imageUrl: urls}))
+      })
+
     }
 
+
+  }
+
   render() {
-    const {productInfo} = this.state
+
+
+    const {productInfo} = this.state;
+
+
     return (
       <div>
         <div className="product-detail container">
-          <div className="image">
-            <div className="side-images">
-              <img
-                alt="side-1"
-                className={`${this.state.mainImage === 0 ? 'image-active' : ''} side-image`}
-                src={`${this.state.imageUrl}`}
-                onClick={() => this.setState({mainImage: 0})}
-              ></img>
-              <img
-                alt="side-2"
-                className={`${this.state.mainImage === 1 ? 'image-active' : ''} side-image`}
-                src={`${this.state.imageUrl}`}
-                onClick={() => this.setState({mainImage: 1})}
-              ></img>
-              <img
-                alt="side-3"
-                className={`${this.state.mainImage === 2 ? 'image-active' : ''} side-image`}
-                src={`${this.state.imageUrl}`}
-                onClick={() => this.setState({mainImage: 2})}
-              ></img>
-            </div>
-            <div className="product-image-main">
-              <div className="product-image-name">
-                <span>{productInfo.productName} &nbsp; </span> /{' '}
-                <span className="emphasis">&nbsp; {productInfo.brand}</span>
-              </div>
-              <img
-                alt="product"
-                className="image-main"
-                // src={productImages[mainImage]}
-                src={`${this.state.imageUrl}`}
-              ></img>
-              <div className="arrows">
-                <i className="fas fa-arrow-left fa-2x" onClick={this.prevPicture}></i>
-                <i className="fas fa-arrow-right fa-2x" onClick={this.nextPicture}></i>
-              </div>
-            </div>
-          </div>
+          <ProductImage imageUrl={this.state.imageUrl} productInfo={productInfo} /> 
           <div className="second-half">
             <h5>{productInfo.productName}</h5>
             <div className="section">
@@ -135,7 +93,7 @@ class ProductDetails extends React.Component {
               <h5>${productInfo.price}</h5>
             </div>
             <div className="reviews">
-              <Rating name="read-only" value={productInfo.ratings} readOnly />
+              <Rating name="read-only" value={productInfo.ratings || 0} readOnly />
             </div>
   
             <div className="navbar menu">

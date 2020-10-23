@@ -48,6 +48,8 @@ export class Checkout extends Component {
         number: ''
     }
 
+    
+
     componentDidMount = () => {
         fetch('https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/66.189.113.231')
             .then( response => {

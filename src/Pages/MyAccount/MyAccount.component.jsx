@@ -25,14 +25,14 @@ class MyAccount extends Component {
         const {page} = this.state;
         return (
             <div className="myaccount-page">
-                <h1>My Account</h1>
+                
                 <h2>Welcome, {this.state.name}</h2>
                 <div className="user-details">
                     <div className="user-menus">
                         <ul>
-                            <li onClick={() => this.handleChange('account-info')}>Account Information</li>
-                            <li onClick={() => this.handleChange('edit-info')}>Edit Information</li>
-                            <li onClick={() => this.handleChange('my-orders')}>My Orders</li>
+                            <li onClick={() => this.handleChange('account-info')} className={ page === 'account-info' ? 'active' : ''}>Account Information</li>
+                            <li onClick={() => this.handleChange('edit-info')} className={ page === 'edit-info' ? 'active' : ''}>Edit Information</li>
+                            <li onClick={() => this.handleChange('my-orders')} className={ page === 'my-orders' ? 'active' : ''}>My Orders</li>
                             <li onClick={ () => { auth.signOut(); this.props.history.push('/')} }  >Logout</li>
                         </ul>
                     </div>

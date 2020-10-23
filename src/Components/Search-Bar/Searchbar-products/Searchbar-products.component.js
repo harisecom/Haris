@@ -16,7 +16,7 @@ const SearchbarProducts = ({items}) => {
         {
             items.map((item) => {
                 return (
-                    <SearchbarProductsCard item={item}></SearchbarProductsCard>
+                    <SearchbarProductsCard item={item} key={item.id}></SearchbarProductsCard>
                 )
             })
         }

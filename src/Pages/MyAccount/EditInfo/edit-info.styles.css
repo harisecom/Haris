@@ -9,7 +9,7 @@
 
 .my-information {
     max-width: 400px;
-
+    max-height: 200px;
     margin-right: 26px;
 }
 
@@ -17,6 +17,7 @@
     padding: 16px 26px;
     font-size: 16px;
     border: none;
+    color: white;
     background-color: rgb(240, 125, 59);
 }
 

@@ -9,6 +9,7 @@ class EditInfo extends Component {
             email: '',
             firstName: '',
             lastName: '',
+            password: '',
             company: '', 
             address : '',
             extraAddress : '',
@@ -25,7 +26,7 @@ class EditInfo extends Component {
         this.setState({ [input] : event.target.value})
     }
     render(){
-        const {email, firstName, lastName, company, address, extraAddress, city, country, state, postal, phone} = this.state;
+        const {email, firstName, lastName, password, company, address, extraAddress, city, country, state, postal, phone} = this.state;
         return (
             <div className="edit-info">
                 <form onSubmit={this.continue}>
@@ -63,10 +64,10 @@ class EditInfo extends Component {
                                 fullWidth
                             />
                             <TextField 
-                                label= "Password"
+                                label= "Current Password"
                                 type="password"
-                                onChange={this.handleChange('emailaddress')}
-                                defaultValue={email}
+                                onChange={this.handleChange('password')}
+                                defaultValue={password}
                                 margin="normal"
                                 variant="outlined"
                                 required
