@@ -1,17 +1,26 @@
-.product-detail {
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 175px;
-}
+@media  (min-width: 800px) {
+  .product-detail {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 175px;
+  }  
 
+  
 .second-half {
   width: 50%;
   margin: 0 auto;
   margin-left: 4rem;
 }
+}
+
+.product-detail {
+  flex-direction: row;
+}
+
+
 
 
 

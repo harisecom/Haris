@@ -80,22 +80,24 @@ class App extends Component {
   render() {
     const {cartStatus, cartAction, addUser} = this.props;
     return (
-      <div>
+      <div className="app-site">
         <Header />
         <Cart />
         {cartStatus === true ? (
           <div className="cartOpen" onClick={cartAction}></div>
         ) : null}
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/forgotPassword" component={ForgotPassword} />
-          <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/login" component={SignIn} />
-          <Route path="/register" component={SignUp} />
-          <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/shop" component={ShopAll} />
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/forgotPassword" component={ForgotPassword} />
+            <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/login" component={SignIn} />
+            <Route path="/register" component={SignUp} />
+            <Route path="/checkout" component={CheckoutPage} />
+            <Route path="/shop" component={ShopAll} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </div>
         <Footer />
       </div>
     );
