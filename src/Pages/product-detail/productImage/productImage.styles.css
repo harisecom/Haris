@@ -13,10 +13,12 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     object-fit: cover;
     border: 1px solid #dddddd;
     cursor: pointer;
+    margin-left:1rem ;
+
   }
 
   .image-main{
@@ -31,10 +33,13 @@
   
   
   .side-image:first-child {
-    margin-top: 10rem;
+    margin-top: 4rem;
+  }
+  .side-image:last-child {
+    margin-bottom: 5rem;
   }
   
-  img {
+  .image-main {
     max-width: 100%;
     max-height: 100%;
     display: block; /* remove extra space below image */
@@ -51,25 +56,36 @@
     width: 90%;
   }
   
-  .fa-arrow-left {
+   .arrows .fa-arrow-left {
     position: absolute;
     bottom: 45%;
     left: 10%;
-    padding: 1rem;
+    padding: 0.4rem;
     border-radius: 50%;
     background: white;
     box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
     cursor: pointer;
   }
-  .fa-arrow-right {
+  .arrows .fa-arrow-right {
     position: absolute;
     bottom: 45%;
     right: 10%;
-    padding: 1rem;
+    padding: 0.4rem;
+
     border-radius: 50%;
     background: white;
     box-shadow: 6px 4px 20px -8px rgba(0, 0, 0, 0.75);
     cursor: pointer;
+
+  }
+
+  .emphasis {
+    color: orange;
+    font-weight: bold;
+  }
+
+  img.image-active {
+    border: 1px solid #ec138d;
   }
 
   @media  (min-width: 800px) {
@@ -86,19 +102,14 @@
       
     }
 
-    img.image-active {
-      border: 1px solid #ec138d;
+    .side-image:first-child {
+      margin-top: 7rem;
     }
     
-    .emphasis {
-      color: orange;
-      font-weight: bold;
-    }
-    
-    .product-image-name {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
+  .product-image-name {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
     
     .side-images {
       margin-right: 3rem;
@@ -107,18 +118,22 @@
     .side-image {
       width: 70px;
       height: 70px;
+      margin-bottom: 4rem;
     }
 
     .image{
       margin-right: 4rem;
     }
 
-    .fa-arrow-left {
+    .arrows .fa-arrow-left {
       bottom: 45%;
       left: -8%;
+      padding: 1rem;
     }
-    .fa-arrow-right {
+    .arrows .fa-arrow-right {
       bottom: 45%;
       right: -8%;
+      padding: 1rem;
+
     }
   }  
