@@ -98,7 +98,7 @@ class SignUp extends Component {
                     </form>
                 <span>
                    <Link className="links" to="/forgotPassword">Forgot your password?</Link>
-                   <Link className="links" to="/signin">Sign in</Link>  
+                   <Link className="links" to="/login">Sign in</Link>  
                 </span>
             </div>
         );

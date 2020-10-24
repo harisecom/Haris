@@ -41,7 +41,7 @@ class SignIn extends Component {
         return (
             <Fragment>
                 <div className="sign-in">
-                    <h2 className="headline">Sign in</h2>
+                    <h2 className="headline">Sign In</h2>
                     <form onSubmit={this.handleSubmit}>
                         <FormInput
                             name="email"
@@ -67,7 +67,7 @@ class SignIn extends Component {
                     </form>
                     <span>
                         <Link className="links" to="/forgotPassword">Forgot Your Password?</Link>
-                        <Link className="links" to="/signup">Create an Account</Link>
+                        <Link className="links" to="/register">Create an Account</Link>
                     </span>
                 </div>
             </Fragment>  
