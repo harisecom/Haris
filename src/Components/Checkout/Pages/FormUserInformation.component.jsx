@@ -11,7 +11,6 @@ import { Link } from '@material-ui/core';
 
 import StripeCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 import '../Checkout.styles.css';
-import StripCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 
 export class FormUserInfomation extends Component {
     continue = e => {
@@ -25,7 +24,7 @@ export class FormUserInfomation extends Component {
                 <Fragment>
                 <div className="checkout-div">
                     {/* pass in price */}
-                    <StripCheckoutButton />
+                    <StripeCheckoutButton />
                     <h2 className="contact-title">Contact Information</h2>
                     <span className="contact-span" >
                         Already have an account?
@@ -51,25 +50,30 @@ export class FormUserInfomation extends Component {
                     />
                     <form onSubmit={this.continue}>
                         <h2>Shipping Address</h2>
-                        <TextField 
-                            label="First name"
-                            type="string"
-                            onChange={handleChange('firstName')}
-                            defaultValue={values.firstName}
-                            variant="outlined"
-                            margin="normal"
-                            required
-                        />
-                        <TextField 
-                            label="Last name"
-                            type="string"
-                            onChange={handleChange('lastName')}
-                            defaultValue={values.lastName} 
-                            variant="outlined"   
-                            margin="normal"
-                            required
-                        />
-                        <br />
+                        
+                        <div className="checkout-form-separator">
+                            <TextField 
+                                label="First name"
+                                type="string"
+                                onChange={handleChange('firstName')}
+                                defaultValue={values.firstName}
+                                variant="outlined"
+                                margin="normal"
+                                fullWidth
+                                required
+                            />
+                            <TextField 
+                                label="Last name"
+                                type="string"
+                                onChange={handleChange('lastName')}
+                                defaultValue={values.lastName} 
+                                variant="outlined"   
+                                margin="normal"
+                                fullWidth
+                                required
+                            />
+                       </div>
+
                         <TextField 
                             label="Company (optional)"
                             type="string"

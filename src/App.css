@@ -1,11 +1,11 @@
-.app-site {
+#hero{
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
-body{
-  overflow-x: hidden;
+.main-container {
+  flex: 1;
 }
 
 a{
@@ -15,6 +15,7 @@ a{
 .content {
   flex: 1;
 }
+
 
 .cartOpen {
   position: fixed;

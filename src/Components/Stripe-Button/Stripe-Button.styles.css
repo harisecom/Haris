@@ -35,13 +35,13 @@ button.StripeCheckout {
 .or::before, .or::after {
     content: '';
     height: 0.09em;
-    min-width: 30vw;
+    min-width: 40%;
 }
 .or::before {
     background: linear-gradient(to right, rgba(240,240,240,0), #000000);
-    margin-right: 4vh;
+    margin-right: 12px;
 }
 .or::after {
     background: linear-gradient(to left, rgba(240,240,240,0), #000000);
-    margin-left: 4vh;
+    margin-left: 12px;
 }

@@ -1,11 +1,25 @@
+.checkout-page{
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-form-side {
+    margin-top: 100px;
+    width: 650px;
+}
+
+.checkout-payment-side {
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 450px;
+}
+
 .checkout-div{
    font-family: Raleway;
-   width: 55%;
    color: #353434;
-   margin-top: 5rem;
-   margin-left: 1rem;
    font-size: 1em;
 }
+
 .checkout-div h2 {
     display: flex;
     width: 100%;
@@ -13,6 +27,11 @@
     color: black;
     float: left;
     text-transform: uppercase;
+}
+
+.checkout-div .checkout-form-separator {
+    display: flex;
+    width: 100%;
 }
 /* Styles for FormUserInformation */
 .checkout-div .contact-title {
@@ -74,4 +93,31 @@
     line-height: 28px;
     margin-left: 2rem;
 }
+
+/* Styles for checkout-pricing */
+
+.checkout-calculation h3 {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.checkout-calculation span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.checkout-subtotal, .checkout-shipping, .checkout-total-price{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.checkout-total-price h3{
+    font-size: 26px;
+}
+
+.checkout-total-price span{
+    font-size: 26px;
+}
+
 
