@@ -24,6 +24,7 @@ class CartItems extends Component{
             this.setState({imageUrl: url})
         })
         .catch((e) => console.log('getting downloadURL of image error => ', e));
+        
         }
     
 
