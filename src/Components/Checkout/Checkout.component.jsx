@@ -215,11 +215,10 @@ export class Checkout extends Component {
     switch (this.props.shippingType) {
       case null:
         return subTotal + 0
-        break;
-    
+        
+
       default:
         return subTotal + parseInt(this.props.shippingType)
-        break;
     }
   }
 
