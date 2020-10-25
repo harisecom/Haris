@@ -143,4 +143,8 @@ const styles = {
         marginTop: "2rem"
     }
 }
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    removeCartItems : 
+})
 export default Confirm;

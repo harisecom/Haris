@@ -8,7 +8,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import BillingAddress from '../Components/AddressForm';
 import MyCards from '../Components/MyCards.component';
-import { firestore } from "../../../firebase/firebase.utils";
 
 import '../Checkout.styles.css';
 
