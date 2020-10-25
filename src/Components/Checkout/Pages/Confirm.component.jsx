@@ -3,6 +3,8 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import {List, ListItem} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 import { firestore } from "../../../firebase/firebase.utils";
+import { clearCartItems } from '../../../Redux/cart/cart-action';
+import { connect } from 'react-redux';
 
 export class Confirm extends Component {
 
@@ -145,6 +147,16 @@ const styles = {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    removeCartItems : 
+    removeCartItems : dispatch(clearCartItems()),
+    nextStep: ownProps.nextStep,
+    prevStep: ownProps.prevStep,
+    values: ownProps.values,
+    userId: ownProps.userId,
+    cartItems: ownProps.cartItems,
+    subTotal: ownProps.subTotal,
+    shippingCost: ownProps.shippingCost,
+    orderNumberGenerator: ownProps.orderNumberGenerator
 })
-export default Confirm;
+
+
+export default connect(null, mapDispatchToProps)(Confirm);
