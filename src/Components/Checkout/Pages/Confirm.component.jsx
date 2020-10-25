@@ -51,6 +51,7 @@ export class Confirm extends Component {
         } catch (err) {
             console.error('error uploading user order', err.message);
         }
+        this.props.removeCartItems();
     }
 
 
@@ -147,7 +148,7 @@ const styles = {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    removeCartItems : dispatch(clearCartItems()),
+    removeCartItems : () => dispatch(clearCartItems()),
     nextStep: ownProps.nextStep,
     prevStep: ownProps.prevStep,
     values: ownProps.values,
