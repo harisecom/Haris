@@ -1,129 +1,132 @@
-.checkout-page{
-    display: flex;
-    justify-content: center;
+.checkout-page {
+  display: flex;
+  justify-content: center;
 }
 
 .checkout-form-side {
-    margin-top: 100px;
-    width: 650px;
+  margin-top: 100px;
+  width: 650px;
 }
 
 .checkout-payment-side {
-    display: none;
+  display: none;
 }
 
 .checkout-payment-side.active {
-    margin-top: 100px;
-    margin-left: 100px;
-    width: 450px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 100px;
+  margin-left: 100px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
 }
 
-.checkout-div{
-   font-family: Raleway;
-   color: #353434;
-   font-size: 1em;
+.checkout-div {
+  font-family: Raleway;
+  color: #353434;
+  font-size: 1em;
 }
 
 .checkout-div h2 {
-    display: flex;
-    width: 100%;
-    font-size: 1.5em;
-    color: black;
-    float: left;
-    text-transform: uppercase;
+  display: flex;
+  width: 100%;
+  font-size: 1.5em;
+  color: black;
+  float: left;
+  text-transform: uppercase;
 }
 
 .checkout-div .checkout-form-separator {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 /* Styles for FormUserInformation */
 .checkout-div .contact-title {
-    width: 50%;
+  width: 50%;
 }
 .checkout-div .contact-span {
-    margin: 1rem;
-    display: block;
-    float: right;
-    font-size: 1em;
+  margin: 1rem;
+  display: block;
+  float: right;
+  font-size: 1em;
 }
-.contact-span .contact-span-link{
-  color: #F3631B;
+.contact-span .contact-span-link {
+  color: #f3631b;
   text-decoration: none;
 }
 .contact-span .contact-span-link:hover {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Styles for radio forms */
-.checkout-div .radio-form{
-    width: 100%;
-    padding: 0;
-    margin: 0;
+.checkout-div .radio-form {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 /* Styles for SHIPPING form */
 .checkout-div .radio-form .shipping-span {
-    display: inline;
-    text-align: right;
-    font-weight: bold;
-    font-size: 1em;
-    padding: 0;
-    margin-right: 20px;
-    margin-top: 0;
-    margin-bottom: 20px;
+  display: inline;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0;
+  margin-right: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 /* Styles for PAYMENT form */
 .payment-title {
-    display: flex;
-    transform: translate(0%, -100%);
-    margin-bottom: 2rem;
+  display: flex;
+  transform: translate(0%, -100%);
+  margin-bottom: 2rem;
 }
 
 /* Styles for CONFIRM page */
 .checkout-div h4 {
-    font-weight: normal;
-    font-style: normal;
-    line-height: 30px;
-    font-size: 1.3em;
-    color: black;
-    text-transform: uppercase;
-    margin: 1rem;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 30px;
+  font-size: 1.3em;
+  color: black;
+  text-transform: uppercase;
+  margin: 1rem;
 }
 .checkout-div .confirm-span {
-    display: block;
-    color: #808080;
-    line-height: 28px;
-    margin-left: 2rem;
+  display: block;
+  color: #808080;
+  line-height: 28px;
+  margin-left: 2rem;
 }
 
 /* Styles for checkout-pricing */
 
+.checkout-calculation {
+    margin-top: 50px;
+}
+
 .checkout-calculation h3 {
-    font-size: 22px;
-    font-weight: normal;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 .checkout-calculation span {
-    font-size: 18px;
-    font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.checkout-subtotal, .checkout-shipping, .checkout-total-price{
-    display: flex;
-    justify-content: space-between;
-
+.checkout-subtotal,
+.checkout-shipping,
+.checkout-total-price {
+  display: flex;
+  justify-content: space-between;
 }
 
-.checkout-total-price h3{
-    font-size: 26px;
+.checkout-total-price h3 {
+  font-size: 26px;
 }
 
-.checkout-total-price span{
-    font-size: 26px;
+.checkout-total-price span {
+  font-size: 26px;
 }
-
-
