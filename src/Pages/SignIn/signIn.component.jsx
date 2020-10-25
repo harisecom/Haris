@@ -1,10 +1,11 @@
 import React,{Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import FormInput from '../../Components/form-input/FormInput.component';
 import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 
 import './Sign-In.styles.css';
+import { connect } from 'react-redux';
 
 class SignIn extends Component {
     constructor() {
@@ -37,6 +38,11 @@ class SignIn extends Component {
     }
 
     render() {
+
+        if(this.props.user){
+            return  <Redirect to="/" />
+         }
+
         const {email, password, firebaseErrors} = this.state;
         return (
             <Fragment>
@@ -63,7 +69,6 @@ class SignIn extends Component {
                             <CustomButton type="submit">Login</CustomButton>
                             <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
                         </div>
-                        <p className="error">{firebaseErrors}</p>
                     </form>
                     <span>
                         <Link className="links" to="/forgotPassword">Forgot Your Password?</Link>
@@ -74,4 +79,8 @@ class SignIn extends Component {
         )
     }
 }
-export default SignIn;
+
+const mapStateToProps = (state) => ({
+    user: state.user.currentUser
+})
+export default connect(mapStateToProps)(SignIn);

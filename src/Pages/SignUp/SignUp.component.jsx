@@ -1,10 +1,11 @@
 import React,{Component} from 'react'
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import FormInput from '../../Components/form-input/FormInput.component';
 import CustomButton from '../../Components/Custom-Button/CustomButton.component';
 
 import './Sign-Up.styles.css'
+import { connect } from 'react-redux';
 
 class SignUp extends Component {
     constructor() {
@@ -35,7 +36,6 @@ class SignUp extends Component {
 
             createUserProfileDocument(user, {displayName: firstName});
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
-            this.props.history.push('/');
         } catch(err) {
             this.setState({firebaseErrors: err.message});
             console.error('something went wrong with sign up with email and password', err);
@@ -44,6 +44,10 @@ class SignUp extends Component {
     };
 
     render() {
+        if(this.props.user){
+           return  <Redirect to="/" />
+        }
+
         const {firstName, lastName, email, password, birthday, firebaseErrors} = this.state
         return (
             <div className="sign-up">
@@ -104,4 +108,8 @@ class SignUp extends Component {
         );
     }
 }
-export default SignUp;
+
+const mapStateToProps = (state) => ({
+    user: state.user.currentUser
+})
+export default connect(mapStateToProps)(SignUp);

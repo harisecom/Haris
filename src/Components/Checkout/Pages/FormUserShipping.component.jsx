@@ -5,8 +5,6 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLable from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 
 import '../Checkout.styles.css';
@@ -38,8 +36,6 @@ export class FormUserShipping extends Component {
                             <FormControlLable 
                                 value={values.freeShipping.toString()}
                                 control={<Radio 
-                                    icon={<FavoriteBorderIcon />} 
-                                    checkedIcon={<FavoriteIcon />}
                                     onChange={this.handleRadioChange}
                                     required={true}
                                 />}
@@ -49,8 +45,6 @@ export class FormUserShipping extends Component {
                             <FormControlLable 
                                 value={values.standardShipping.toString()}
                                 control={<Radio 
-                                    icon={<FavoriteBorderIcon />} 
-                                    checkedIcon={<FavoriteIcon />}
                                     onChange={this.handleRadioChange}
                                     required={true}
                                 />}
@@ -60,8 +54,6 @@ export class FormUserShipping extends Component {
                             <FormControlLable 
                                 value={values.expressShipping.toString()}
                                 control={<Radio 
-                                    icon={<FavoriteBorderIcon />} 
-                                    checkedIcon={<FavoriteIcon />}
                                     onChange={this.handleRadioChange}
                                     required={true}
                                 />}

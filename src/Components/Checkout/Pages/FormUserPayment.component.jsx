@@ -50,8 +50,6 @@ export class FormUserPayment extends Component {
                                 <FormControlLable 
                                     value="A"
                                     control={<Radio 
-                                        icon={<FavoriteBorderIcon />} 
-                                        checkedIcon={<FavoriteIcon />}
                                         onClick={(e) => this.radioHandler(1)}
                                         onChange={handleToggleUseShippingAsBilling}
                                         required={true}
@@ -60,9 +58,7 @@ export class FormUserPayment extends Component {
                                 />
                                 <FormControlLable 
                                     value="B"
-                                    control={<Radio 
-                                        icon={<FavoriteBorderIcon />} 
-                                        checkedIcon={<FavoriteIcon />}
+                                    control={<Radio
                                         onClick={(e) => this.radioHandler(0)}
                                         onChange={handleToggleUseShippingAsBilling}
                                         required={true}
