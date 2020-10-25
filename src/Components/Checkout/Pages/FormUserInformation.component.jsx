@@ -26,10 +26,6 @@ export class FormUserInfomation extends Component {
                     {/* pass in price */}
                     <StripeCheckoutButton />
                     <h2 className="contact-title">Contact Information</h2>
-                    <span className="contact-span" >
-                        Already have an account?
-                        <Link className="contact-span-link" to="/signin">Log in</Link>
-                    </span>
                     <TextField 
                         label= "Email"
                         type="email"

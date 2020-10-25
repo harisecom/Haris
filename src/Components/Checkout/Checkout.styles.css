@@ -1,6 +1,7 @@
 .checkout-page {
   display: flex;
   justify-content: center;
+  margin-bottom: 200px;
 }
 
 .checkout-form-side {
@@ -42,20 +43,6 @@
 /* Styles for FormUserInformation */
 .checkout-div .contact-title {
   width: 50%;
-}
-.checkout-div .contact-span {
-  margin: 1rem;
-  display: block;
-  float: right;
-  font-size: 1em;
-}
-.contact-span .contact-span-link {
-  color: #f3631b;
-  text-decoration: none;
-}
-.contact-span .contact-span-link:hover {
-  text-decoration: none;
-  cursor: pointer;
 }
 
 /* Styles for radio forms */
