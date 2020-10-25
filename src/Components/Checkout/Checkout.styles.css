@@ -9,9 +9,15 @@
 }
 
 .checkout-payment-side {
+    display: none;
+}
+
+.checkout-payment-side.active {
     margin-top: 100px;
     margin-left: 100px;
     width: 450px;
+    display: flex;
+    flex-direction: column;
 }
 
 .checkout-div{

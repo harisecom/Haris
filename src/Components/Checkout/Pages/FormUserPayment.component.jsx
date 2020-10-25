@@ -6,7 +6,6 @@ import Radio from '@material-ui/core/Radio';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
-
 import BillingAddress from '../Components/AddressForm';
 import MyCards from '../Components/MyCards.component';
 
@@ -16,8 +15,11 @@ export class FormUserPayment extends Component {
     state = {
         sameAddress: 1
     }
+
     continue = e => {
         e.preventDefault();
+
+
         this.props.nextStep();
     }
 
@@ -113,4 +115,6 @@ const styles = {
         marginTop: "2rem"
     }
 }
+
+
 export default FormUserPayment;
