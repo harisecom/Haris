@@ -21,15 +21,20 @@ const Cart = ({cartStatus, cartItems, dispatch}) => {
             </div>
 
             <div className="cart-to-checkout">
-            <h1 className="cart-total-price">Subtotal : $
+            
+
             {
+                cartItems.length ? 
+                <>
+                <h1 className="cart-total-price">Subtotal : $
+                    {
                 cartItems.reduce((accumulator, item) => (
                     accumulator += (item.quantity * item.price)
                 ), 0)
-            }
-            </h1>
+                }
+                </h1>
                 
-                <button className="cart-checkout-button" 
+                <button className={`cart-checkout-button $}`} 
                 onClick={
                     () => {
                             history.push("/checkout")
@@ -38,6 +43,14 @@ const Cart = ({cartStatus, cartItems, dispatch}) => {
                     } 
                 >
                 Checkout</button>
+                </> :
+                <h2>Your cart is empty.</h2>
+
+
+
+            }
+                
+                
             </div>
 
         </div> 

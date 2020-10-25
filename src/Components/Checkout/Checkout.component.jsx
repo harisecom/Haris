@@ -6,6 +6,7 @@ import CheckoutItem from './Components/CheckoutItem.component';
 import Confirm from "./Pages/Confirm.component";
 import Success from "./Pages/Success.component";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export class Checkout extends Component {
   state = {
@@ -154,6 +155,16 @@ export class Checkout extends Component {
   };
 
   render() {
+
+    if (!this.props.userInfo) {
+      return <Redirect to='/login' />
+    }
+
+    if(!this.props.cartItems.length){
+      return <Redirect to='/' />
+    }
+
+
     const { step } = this.state;
     const {
       emailaddress,
