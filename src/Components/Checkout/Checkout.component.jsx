@@ -48,6 +48,8 @@ export class Checkout extends Component {
     expiry: "",
     name: "",
     number: "",
+
+    orderNum: '',
   };
 
   componentDidMount = () => {
@@ -90,6 +92,10 @@ export class Checkout extends Component {
     const { value } = event.target;
     this.setState({ [input]: value });
   };
+  
+  orderNumberGenerator = (number) => {
+    this.setState({orderNum: number})
+  }
 
   handleToggleUseShippingAsBilling = () => {
     const { useShippingAsBilling } = this.state; //tell us if we will use shipping address as billing address
@@ -173,6 +179,7 @@ export class Checkout extends Component {
       billingCountry,
       billingPostal,
       billingPhone,
+      orderNum
     } = this.state;
     const { freeShipping, standardShipping, expressShipping } = this.state;
     const { cvc, expiry, name, number } = this.state;
@@ -205,6 +212,7 @@ export class Checkout extends Component {
       expiry,
       name,
       number,
+      orderNum
     };
 
     const subTotal = this.props.cartItems.reduce((accumulator, item) => (
@@ -221,6 +229,8 @@ export class Checkout extends Component {
         return subTotal + parseInt(this.props.shippingType)
     }
   }
+
+  console.log();
 
 
     return (
@@ -254,6 +264,11 @@ export class Checkout extends Component {
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
+              userId={this.props.userInfo.id}
+              cartItems = {this.props.cartItems}
+              subTotal = {subTotal}
+              shippingCost = {this.props.shippingType}
+              orderNumberGenerator = {this.orderNumberGenerator}
             />
           ) : step === 5 ? (
             <Success values={values} />
@@ -261,7 +276,7 @@ export class Checkout extends Component {
             ""
           )}
         </div>
-        <div className="checkout-payment-side">
+        <div className={`checkout-payment-side ${ step !== 5 ? 'active' : ''}`}>
             {
               this.props.cartItems.map((item) => (
                 <CheckoutItem key={item.id} item={item} />
@@ -301,6 +316,7 @@ export class Checkout extends Component {
 
 const mapStateToProps = state => ({
   cartItems : state.cart.cartItems,
-  shippingType: state.shippingType.currentShippingType
+  shippingType: state.shippingType.currentShippingType,
+  userInfo : state.user.currentUser
 })
 export default connect(mapStateToProps)(Checkout);

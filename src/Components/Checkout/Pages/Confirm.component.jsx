@@ -2,11 +2,69 @@ import React,{Component} from 'react';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import {List, ListItem} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
+import { firestore } from "../../../firebase/firebase.utils";
 
 export class Confirm extends Component {
+
+
+
+    firebaseUpdateUserData = async () =>{
+
+        
+
+        const userRef = firestore.doc(`users/${this.props.userId}`);
+        try {
+            await userRef.update({
+                additionalInfomation : this.props.values
+            });
+        } catch (err) {
+            console.error('error uploading user additional info', err.message);
+        }
+
+    }
+
+    creatingTheOrders = () => {
+        const { cartItems, subTotal, shippingCost} = this.props;
+        const orderNum = new Date().valueOf();
+        this.props.orderNumberGenerator(orderNum);
+        const myorderQueries = {
+            cartItems,
+            subTotal,
+            shippingCost,
+            orderNum
+        }
+
+        return myorderQueries;
+
+
+    }
+
+    firebaseMyOrdersUpload = async (orderQuery) =>{
+        const orderCollection = firestore.collection(`users/${this.props.userId}/myOrders`);
+        const orderDoc = orderCollection.doc();
+        try {
+            await orderDoc.set({
+                orderDetails : orderQuery
+            })
+        } catch (err) {
+            console.error('error uploading user order', err.message);
+        }
+    }
+
+
     continue = e => {
         e.preventDefault();
         // Here we will PROCESS FORM 
+
+        
+
+        const orderQuery = this.creatingTheOrders();
+
+        this.firebaseUpdateUserData();
+
+        this.firebaseMyOrdersUpload(orderQuery);
+       
+
         this.props.nextStep();
     }
 
