@@ -226,9 +226,11 @@ export class Checkout extends Component {
       orderNum
     };
 
-    const subTotal = this.props.cartItems.reduce((accumulator, item) => (
+    const subTotal = parseFloat( this.props.cartItems.reduce((accumulator, item) => (
       accumulator += (item.quantity * item.price)
-  ), 0);
+    ), 0)).toFixed(2);
+
+  
 
   const shippingCalculation = () => {
     switch (this.props.shippingType) {
@@ -326,8 +328,12 @@ export class Checkout extends Component {
 }
 
 const mapStateToProps = state => ({
+
   cartItems : state.cart.cartItems,
   shippingType: state.shippingType.currentShippingType,
   userInfo : state.user.currentUser
+
 })
+
+
 export default connect(mapStateToProps)(Checkout);
