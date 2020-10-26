@@ -237,7 +237,7 @@ export class Checkout extends Component {
         
 
       default:
-        return subTotal + parseInt(this.props.shippingType)
+        return subTotal + parseFloat(this.props.shippingType)
     }
   }
 
