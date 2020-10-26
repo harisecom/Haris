@@ -51,7 +51,7 @@ class CartItems extends Component{
                     
                 </div>
                 <div className="cart-item-price">
-                    <span>${quantity * price}</span>
+                    <span>${ parseFloat(quantity * price).toFixed(2) }</span>
                 </div>
                 
             </div>
