@@ -28,9 +28,10 @@ const Cart = ({cartStatus, cartItems, dispatch}) => {
                 <>
                 <h1 className="cart-total-price">Subtotal : $
                     {
-                cartItems.reduce((accumulator, item) => (
-                    accumulator += (item.quantity * item.price)
-                ), 0)
+                        parseFloat(cartItems.reduce((accumulator, item) => (
+                            accumulator += (item.quantity * item.price)
+                        ), 0)).toFixed(2)
+                
                 }
                 </h1>
                 

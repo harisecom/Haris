@@ -40,7 +40,7 @@ class CheckoutItem extends Component{
                 </div>
 
                 <div className="checkout-item-price">
-                    <span>${quantity * price}</span>
+                    <span>${ parseFloat( quantity * price ).toFixed(2) } </span>
                 </div>
                 
             </div>
