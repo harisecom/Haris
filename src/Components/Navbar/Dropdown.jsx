@@ -3,13 +3,14 @@ import { Link} from 'react-router-dom';
 import {SignedInItems, SignedOutItems} from './MenuItems';
 import { connect } from 'react-redux';
 import { auth } from '../../firebase/firebase.utils';
-
+import {accountbarAction} from '../../Redux/accountbar/accountbar-action';
 import './Dropdown.style.css';
 
-const Dropdown = ({ currentUser}) => {
-    console.log('user', currentUser);
+
+const Dropdown = ({ currentUser, accountbarStatus }) => {
+    console.log('account', accountbarStatus === true);
     return (
-        <ul className="dropdown-menus">
+        <ul className={`dropdown-menus ${accountbarStatus === true ? 'dropdown-active' : ''}`}>
             {currentUser ? (
                 <Fragment>
                     {SignedInItems.map((item, index) => {
@@ -47,9 +48,14 @@ const Dropdown = ({ currentUser}) => {
         </ul>
     );
 }
-const mapStateToProp = ({user}) => ({
-    currentUser: user.currentUser
-});
+const mapStateToProp = ({user, accountbar}) => ({
+    currentUser: user.currentUser,
+    accountbarStatus: accountbar.accountbarStatus
+})
+
+const mapDispatchToProps = dispatch => ({
+    accountbarAction: () => dispatch(accountbarAction())
+})
 
 
-export default connect(mapStateToProp)(Dropdown);
+export default connect(mapStateToProp, mapDispatchToProps)(Dropdown);

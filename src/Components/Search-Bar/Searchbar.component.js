@@ -41,6 +41,7 @@ class Searchbar extends React.Component {
   }
   render() {
     const {searchbarStatus} = this.props;
+    console.log('search', searchbarStatus);
     return(
     <div className={`container-fluid search-component ${searchbarStatus === true ? 'searchbar-active' : ''}`} >
       <div className="searchbar">
