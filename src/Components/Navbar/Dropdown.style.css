@@ -4,12 +4,16 @@
   top: 80px;
   right: 60px;
   z-index: 1000;
-  display: flex;
+  display: none;
   flex-direction: column;
   list-style: none;
   text-align: start;
   overflow-x: hidden;
   opacity: 1;
+}
+
+.dropdown-active{
+  display: flex;
 }
 
 .dropdown-menus li {
