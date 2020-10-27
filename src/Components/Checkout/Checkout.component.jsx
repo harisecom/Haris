@@ -39,7 +39,6 @@ export class Checkout extends Component {
     useShippingAsBilling: false,
 
     //shipping options
-    // shippingType: '',
     freeShipping: 0.0,
     standardShipping: 6.95,
     expressShipping: 17.0,
