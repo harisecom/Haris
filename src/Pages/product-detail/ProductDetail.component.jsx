@@ -14,7 +14,7 @@ class ProductDetails extends React.Component {
     super()
     this.state = {
         imageUrl : [],
-        cartQuantity: '1',
+        cartQuantity: 1,
         id: '',
         activeMenu: 'details',
         productInfo: '',
@@ -34,6 +34,7 @@ class ProductDetails extends React.Component {
     for(let i=0 ; i < quantity ; i++) {
       this.props.addItem(this.state.productInfo);
     }
+    this.props.cartAction();
   }
 
 
@@ -188,10 +189,8 @@ const mapStateToProps = ({products}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addItem : item =>{ 
-    dispatch(addItemToCart(item))
-    dispatch(cartAction())
-   }
+  addItem : item => dispatch(addItemToCart(item)),
+  cartAction : () => dispatch(cartAction())
 
 })
 
