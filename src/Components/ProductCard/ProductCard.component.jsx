@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import './ProductCard.style.css';
 import firebase from '../../firebase/firebase.utils';
 import { addItemToCart, cartAction } from '../../Redux/cart/cart-action';

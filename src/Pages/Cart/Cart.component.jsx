@@ -14,8 +14,8 @@ const Cart = ({cartStatus, cartItems, dispatch}) => {
         <div className={`cart ${ cartStatus === true ? 'active' : ''} `} >
             <div className="cart-items">
                 {
-                    cartItems.map( (item, key) => (
-                        <CartItems key={key} item= {item}/>
+                    cartItems.map( (item) => (
+                        <CartItems key={item.id} item= {item}/>
                     ))
                 }
             </div>

@@ -31,11 +31,13 @@ class AccountInfo extends Component {
     }
 
     generateShippingAddress = (values) => {
-        return `${values.address}, ` + `${values.apartment ? values.apartment + ', ' : ''}`  + `${values.city}, `  + `${values.state}, ` + `${values.postal}, ` + `${values.country}`; 
+        const shippingAddress = `${values.address}, ${values.apartment ? values.apartment + ', ' : ''} ${values.city},  ${values.state}, ${values.postal}, ${values.country}`; 
+        return shippingAddress;
     }
 
     generateBillingAddress = (values) => {
-        return `${values.billingAddress}, ` + `${values.billingApartment ? values.billingApartment + ', ' : ''}`  + `${values.billingCity}, `  + `${values.billingState}, ` + `${values.billingPostal}, ` + `${values.billingCountry}`; 
+        const billingAddress = ` ${values.billingAddress}, ${values.billingApartment ? values.billingApartment + ', ' : ''} ${values.billingCity}, ${values.billingState}, ${values.billingPostal}, ${values.billingCountry} `;
+        return  billingAddress
     }
 
 
