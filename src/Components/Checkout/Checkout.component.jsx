@@ -236,11 +236,11 @@ export class Checkout extends Component {
   const shippingCalculation = () => {
     switch (this.props.shippingType) {
       case null:
-        return subTotal + 0
+        return parseFloat(subTotal + 0)
         
 
       default:
-        return subTotal + parseFloat(this.props.shippingType)
+        return parseFloat(subTotal) + parseFloat(this.props.shippingType)
     }
   }
 
