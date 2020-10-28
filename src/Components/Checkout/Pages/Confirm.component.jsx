@@ -59,8 +59,6 @@ export class Confirm extends Component {
         e.preventDefault();
         // Here we will PROCESS FORM 
 
-        
-
         const orderQuery = this.creatingTheOrders();
 
         this.firebaseUpdateUserData();
