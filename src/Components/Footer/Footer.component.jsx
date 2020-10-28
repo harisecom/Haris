@@ -6,7 +6,7 @@ const Footer = () => (
         <div className="container-fluid">
             <nav className="navbar navbar-light " id="navbar">
                     <span className="navbar-text">
-                        Unlocking A Whole New Wardrobe.
+                        Unlocking A Whole New Skin Care.
                     </span>
                     <ul id="nav-links"> 
                         <li>

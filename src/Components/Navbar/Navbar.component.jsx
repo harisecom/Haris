@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {cartAction} from '../../Redux/cart/cart-action';
 import {searchbarAction} from '../../Redux/searchbar/searchbar-action';
-import Dropdown from './Dropdown';
+import {accountbarAction} from '../../Redux/accountbar/accountbar-action'
 import './navbar.style.css';
 
 
@@ -12,15 +12,13 @@ import { ReactComponent as CartIcon} from '../../assets/cart.svg';
 import { ReactComponent as SearchIcon} from '../../assets/search.svg';
 import { ReactComponent as WishlishIcon} from '../../assets/wishlist.svg'
  
-const Navbar = ({ cartAction ,currentUser, searchbarAction}) => {
+const Navbar = ({ cartAction ,currentUser, searchbarAction, accountbarAction}) => {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
     const clickDrop = () => setDropdown(!dropdown);
-
-    const location = useLocation();
 
     return ( 
         <nav className="navbar">
@@ -50,12 +48,7 @@ const Navbar = ({ cartAction ,currentUser, searchbarAction}) => {
             </div>
             <div>         
                 <ul className="nav-icons" >
-                    <li className=''  onClick={clickDrop} >
-                        <Link to={location.pathname} className="" onClick={closeMobileMenu}>
-                            <AccountIcon/>
-                        </Link>
-                        {dropdown && <Dropdown />}
-                    </li>
+                    <li className='' onClick={accountbarAction}><AccountIcon/></li>
                     <li className='' onClick={cartAction}><CartIcon/> </li>
                     <li className='' onClick={searchbarAction}><SearchIcon/> </li>
                     <li className=''><WishlishIcon/></li>
@@ -71,7 +64,8 @@ const mapStateToProp = ({user}) => ({
 
 const mapDispatchToProps = dispatch => ({
     cartAction: () => dispatch(cartAction()),
-    searchbarAction: () => dispatch(searchbarAction())
+    searchbarAction: () => dispatch(searchbarAction()),
+    accountbarAction: () => dispatch(accountbarAction()),
 })
  
 export default connect( mapStateToProp, mapDispatchToProps)(Navbar);
