@@ -56,6 +56,7 @@ class MyAccount extends Component {
     render(){
         const {user, userInfo}  = this.state;
         const {page} = this.state;
+
         
         if(user){
             return (

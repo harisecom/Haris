@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
 import Rating from '@material-ui/lab/Rating'
 import firebase from '../../firebase/firebase.utils';
-import {addItemToCart} from '../../Redux/cart/cart-action';
+import {addItemToCart, cartAction} from '../../Redux/cart/cart-action';
 import ProductImage from './productImage/productImage.component';
 
 
@@ -188,7 +188,11 @@ const mapStateToProps = ({products}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addItem : item => dispatch(addItemToCart(item))
+  addItem : item =>{ 
+    dispatch(addItemToCart(item))
+    dispatch(cartAction())
+   }
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
