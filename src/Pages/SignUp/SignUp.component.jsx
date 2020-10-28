@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import {Link, Redirect} from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import FormInput from '../../Components/form-input/FormInput.component';
-import CustomButton from '../../Components/Custom-Button/CustomButton.component';
+import CustomButton from '../../Components/CustomButton/CustomButton.component';
 
 import './Sign-Up.styles.css'
 import { connect } from 'react-redux';
