@@ -155,16 +155,18 @@ export class Checkout extends Component {
 
   render() {
 
+    const { step } = this.state;
+
     if (!this.props.userInfo) {
       return <Redirect to='/login' />
     }
 
-    if(!this.props.cartItems.length){
+    if(!this.props.cartItems.length && step < 3){
       return <Redirect to='/' />
     }
 
 
-    const { step } = this.state;
+    
     const {
       emailaddress,
       firstName,
