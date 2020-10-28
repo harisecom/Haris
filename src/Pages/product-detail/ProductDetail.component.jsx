@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './ProductDetail.styles.css';
 import Rating from '@material-ui/lab/Rating'
 import firebase from '../../firebase/firebase.utils';
-import {addItemToCart} from '../../Redux/cart/cart-action';
+import {addItemToCart, cartAction} from '../../Redux/cart/cart-action';
 import ProductImage from './productImage/productImage.component';
 
 
@@ -14,7 +14,7 @@ class ProductDetails extends React.Component {
     super()
     this.state = {
         imageUrl : [],
-        cartQuantity: '1',
+        cartQuantity: 1,
         id: '',
         activeMenu: 'details',
         productInfo: '',
@@ -34,6 +34,7 @@ class ProductDetails extends React.Component {
     for(let i=0 ; i < quantity ; i++) {
       this.props.addItem(this.state.productInfo);
     }
+    this.props.cartAction();
   }
 
 
@@ -188,7 +189,9 @@ const mapStateToProps = ({products}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addItem : item => dispatch(addItemToCart(item))
+  addItem : item => dispatch(addItemToCart(item)),
+  cartAction : () => dispatch(cartAction())
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
