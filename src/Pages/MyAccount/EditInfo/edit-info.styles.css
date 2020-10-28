@@ -14,13 +14,16 @@
 }
 
 .update-button {
+    margin-top: 50px;
+    margin-bottom: 100px;
     padding: 16px 26px;
     font-size: 16px;
     border: none;
     color: white;
-    background-color: rgb(240, 125, 59);
+    background-color: tomato;
 }
 
 .shipping-address {
     max-width: 500px;
+    margin-right: 50px;
 }

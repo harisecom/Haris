@@ -1,17 +1,7 @@
 export const SignedInItems = [
     {
-        title: "Order History",
-        path: "/",
-        cName: "dropdown-link",
-    },
-    {
-        title: "My information",
-        path: "/",
-        cName: "dropdown-link",
-    },
-    {
-        title: "Address Book",
-        path: "/",
+        title: "My Account",
+        path: "/myaccount",
         cName: "dropdown-link",
     },
     {

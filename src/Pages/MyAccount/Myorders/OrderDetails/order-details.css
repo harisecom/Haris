@@ -1,0 +1,48 @@
+.order-details{
+  min-width: 750px;
+}
+
+.order-details-calculation {
+    margin-top: 50px;
+}
+
+.order-details-calculation h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.order-details-calculation span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-details-subtotal,
+.order-details-shipping,
+.order-details-total-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-details-total-price h3 {
+  font-size: 26px;
+}
+
+.order-details-total-price span {
+  font-size: 26px;
+}
+
+.order-details-shipping-address h2 {
+  text-align: start;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.order-details button {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: tomato;
+}

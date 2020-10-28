@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './ProductCard.style.css';
 import firebase from '../../firebase/firebase.utils';
 import { addItemToCart, cartAction } from '../../Redux/cart/cart-action';
+import { withRouter } from 'react-router-dom';
 class ProductCard extends Component {
     constructor(){
         super()
@@ -21,11 +22,14 @@ class ProductCard extends Component {
     })
     .catch((e) => console.log('getting downloadURL of image error => ', e));
     }
+
+    
     render(){
-        const { price, productName, shortDescription, ratings} = this.props.product;
+
+        const { id, price, productName, shortDescription, ratings} = this.props.product;
         const { addItem} = this.props;
         return (
-        <div className="product-card">
+        <div className="product-card" onClick={ () => this.props.history.push(`product/${id}`)}>
             <div className="productImagePart">
             <img src={this.state.imageUrl} alt=""/>
             <span className="priceTag">
@@ -68,13 +72,5 @@ const mapDispatchToProps = dispatch =>{
         },
     }
 }
-export default connect(null, mapDispatchToProps)(ProductCard)
-ProductCard.propTypes={
-    product: PropTypes.object,
-    addItem: PropTypes.func
-    /* 'product.imageUrl' : PropTypes.string,
-    'product.price' : PropTypes.number,
-    'product.name' : PropTypes.string,
-    'product.shortDescription' : PropTypes.string,
-    'product.ratings' : PropTypes.number */
-}
+
+export default withRouter(connect(null, mapDispatchToProps)(ProductCard))

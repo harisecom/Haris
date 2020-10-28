@@ -306,7 +306,7 @@ export class Checkout extends Component {
               <h3>Shipping</h3>
               <span>{
                 this.props.shippingType === null ?
-                'calculate in next step': 
+                'Calculated at next step': 
                 this.props.shippingType === '0' ?
                 'FREE': `$ ${this.props.shippingType}`
               }</span>
