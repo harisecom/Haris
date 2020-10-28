@@ -1,0 +1,19 @@
+.my-orders{
+    display: flex;
+    min-width: 800px;
+    flex-direction: column;
+}
+
+
+.my-orders .table th,td {
+    text-align: center;
+}
+
+.my-orders .table button {
+    margin-bottom: 8px;
+    padding: 10px 10px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    background-color: tomato;
+}
