@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './edit-info.styles.css'
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import { firestore } from "../../../firebase/firebase.utils";
+import { withRouter } from 'react-router-dom';
 
 class EditInfo extends Component {
     constructor(){
@@ -28,7 +30,7 @@ class EditInfo extends Component {
 
     componentDidMount(){
 
-        let userInfo = this.props.userInfo;
+        const userInfo = this.props.user.additionalInfomation;
 
         if(userInfo) {
             this.setState({
@@ -53,16 +55,37 @@ class EditInfo extends Component {
         
     }
 
+    firebaseUserDataUpload = async (values) => {
+
+        const userRef = firestore.doc(`users/${this.props.user.id}`);
+        try {
+            await userRef.update({
+                additionalInfomation : values
+            });
+            this.props.history.push('/myaccount');
+        } catch (err) {
+            console.error('error uploading user additional info', err.message);
+        }
+
+    }
+
+
     handleChange = input => event =>{
         this.setState({ [input] : event.target.value})
     }
+    handleSubmit = async () => {
+        const { company, address, apartment, city, state, country, postal, billingCompany, billingAddress, billingApartment, billingCity, billingState, billingCountry, billingPostal } = this.state;
+        const values = { company, address, apartment, city, state, country, postal, billingCompany, billingAddress, billingApartment, billingCity, billingState, billingCountry, billingPostal }
+        
+       this.firebaseUserDataUpload(values)
+
+    }
     render(){
         const { company, address, apartment, city, state, country, postal, billingCompany, billingAddress, billingApartment, billingCity, billingState, billingCountry, billingPostal } = this.state;
-        console.log('Edit Address: ', address);
-        console.log('Apartment: ', apartment);
+    
         return (
             <div className="edit-info">
-                <form onSubmit={this.continue}>
+                <form>
                     <div className="editable-information">
                         {/* <div className="my-information">
                             <h3>My Information</h3>
@@ -264,7 +287,7 @@ class EditInfo extends Component {
 
                     </div>
 
-                    <button type='submit' className="update-button">
+                    <button onClick={this.handleSubmit} className="update-button">
                         Update Informations
                     </button>
                 </form>
@@ -278,4 +301,4 @@ const mapStateToProps = ({user}) => ({
     user: user.currentUser
 })
 
-export default connect(mapStateToProps)(EditInfo)
+export default withRouter(connect(mapStateToProps)(EditInfo))
