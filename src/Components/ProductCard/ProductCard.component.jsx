@@ -29,6 +29,8 @@ class ProductCard extends Component {
         const { id, price, productName, shortDescription, ratings} = this.props.product;
         const { addItem} = this.props;
         return (
+        <div className="productCardComponent">
+        
         <div className="product-card" onClick={ () => this.props.history.push(`product/${id}`)}>
             <div className="productImagePart">
             <img src={this.state.imageUrl} alt=""/>
@@ -56,9 +58,10 @@ class ProductCard extends Component {
                     ))
                 }
                 </div>
-                <div className="add-to-cart-button">
-                    <button onClick={() => addItem(this.props.product)}>Add to cart</button>
-                </div>
+            </div>
+        </div>
+            <div className="add-to-cart-button">
+                <button onClick={() => addItem(this.props.product)}>Add to cart</button>
             </div>
         </div>
     )
