@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
 import { connect } from 'react-redux';
 import './navbar.style.css';
 import {cartAction} from '../../Redux/cart/cart-action';
@@ -17,7 +16,6 @@ const NavbarElements = ({ cartAction , searchbarAction, toggleNavbar, navbarStat
     const [dropdown, setDropdown] = useState(false);
     const clickDrop = () => setDropdown(!dropdown);
 
-    const location = useLocation();
 
     return ( 
             <div className="nav-elements">          

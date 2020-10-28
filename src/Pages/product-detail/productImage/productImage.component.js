@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './productImage.styles.css';
-import PropTypes from 'prop-types';
 
 const ProductImage = ({imageUrl,  productInfo}) => {
 

@@ -12,8 +12,7 @@ class SignIn extends Component {
         super();
         this.state = {
             email: '',
-            password: '',
-            firebaseErrors: '',
+            password: ''
         }
     }
 
@@ -43,7 +42,7 @@ class SignIn extends Component {
             return  <Redirect to="/" />
          }
 
-        const {email, password, firebaseErrors} = this.state;
+        const {email, password} = this.state;
         return (
             <Fragment>
                 <div className="sign-in">

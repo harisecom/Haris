@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -80,7 +80,7 @@ class App extends Component {
   }
 
   render() {
-    const {cartStatus, cartAction, addUser} = this.props;
+    const {cartStatus, cartAction} = this.props;
     return (
       <div id="hero">
         <Header />

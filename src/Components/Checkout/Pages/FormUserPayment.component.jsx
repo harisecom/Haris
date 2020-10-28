@@ -3,8 +3,6 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLable from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import BillingAddress from '../Components/AddressForm';
 import MyCards from '../Components/MyCards.component';

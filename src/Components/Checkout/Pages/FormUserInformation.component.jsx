@@ -7,7 +7,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
-import { Link } from '@material-ui/core';
 
 import StripeCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 import '../Checkout.styles.css';
