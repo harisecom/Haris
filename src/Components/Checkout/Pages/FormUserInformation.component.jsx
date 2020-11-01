@@ -16,7 +16,6 @@ export class FormUserInfomation extends Component {
     
     continue = e => {
         e.preventDefault();
-        this.firebaseUpdateUserData();
         this.props.nextStep();
     }
     render() {
