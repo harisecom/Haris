@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Link, Redirect} from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-import FormInput from '../../Components/Form-Input/FormInput.component';
+import FormInput from '../../Components/form-input/FormInput.component';
 import CustomButton from '../../Components/CustomButton/CustomButton.component';
 
 import './Sign-Up.styles.css'
@@ -32,9 +32,9 @@ class SignUp extends Component {
 
         try {
             const { user } = await auth.createUserWithEmailAndPassword( email, password);
-            const name = firstName + lastName;
+            const name = firstName + ' ' + lastName;
 
-            createUserProfileDocument(user, {displayName: name}, {birthday: birthday});
+            createUserProfileDocument(user, {displayName: name, birthday: birthday});
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
         } catch(err) {
             this.setState({firebaseErrors: err.message});

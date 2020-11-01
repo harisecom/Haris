@@ -59,7 +59,7 @@ class MyAccount extends Component {
         if(user){
             return (
                 <div className="myaccount-page">
-                    <h2>Welcome, {user.displayName.split(/(?=[A-Z])/)[0]}</h2>
+                    <h2>Welcome, {user.displayName}</h2>
                     <div className="user-details">
                         <div className="user-menus">
                             <ul>

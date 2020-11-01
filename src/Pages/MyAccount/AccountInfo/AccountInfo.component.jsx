@@ -47,7 +47,7 @@ class AccountInfo extends Component {
 
         return (
             <div className="account-information">
-                <p>Name: {displayName.split(/(?=[A-Z])/).join(' ')} </p>
+                <p>Name: {displayName} </p>
                 <p>Email : {email}</p>
                 <p>Shipping Address: {shippingAddress} </p>
                 <p>Billing Address: {billingAddress} </p>

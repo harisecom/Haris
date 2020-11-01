@@ -1,7 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
-import FormInput from '../../Components/Form-Input/FormInput.component';
+import FormInput from '../../Components/form-input/FormInput.component';
 import CustomButton from '../../Components/CustomButton/CustomButton.component';
 
 import './Sign-In.styles.css';
