@@ -8,10 +8,18 @@ import { connect } from 'react-redux';
 
 export class Confirm extends Component {
     firebaseUpdateUserData = async () =>{
+
+        const { address, apartment, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
+                billingApartment ,billingCity, billingState, billingCountry, billingPostal
+            } = this.props.values;
+
+        const information = { address, apartment, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
+            billingApartment ,billingCity, billingState, billingCountry, billingPostal }
+
         const userRef = firestore.doc(`users/${this.props.userId}`);
         try {
             await userRef.update({
-                additionalInfomation : this.props.values
+                additionalInfomation : information
             });
         } catch (err) {
             console.error('error uploading user additional info', err.message);
@@ -21,18 +29,27 @@ export class Confirm extends Component {
 
     creatingTheOrders = () => {
         const { cartItems, subTotal, shippingCost} = this.props;
+        const { emailaddress, firstName, lastName, address, apartment,
+        city, state, country, postal} = this.props.values;
+
         const orderNum = new Date().valueOf();
         this.props.orderNumberGenerator(orderNum);
         const myorderQueries = {
+            emailaddress,
+            firstName,
+            lastName,
             cartItems,
             subTotal,
             shippingCost,
-            orderNum
+            orderNum,
+            address,
+            apartment,
+            city,
+            state,
+            country,
+            postal
         }
-
         return myorderQueries;
-
-
     }
 
     firebaseMyOrdersUpload = async (orderQuery) =>{
@@ -48,18 +65,19 @@ export class Confirm extends Component {
         this.props.removeCartItems();
     }
 
-
     continue = e => {
         e.preventDefault();
         // Here we will PROCESS FORM 
 
         const orderQuery = this.creatingTheOrders();
 
-        this.firebaseUpdateUserData();
+
+        if(this.props.values.saveShippingAddress){
+            this.firebaseUpdateUserData();
+        }
 
         this.firebaseMyOrdersUpload(orderQuery);
        
-
         this.props.nextStep();
     }
 

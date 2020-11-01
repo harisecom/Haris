@@ -8,43 +8,19 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 
-import { firestore } from "../../../firebase/firebase.utils";
 import { connect } from 'react-redux';
 import StripeCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 import '../Checkout.styles.css';
 
 export class FormUserInfomation extends Component {
-    handleCheckBox = () => {
-        const {saveShippingAddress} = this.props;
-        if(!saveShippingAddress) {
-            this.setState({saveShippingAddress: true});
-            console.log('check box fired');
-        }
-        return this.setState({saveShippingAddress: false});  
-    }
-
-    firebaseUpdateUserData = async () =>{
-        const {saveShippingAddress} = this.props;
-        const userRef = firestore.doc(`users/${this.props.userId}`);
-        const {firstName, lastName, company, address, apartment, city, state, country, postal, phone} = this.props.values
-        if(saveShippingAddress === true)
-        console.log('fired')
-        try {
-            await userRef.set({
-                additionalInfomation : {firstName, lastName, company, address, apartment, city, state, country, postal, phone}
-            });
-        } catch (err) {
-            console.error('error uploading user additional info', err.message);
-        }
-
-    }
+    
     continue = e => {
         e.preventDefault();
         this.firebaseUpdateUserData();
         this.props.nextStep();
     }
     render() {
-        const { values, handleChange } = this.props;
+        const { values, handleChange, handleSaveShippingAddress  } = this.props;
         return (
             <MuiThemeProvider>
                 <Fragment>
@@ -179,7 +155,7 @@ export class FormUserInfomation extends Component {
                             control={<Checkbox 
                                 icon={<FavoriteBorderIcon />} 
                                 checkedIcon={<FavoriteIcon />}
-                                onChange={this.handleCheckBox}
+                                onChange={handleSaveShippingAddress}
                             />}
                             label="Save this information for next time"
                         />
