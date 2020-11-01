@@ -3,6 +3,7 @@ import './order-details.css';
 import OrderDetailsProduct from './OrderDetailsProduct/OrderDetailsProduct.component';
 
 const OrderDetails = ({order, handleChange, userInfo}) => {
+    const TotalCost = parseFloat(order.subTotal) + parseFloat(order.shippingCost);
     return (
         <div className="order-details">
                         {
@@ -28,14 +29,16 @@ const OrderDetails = ({order, handleChange, userInfo}) => {
               </div>
               <hr/>
               <div className="order-details-total-price">
-               <h3>Total</h3>
-               <span>$ {
-                parseFloat(order.subTotal) + parseFloat(order.shippingCost)
-               }</span>
+              <h3>Total</h3>
+               <span>$ { parseFloat(TotalCost).toFixed(2) }</span>
+              </div>
+              <div className="order-details-contact-information">
+                <h2>Contact Information</h2>
+                <p>Name: {order.firstName} {order.lastName} <br/> Email: {order.emailaddress} </p>
               </div>
               <div className="order-details-shipping-address">
                 <h2>Shipping Address</h2>
-                <p>{userInfo.address} {userInfo.apartment} <br/> {userInfo.city} <br/> {userInfo.state}, {userInfo.postal} <br/> {userInfo.country}  </p>
+                <p>{order.address} {order.apartment} <br/> {order.city} <br/> {order.state}, {order.postal} <br/> {order.country}  </p>
               </div>
             </div>
             <button onClick={() => handleChange(1, '') }>Back To My Orders</button>

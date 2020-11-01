@@ -89,6 +89,10 @@ export class Checkout extends Component {
     });
   };
 
+  handleSaveShippingAddress = () => {
+    this.setState({saveShippingAddress: true});
+  }
+
   handleChange = (input) => (event) => {
     const { value } = event.target;
     this.setState({ [input]: value });
@@ -243,7 +247,8 @@ export class Checkout extends Component {
         
 
       default:
-        return parseFloat(subTotal) + parseFloat(this.props.shippingType)
+        const shippingCost = parseFloat(subTotal) + parseFloat(this.props.shippingType)
+        return parseFloat(shippingCost).toFixed(2)
     }
   }
 
@@ -257,6 +262,7 @@ export class Checkout extends Component {
             <FormUserInformation
               nextStep={this.nextStep}
               handleChange={this.handleChange}
+              handleSaveShippingAddress={this.handleSaveShippingAddress}
               values={values}
             />
           ) : step === 2 ? (
