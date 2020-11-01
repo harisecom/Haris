@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 export class Confirm extends Component {
     firebaseUpdateUserData = async () =>{
 
-        const { address, apartment, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
-                billingApartment ,billingCity, billingState, billingCountry, billingPostal
+        const { emailaddress, firstName, lastName, address, apartment, company, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
+            billingCompany, billingApartment ,billingCity, billingState, billingCountry, billingPostal, billingPhone, phone
             } = this.props.values;
 
-        const information = { address, apartment, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
-            billingApartment ,billingCity, billingState, billingCountry, billingPostal }
+        const information = { emailaddress, firstName, lastName, address, apartment, company, city, state, country, postal, billingFirstName, billingLastName, billingAddress, 
+            billingCompany, billingApartment ,billingCity, billingState, billingCountry, billingPostal, billingPhone, phone }
 
         const userRef = firestore.doc(`users/${this.props.userId}`);
         try {
@@ -86,6 +86,7 @@ export class Confirm extends Component {
         this.props.prevStep();
     }
     render() {
+        console.log(this.props.values.saveShippingAddress);
         const {
             values: {
                 emailaddress, 

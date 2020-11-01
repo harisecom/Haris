@@ -20,6 +20,7 @@ export class FormUserInfomation extends Component {
     }
     render() {
         const { values, handleChange, handleSaveShippingAddress  } = this.props;
+        console.log('user form email :', values.emailaddress);
         return (
             <MuiThemeProvider>
                 <Fragment>
@@ -32,7 +33,7 @@ export class FormUserInfomation extends Component {
                             label= "Email"
                             type="email"
                             onChange={handleChange('emailaddress')}
-                            defaultValue={values.emailaddress}
+                            value={values.emailaddress}
                             margin="normal"
                             variant="outlined"
                             required
@@ -49,26 +50,29 @@ export class FormUserInfomation extends Component {
                         <h2>Shipping Address</h2>
                         
                         <div className="checkout-form-separator">
+
                             <TextField 
                                 label="First name"
                                 type="string"
                                 onChange={handleChange('firstName')}
-                                defaultValue={values.firstName}
+                                value={values.firstName}
                                 variant="outlined"
                                 margin="normal"
                                 fullWidth
                                 required
                             />
+
                             <TextField 
                                 label="Last name"
                                 type="string"
                                 onChange={handleChange('lastName')}
-                                defaultValue={values.lastName} 
-                                variant="outlined"   
+                                value={values.lastName}
+                                variant="outlined"
                                 margin="normal"
                                 fullWidth
                                 required
                             />
+
                        </div>
 
                         <TextField 
@@ -83,8 +87,9 @@ export class FormUserInfomation extends Component {
                         <br />
                         <TextField 
                             label="Address"
+                            type="string"
                             onChange={handleChange('address')}
-                            defaultValue={values.address}
+                            value={values.address}
                             variant="outlined"
                             margin="normal"
                             fullWidth
@@ -140,15 +145,17 @@ export class FormUserInfomation extends Component {
                             required
                         />
                         <br />
+
                         <TextField 
                             label="Phone Number (optional)"
                             type="tel"
                             onChange={handleChange('phone')}
-                            defaultValue={values.phone}
+                            value={values.phone}
                             variant="outlined"
                             margin="normal"
                             fullWidth
                         />
+
                         <br />
                         <FormControlLable 
                             control={<Checkbox 

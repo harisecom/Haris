@@ -9,52 +9,58 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 export class Checkout extends Component {
-  state = {
-    //pages
-    step: 1,
 
-    //billing and shipping address information
-    emailaddress: "",
-    firstName: "",
-    billingFirstName: "",
-    lastName: "",
-    billingLastName: "",
-    company: "",
-    billingCompany: "",
-    address: "",
-    billingAddress: "",
-    apartment: "",
-    billingApartment: "",
-    city: "",
-    billingCity: "",
-    country: "",
-    billingCountry: "",
-    state: "",
-    billingState: "",
-    postal: "",
-    billingPostal: "",
-    phone: "",
-    billingPhone: "",
+  constructor(){
+    super();
+    this.state = {
+      //pages
+      step: 1,
+  
+      //billing and shipping address information
+      emailaddress: "",
+      firstName: "",
+      billingFirstName: "",
+      lastName: "",
+      billingLastName: "",
+      company: "",
+      billingCompany: "",
+      address: "",
+      billingAddress: "",
+      apartment: "",
+      billingApartment: "",
+      city: "",
+      billingCity: "",
+      country: "",
+      billingCountry: "",
+      state: "",
+      billingState: "",
+      postal: "",
+      billingPostal: "",
+      phone: "",
+      billingPhone: "",
+  
+      useShippingAsBilling: false,
+      saveShippingAddress: false,
+  
+      //shipping options
+      freeShipping: 0.0,
+      standardShipping: 6.95,
+      expressShipping: 17.0,
+  
+      //card information
+      cvc: "",
+      expiry: "",
+      name: "",
+      number: "",
+  
+      orderNum: '',
+    }
 
-    useShippingAsBilling: false,
-    saveShippingAddress: false,
-
-    //shipping options
-    freeShipping: 0.0,
-    standardShipping: 6.95,
-    expressShipping: 17.0,
-
-    //card information
-    cvc: "",
-    expiry: "",
-    name: "",
-    number: "",
-
-    orderNum: '',
-  };
+  }
+  
 
   componentDidMount = () => {
-    fetch(
+    /* fetch(
       "https://geolocation-db.com/json/7733a990-ebd4-11ea-b9a6-2955706ddbf3/66.189.113.231"
     )
       .then((response) => {
@@ -72,8 +78,38 @@ export class Checkout extends Component {
           billingPostal: data.postal,
         });
       })
-      .catch((err) => console.error(err));
-  };
+      .catch((err) => console.error(err)); */
+
+    const additionalInformation = this.props.userInfo.additionalInfomation;
+
+    console.log('User Info: ', additionalInformation);
+
+      if(this.props.userInfo.additionalInfomation){
+        this.setState({
+        emailaddress: additionalInformation.emailaddress,
+        firstName: additionalInformation.firstName,
+        lastName: additionalInformation.lastName,
+        company : additionalInformation.company,
+        address : additionalInformation.address,
+        apartment : additionalInformation.apartment ,
+        city : additionalInformation.city,
+        country : additionalInformation.country,
+        state : additionalInformation.state,
+        postal : additionalInformation.postal,
+        phone : additionalInformation.phone,
+        billingFirstName : additionalInformation.billingFirstName,
+        billingLastName : additionalInformation.billingLastName,
+        billingCompany : additionalInformation.billingCompany,
+        billingAddress : additionalInformation.billingAddress,
+        billingApartment : additionalInformation.billingApartment,
+        billingCity : additionalInformation.billingCity,
+        billingState : additionalInformation.billingState,
+        billingCountry : additionalInformation.billingCountry,
+        billingPostal : additionalInformation.billingPostal,
+        billingPhone : additionalInformation.billingPhone 
+      })
+    }
+  }
 
   nextStep = () => {
     const { step } = this.state;
@@ -169,6 +205,9 @@ export class Checkout extends Component {
     if(!this.props.cartItems.length && step < 3){
       return <Redirect to='/' />
     }
+
+    console.log('Email address', this.state.emailaddress)
+    console.log('address', this.state.address)
 
 
     
