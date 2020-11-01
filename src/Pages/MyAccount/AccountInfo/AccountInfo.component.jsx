@@ -46,14 +46,14 @@ class AccountInfo extends Component {
        const {displayName, email, shippingAddress, billingAddress} = this.state;     
 
         return (
-                <div className="account-information">
-                    <p>Name: {displayName} </p>
-                    <p>Email : {email}</p>
-                    <p>Shipping Address: {shippingAddress} </p>
-                    <p>Billing Address: {billingAddress} </p>
-                </div>
-            )
-        }
+            <div className="account-information">
+                <p>Name: {displayName.split(/(?=[A-Z])/).join(' ')} </p>
+                <p>Email : {email}</p>
+                <p>Shipping Address: {shippingAddress} </p>
+                <p>Billing Address: {billingAddress} </p>
+            </div>
+        )
     }
+}
     
 export default AccountInfo

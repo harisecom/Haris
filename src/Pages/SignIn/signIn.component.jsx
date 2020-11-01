@@ -1,7 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
-import FormInput from '../../Components/form-input/FormInput.component';
+import FormInput from '../../Components/Form-Input/FormInput.component';
 import CustomButton from '../../Components/CustomButton/CustomButton.component';
 
 import './Sign-In.styles.css';
@@ -12,7 +12,8 @@ class SignIn extends Component {
         super();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            firebaseErrors: '',
         }
     }
 
@@ -42,7 +43,7 @@ class SignIn extends Component {
             return  <Redirect to="/" />
          }
 
-        const {email, password} = this.state;
+        const {email, password, firebaseErrors} = this.state;
         return (
             <Fragment>
                 <div className="sign-in">
@@ -68,6 +69,7 @@ class SignIn extends Component {
                             <CustomButton type="submit">Login</CustomButton>
                             <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
                         </div>
+                        <p className="error">{firebaseErrors}</p>
                     </form>
                     <span>
                         <Link className="links" to="/forgotPassword">Forgot Your Password?</Link>

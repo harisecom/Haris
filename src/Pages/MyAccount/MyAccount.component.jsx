@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 
 class MyAccount extends Component {
-
     constructor(){
         super()
         this.state = {
@@ -56,33 +55,30 @@ class MyAccount extends Component {
     render(){
         const {user, userInfo}  = this.state;
         const {page} = this.state;
-
         
         if(user){
             return (
                 <div className="myaccount-page">
-                    <h2>Welcome, {user.displayName} </h2>
+                    <h2>Welcome, {user.displayName.split(/(?=[A-Z])/)[0]}</h2>
                     <div className="user-details">
-                            <div className="user-menus">
-                                <ul>
-                                    <li onClick={() => this.handleChange('account-info')} className={ page === 'account-info' ? 'active' : ''}>Account Information</li>
-                                    <li onClick={() => this.handleChange('edit-info')} className={ page === 'edit-info' ? 'active' : ''}>Edit Information</li>
-                                    <li onClick={() => this.handleChange('my-orders')} className={ page === 'my-orders' ? 'active' : ''}>My Orders</li>
-                                    <li onClick= { ()=> {auth.signOut(); this.props.history.push('/')} }>Logout</li>
-                                </ul>
-                            </div>
-    
-                            <div className="information-showcase">
-                                {
-                                    page === 'account-info' ?
-                                    <AccountInfo user= {user} userInfo = {userInfo} /> :
-                                    page === 'edit-info' ?
-                                    <EditInfo user= {user} userInfo = {userInfo} /> :
-                                    page === 'my-orders' ?
-                                    <Myorders user= {user}  userInfo = {userInfo} /> : '' 
-                                }
-                            
-                            </div>
+                        <div className="user-menus">
+                            <ul>
+                                <li onClick={() => this.handleChange('account-info')} className={ page === 'account-info' ? 'active' : ''}>Account Information</li>
+                                <li onClick={() => this.handleChange('edit-info')} className={ page === 'edit-info' ? 'active' : ''}>Edit Information</li>
+                                <li onClick={() => this.handleChange('my-orders')} className={ page === 'my-orders' ? 'active' : ''}>My Orders</li>
+                                <li onClick= { ()=> {auth.signOut(); this.props.history.push('/')} }>Logout</li>
+                            </ul>
+                        </div>
+                        <div className="information-showcase">
+                            {
+                                page === 'account-info' ?
+                                <AccountInfo user= {user} userInfo = {userInfo} /> :
+                                page === 'edit-info' ?
+                                <EditInfo user= {user} userInfo = {userInfo} /> :
+                                page === 'my-orders' ?
+                                <Myorders user= {user}  userInfo = {userInfo} /> : '' 
+                            }
+                        </div>
                     </div>
                 </div>
             )
