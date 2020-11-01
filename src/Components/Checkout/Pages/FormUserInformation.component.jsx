@@ -8,12 +8,39 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 
+import { firestore } from "../../../firebase/firebase.utils";
+import { connect } from 'react-redux';
 import StripeCheckoutButton from '../../Stripe-Button/Stripe-Button.component';
 import '../Checkout.styles.css';
 
 export class FormUserInfomation extends Component {
+    handleCheckBox = () => {
+        const {saveShippingAddress} = this.props;
+        if(!saveShippingAddress) {
+            this.setState({saveShippingAddress: true});
+            console.log('check box fired');
+        }
+        return this.setState({saveShippingAddress: false});  
+    }
+
+    firebaseUpdateUserData = async () =>{
+        const {saveShippingAddress} = this.props;
+        const userRef = firestore.doc(`users/${this.props.userId}`);
+        const {firstName, lastName, company, address, apartment, city, state, country, postal, phone} = this.props.values
+        if(saveShippingAddress === true)
+        console.log('fired')
+        try {
+            await userRef.set({
+                additionalInfomation : {firstName, lastName, company, address, apartment, city, state, country, postal, phone}
+            });
+        } catch (err) {
+            console.error('error uploading user additional info', err.message);
+        }
+
+    }
     continue = e => {
         e.preventDefault();
+        this.firebaseUpdateUserData();
         this.props.nextStep();
     }
     render() {
@@ -24,26 +51,26 @@ export class FormUserInfomation extends Component {
                 <div className="checkout-div">
                     {/* pass in price */}
                     <StripeCheckoutButton />
-                    <h2 className="contact-title">Contact Information</h2>
-                    <TextField 
-                        label= "Email"
-                        type="email"
-                        onChange={handleChange('emailaddress')}
-                        defaultValue={values.emailaddress}
-                        margin="normal"
-                        variant="outlined"
-                        required
-                        fullWidth
-                    />
-                    <br />
-                    <FormControlLable 
-                        control={<Checkbox 
-                            icon={<FavoriteBorderIcon />} 
-                            checkedIcon={<FavoriteIcon />}
-                        />}
-                        label="Keep me up to date on news and exclusive offers"
-                    />
                     <form onSubmit={this.continue}>
+                        <h2 className="contact-title">Contact Information</h2>
+                        <TextField 
+                            label= "Email"
+                            type="email"
+                            onChange={handleChange('emailaddress')}
+                            defaultValue={values.emailaddress}
+                            margin="normal"
+                            variant="outlined"
+                            required
+                            fullWidth
+                        />
+                        <br />
+                        <FormControlLable 
+                            control={<Checkbox 
+                                icon={<FavoriteBorderIcon />} 
+                                checkedIcon={<FavoriteIcon />}
+                            />}
+                            label="Keep me up to date on news and exclusive offers"
+                        />
                         <h2>Shipping Address</h2>
                         
                         <div className="checkout-form-separator">
@@ -152,6 +179,7 @@ export class FormUserInfomation extends Component {
                             control={<Checkbox 
                                 icon={<FavoriteBorderIcon />} 
                                 checkedIcon={<FavoriteIcon />}
+                                onChange={this.handleCheckBox}
                             />}
                             label="Save this information for next time"
                         />
@@ -178,4 +206,7 @@ const styles = {
         marginTop: "2rem"
     }
 }
-export default FormUserInfomation;
+const mapDispatchToProps = (ownProps) => ({
+    userId: ownProps.userId,
+})
+export default connect(null, mapDispatchToProps) (FormUserInfomation);

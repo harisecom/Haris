@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Link, Redirect} from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-import FormInput from '../../Components/form-input/FormInput.component';
+import FormInput from '../../Components/Form-Input/FormInput.component';
 import CustomButton from '../../Components/CustomButton/CustomButton.component';
 
 import './Sign-Up.styles.css'
@@ -26,15 +26,15 @@ class SignUp extends Component {
     }
 
     handleSubmit = async event => {
-        console.log('submit was fired');
         event.preventDefault();
 
-        const { firstName, email, password } = this.state;
+        const { firstName, lastName, email, password, birthday } = this.state;
 
         try {
             const { user } = await auth.createUserWithEmailAndPassword( email, password);
+            const name = firstName + lastName;
 
-            createUserProfileDocument(user, {displayName: firstName});
+            createUserProfileDocument(user, {displayName: name}, {birthday: birthday});
             this.setState({ firstName:'', lastName:'', email:'', password:'', birthday:''});
         } catch(err) {
             this.setState({firebaseErrors: err.message});

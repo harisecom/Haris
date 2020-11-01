@@ -7,13 +7,7 @@ import { clearCartItems } from '../../../Redux/cart/cart-action';
 import { connect } from 'react-redux';
 
 export class Confirm extends Component {
-
-
-
     firebaseUpdateUserData = async () =>{
-
-        
-
         const userRef = firestore.doc(`users/${this.props.userId}`);
         try {
             await userRef.update({
@@ -79,11 +73,11 @@ export class Confirm extends Component {
                 emailaddress, 
                 firstName, lastName, address, apartment, city, state, country, postal,
                 billingFirstName, billingLastName, billingAddress,  billingApartment ,billingCity, billingState, billingCountry, billingPostal,
-                expiry, number
+                expiry, number,
             } 
         } = this.props;
+        const {shippingType} = this.props;
         const xnumber = number.replace(/.(?=.{4})/g, 'x');
-    
         return (
             <MuiThemeProvider>
                 <div className="checkout-div">
@@ -98,8 +92,16 @@ export class Confirm extends Component {
                             <span className="confirm-span">{address}{apartment ? `, ${apartment}` : ''}{city ? `, ${city}` : ''}{state ? `, ${state}` : ''} {postal}, {country}</span>
                         </ListItem>
                         <h4>METHOD</h4>
-                        <ListItem>
-                            <span className="confirm-span"></span>
+                        <ListItem> 
+                            {shippingType === '0' ? (
+                                <span className="confirm-span">Free standard shipping (Approx. 6 - 10 business days)</span>
+                            ) : shippingType === '6.95' ? (
+                                <span className="confirm-span">Standard shipping (Approx. 3 - 5 business days)</span>
+                            ) : shippingType === '17.0' ? (
+                                <span className="confirm-span">Expedited 2-Day Shipping</span>
+                            )  : (
+                                ""
+                            )}    
                         </ListItem>
                         <h4>BILL TO</h4>
                         <ListItem>
@@ -145,6 +147,10 @@ const styles = {
     }
 }
 
+const mapStateToProp = ({shippingType}) => ({
+    shippingType: shippingType.currentShippingType
+});
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
     removeCartItems : () => dispatch(clearCartItems()),
     nextStep: ownProps.nextStep,
@@ -158,4 +164,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 
-export default connect(null, mapDispatchToProps)(Confirm);
+export default connect(mapStateToProp, mapDispatchToProps)(Confirm);

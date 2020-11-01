@@ -37,6 +37,7 @@ export class Checkout extends Component {
     billingPhone: "",
 
     useShippingAsBilling: false,
+    saveShippingAddress: false,
 
     //shipping options
     freeShipping: 0.0,
@@ -179,6 +180,7 @@ export class Checkout extends Component {
       country,
       postal,
       phone,
+      saveShippingAddress,
     } = this.state;
     const {
       billingFirstName,
@@ -207,6 +209,7 @@ export class Checkout extends Component {
       country,
       postal,
       phone,
+      saveShippingAddress,
       billingFirstName,
       billingLastName,
       billingCompany,
