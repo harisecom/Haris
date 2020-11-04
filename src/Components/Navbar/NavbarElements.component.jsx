@@ -26,11 +26,13 @@ const NavbarElements = ({ cartAction , searchbarAction, toggleNavbar, navbarStat
                     <li className='' onClick={clickDrop} >
                         <AccountIcon/>
                         {dropdown ? <Dropdown /> : null}
+
                     </li>
                     <li onClick={toggleNavbar}>
                         <i className={navbarStatus ?  'fas fa-times' :  'fas fa-bars'} />
                     </li>
                 </ul>
+                {dropdown ? <div className="dropdown-overlay" onClick={clickDrop}></div> : null}
             </div> 
     )
 }

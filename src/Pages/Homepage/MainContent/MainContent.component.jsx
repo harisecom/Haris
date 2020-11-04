@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './main-content.style.css';
 import ProductCard from '../../../Components/ProductCard/ProductCard.component';
 import { firestore } from '../../../firebase/firebase.utils';
+import { withRouter } from 'react-router-dom';
 
 class MainContent extends Component {
 
@@ -10,7 +11,8 @@ class MainContent extends Component {
     this.state = {
       bestDeals: [],
       currentlyTrending: [],
-      newlyAdded: []
+      newlyAdded: [],
+      newslatterEmail: '',
     }
 
   }
@@ -39,6 +41,10 @@ class MainContent extends Component {
 
   }
 
+  handleChange = (e) => {
+    this.setState({ newslatterEmail: e.target.value})
+  }
+
 
 
 
@@ -55,9 +61,9 @@ class MainContent extends Component {
 
         <div className="shop-by-category">
           <ul>
-            <li className="selected">SHOP BY BEST DEALS</li>
-            <li>SHOP BY BEST SHOPS</li>
-            <li>SHOP BY BEST SELLS</li>
+            <li className="selected" onClick={() => this.props.history.push('/shop')}>SHOP BY BEST DEALS</li>
+            <li onClick={() => this.props.history.push('/shop')}>SHOP BY BEST SHOPS</li>
+            <li onClick={() => this.props.history.push('/shop')}>SHOP BY BEST SELLS</li>
           </ul>
         </div>
 
@@ -87,7 +93,7 @@ class MainContent extends Component {
               <p>Committed to approachable, effective formulation that
                   are designed with you and your skin care journey in mind.
                   </p>
-              <button> SHOP NOW</button>
+              <button onClick={() => this.props.history.push('/shop')}> SHOP NOW</button>
             </div>
             <div className="banner-image-content">
               <img src="/images/banner-image-content.png" alt="" />
@@ -135,8 +141,12 @@ class MainContent extends Component {
           <div className="newslater-subscription-elements">
             <p>Sign up for subscriber-only discounts, first look at <br />
              newly-curated items & K-beuty skincare tips! </p>
-            <input type="text" placeholder="Your Email..." />
+             <form action="https://gmail.us2.list-manage.com/subscribe/post?u=130da831f8e0876c203ee4cc7&amp;id=44b7104330" method="post" className="newslatter-form">
+              <input type="email" value={this.state.newslatterEmail} onChange={this.handleChange} name="EMAIL" placeholder="Your Email..." />
+              <button type="submit">Submit</button>
+              </form>
           </div>
+
         </div>
       </div>
     )
@@ -146,4 +156,4 @@ class MainContent extends Component {
 
 
 
-export default MainContent;
+export default withRouter(MainContent);

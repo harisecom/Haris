@@ -1,15 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './navbar.style.css';
 
 const NavbarLinks = () => {
+
+    const history = useHistory();
     return (
 
         <div className="nav-links">
             <ul>
-                <li> SHOP ALL</li>
-                <li>SHOP BY CATEGORY</li>
-                <li>BEST SELLERS</li>
-                <li>BRANDS</li>
+                <li onClick={() => history.push('/shop')} >SHOP ALL</li>
+                <li onClick={() => history.push('/shop')} >SHOP BY CATEGORY</li>
+                <li onClick={() => history.push('/shop')} >BEST SELLERS</li>
+                <li onClick={() => history.push('/shop')} >BRANDS</li>
             </ul>            
         </div>
     )

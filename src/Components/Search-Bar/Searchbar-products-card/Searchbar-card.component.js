@@ -2,9 +2,9 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating'
 import './Searchbar-card.styles.css';
 import firebase from '../../../firebase/firebase.utils';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {searchbarAction} from '../../../Redux/searchbar/searchbar-action';
+import { withRouter, Link } from 'react-router-dom';
 
 class SearchbarProductsCard extends React.Component {
     constructor(){
@@ -28,8 +28,8 @@ class SearchbarProductsCard extends React.Component {
     render() {
         const item = this.props.item;
         return(
-            <li key={item.id} onClick={this.props.searchbarAction()}>
-                <Link to={`/product/${item.id}`} className="search-product-a" >
+            <li key={item.id} onClick={() => {this.props.searchbarAction(); this.props.history.push(`/product/${item.id}`) }}>
+                <Link className="search-product-a">
                     <img  src={`${this.state.imageUrl}`} className="search-product-image" alt="product"></img>
                     <div className="search-product-group">
                     <span className="search-product-title">{item.productName}</span>
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
     searchbarAction: () => dispatch(searchbarAction())
   })
 
-export default connect(null, mapDispatchToProps)(SearchbarProductsCard);
+export default withRouter(connect(null, mapDispatchToProps)(SearchbarProductsCard));
