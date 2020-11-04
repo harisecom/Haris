@@ -2,6 +2,7 @@ import React from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
+import { withRouter } from 'react-router-dom';
 import './mainslider.style.css';
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
@@ -24,7 +25,7 @@ const MainSlider = () => {
 				brands like Thank You<br/> 
 				Farmer, Nacific, Tony Moly,<br/> 
 				and more!</p>
-				<button className="slider-button">Shop Now</button>
+				<button className="slider-button" onClick={() => this.props.history.push('/shop')}>Shop Now</button>
 			</div>
 			<div className="slider-image">
 				<img src="images/slider1.png" alt="Slider 1"/>
@@ -43,7 +44,7 @@ const MainSlider = () => {
 				top-rated products paired<br/> 
 				together in one simple,<br/> 
 				effective set.</p>
-				<button className="slider-button">Shop Now</button>
+				<button className="slider-button" onClick={() => this.props.history.push('/shop')}>Shop Now</button>
 			</div>
 			<div className="slider-image">
 				<img src="images/slider2.png" alt="Slider 2"/>
@@ -62,7 +63,7 @@ const MainSlider = () => {
 				pores and gently exfoliates<br/> 
 				for a smooth-to-<br/>
 				the-touch complexion</p>
-				<button className="slider-button">Shop Now</button>
+				<button className="slider-button" onClick={() => this.props.history.push('/shop')}>Shop Now</button>
 			</div>
 			<div className="slider-image">
 				<img src="images/slider3.png" alt="Slider 3"/>
@@ -82,4 +83,4 @@ const MainSlider = () => {
   
 	}
 
-export default MainSlider;
+export default withRouter(MainSlider);
