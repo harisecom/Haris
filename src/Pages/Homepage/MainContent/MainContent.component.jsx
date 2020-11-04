@@ -11,7 +11,8 @@ class MainContent extends Component {
     this.state = {
       bestDeals: [],
       currentlyTrending: [],
-      newlyAdded: []
+      newlyAdded: [],
+      newslatterEmail: '',
     }
 
   }
@@ -38,6 +39,10 @@ class MainContent extends Component {
 
 
 
+  }
+
+  handleChange = (e) => {
+    this.setState({ newslatterEmail: e.target.value})
   }
 
 
@@ -136,8 +141,12 @@ class MainContent extends Component {
           <div className="newslater-subscription-elements">
             <p>Sign up for subscriber-only discounts, first look at <br />
              newly-curated items & K-beuty skincare tips! </p>
-            <input type="text" placeholder="Your Email..." />
+             <form action="https://gmail.us2.list-manage.com/subscribe/post?u=130da831f8e0876c203ee4cc7&amp;id=44b7104330" method="post" className="newslatter-form">
+              <input type="email" value={this.state.newslatterEmail} onChange={this.handleChange} name="EMAIL" placeholder="Your Email..." />
+              <button type="submit">Submit</button>
+              </form>
           </div>
+
         </div>
       </div>
     )

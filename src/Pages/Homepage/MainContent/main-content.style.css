@@ -120,7 +120,7 @@
 }
 
 .newslater-subscription-elements{
-  width: 950px;
+  width: 1150px;
   display: flex;
   justify-content: space-between;
 }
@@ -135,6 +135,21 @@
   font-size: 20px;
   padding: 10px 20px;
   font-size: 20px;
+}
+
+.newslater-subscription-elements .newslatter-form {
+  display: flex;
+}
+
+.newslater-subscription-elements button {
+    padding: 10px 0px;
+    margin-left: 20px;
+    font-size: 20px;
+    width: 150px;
+    height: 60px;
+    color: white;
+    border: none;
+    background-color: #111;
 }
 
 .populate-all-products{
@@ -211,7 +226,7 @@
   }
 
   .newslater-subscription-elements{
-    width: 650px;
+    width: 850px;
   }
   .newslater-subscription-elements p{
     font-size: 16px;
@@ -223,6 +238,14 @@
     width : 250px;
     height: 50px;
   }
+
+  .newslater-subscription-elements button {
+    margin-left: 15px;
+    font-size: 12px;
+    width: 100px;
+    height: 50px;
+    
+}
 
 }
 
@@ -298,12 +321,24 @@
     margin: 0 auto;
     margin-bottom: 50px;
   }
+
+  .newslater-subscription-elements form {
+    justify-content: center;
+  }
+
   .newslater-subscription-elements input{
     font-size: 16px;
-    margin: 0 auto;
     padding: 5px 10px;
-    width : 400px;
+    width : 350px;
     height: 50px;
+  }
+
+  .newslater-subscription-elements button {
+    margin-left: 10px;
+    font-size: 12px;
+    width: 100px;
+    height: 50px;
+    
   }
 
 }
